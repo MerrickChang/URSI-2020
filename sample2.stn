@@ -1,0 +1,13 @@
+# KIND OF NETWORK
+STN
+# Num Time-Points
+5
+# Num Ordinary Edges
+4
+# Time-Point Names
+Z B C D E
+# Ordinary Edges
+Z 1 B
+B 1 C
+C 1 E
+E 1 D
