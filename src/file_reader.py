@@ -50,6 +50,7 @@ class FileReader:
                 if state == 'NO_POINTS':
                     # for testing
                     no_points = int(line)
+                    self.network.length = no_points
                     self.network.successor_edges = [
                         [] for i in range(no_points)]
                 elif state == 'NO_EDGES':
@@ -68,8 +69,9 @@ class FileReader:
                 elif state == 'EDGES':
                     weights = line.split()
                     # make a list of list of tuples
-                    idx = self.network.names_dict[weights[0]]
-                    tup = (weights[2], weights[1])
+                    idxKey = self.network.names_dict[weights[0]]
+                    idx_value = self.network.names_dict[weights[2]]
+                    tup = (idx_value, weights[1])
                     self.network.successor_edges[idx].append(tup)
                 elif state == 'LINKS':
                     # for testing, throw an error
@@ -99,6 +101,7 @@ class FileReader:
                 if state == 'NO_POINTS':
                     # for testing
                     no_points = int(line)
+                    self.netowrk.length = no_points
                     self.network.successor_edges = [
                         [] for i in range(no_points)]
                 elif state == 'NO_EDGES':
@@ -118,7 +121,8 @@ class FileReader:
                     weights = line.split()
                     # make a list of list of tuples
                     idx = self.network.names_dict[weights[0]]
-                    tup = (weights[2], weights[1])
+                    idx_value = self.network.names_dict[weights[2]]
+                    tup = (idx_value, weights[1])
                     self.network.successor_edges[idx].append(tup)
                 elif state == 'LINKS':
                     # for testing, throw an error
