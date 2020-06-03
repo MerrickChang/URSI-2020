@@ -1,5 +1,3 @@
-from graph import Graph
-from node import Node
 from stn import STN
 from stnu import STNU
 
@@ -69,7 +67,7 @@ class FileReader:
                     weights = line.split()
                     # make a list of list of tuples
                     idx = self.network.names_dict[weights[0]]
-                    tup = (weights[2], weights[1])
+                    tup = (weights[2], int(weights[1]))
                     self.network.successor_edges[idx].append(tup)
                 elif state == 'LINKS':
                     # for testing, throw an error
@@ -118,7 +116,7 @@ class FileReader:
                     weights = line.split()
                     # make a list of list of tuples
                     idx = self.network.names_dict[weights[0]]
-                    tup = (weights[2], weights[1])
+                    tup = (weights[2], int(weights[1]))
                     self.network.successor_edges[idx].append(tup)
                 elif state == 'LINKS':
                     # for testing, throw an error
