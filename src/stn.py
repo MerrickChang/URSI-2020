@@ -11,15 +11,22 @@ class STN:
         n = range(len(self.names_dict))
         for x in n:
             dist[x][x] = 0
-        print(dist)
         for i in n:
             for j in n:
                 for k in n:
                     if dist[i][j] > dist[i][k] + dist[k][j]:
                         dist[i][j] = dist[i][k] + dist[k][j]
-        print(dist)
         for x in n:
             if dist[x][x] < 0:
                 return False
         return dist
-    
+    def bellman_ford(self, source = None):
+        pass
+    class _EdgeAccessor: #allows access of all edges including virtual edges for purposes of Bellman Ford
+        def __init__(self, virtual_nodes, virtual_edges):
+            pass
+        def __iter__(self):
+            pass
+        def __next__(self)
+            pass
+        
