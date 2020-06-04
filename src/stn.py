@@ -9,17 +9,19 @@ class STN:
 
     def dijkstra(self, src):
         distances = [float("inf") for i in range(self.length)]
-        src_idx = self.names_dict[src]
+        if type(src) == str:
+            src_idx = self.names_dict[src]
+        else:
+            src_idx = src
         distances[src_idx] = 0
         min_heap = []
-        heapq.heappush(min_heap, distances[src_idx])
+        heapq.heappush(min_heap, (distances[src_idx], src_idx))
         while min_heap:
-            u = heapq.heappop(min_heap)
-            for successor_idx, weight in self.successor_edges[u]:
-                if (distances[u] + weight < distances[successor_idx]):
-                    distances[successor_idx] = distances[u] + weight
+            u, u_idx = heapq.heappop(min_heap)
+            for successor_idx, weight in self.successor_edges[u_idx]:
+                if (distances[u_idx] + weight < distances[successor_idx]):
+                    distances[successor_idx] = distances[u_idx] + weight
                     heapq.heappush(min_heap, distances[successor_idx])
-                #distances[successor_idx] = min(distances[successor_idx], distances[u] + weight)
         return distances
 
     def johnson(self, src):
