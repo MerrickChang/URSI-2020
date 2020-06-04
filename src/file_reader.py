@@ -4,11 +4,45 @@ from stnu import STNU
 
 class FileReader:
 
+    """
+    A class to represent a read a file with the format of an stn/stnu.
+    ...
+    Attributes
+    ----------
+    file_path : str
+        The path to the stn/stnu file
+    network : STN, STNU
+        The simple temporal network to be created
+    Methods
+    -------
+    read_file
+    """
     def __init__(self, file_path):
+        """
+        Constructor for the file reader
+        Parameters
+        ----------
+        file_path : str
+            The path to the stn/stnu file
+        network : STN, STNU
+            The simple temporal network to be created
+        Returns
+        -------
+        None
+        """
         self.file_path = file_path
         self.network = []
 
     def read_file(self):
+        """
+        Reads the file and decides whether to create an STN or an STNU
+        Parameters
+        ----------
+        None
+        Returns
+        -------
+        None
+        """
         file = open(self.file_path, "r")
         state = ""
         for line in file:
@@ -18,15 +52,15 @@ class FileReader:
             if state == "NETWORK_TYPE":
                 if "u" not in line.lower():
                     self.network = STN()
-                    return self.read_stn(file)
+                    return self._read_stn(file)
                 elif "u" in line.lower():
                     self.network = STNU()
-                    return self.read_stnu(file)
+                    return self._read_stnu(file)
                 else:
                     # throw an error
                     pass
 
-    def read_stn(self, file):
+    def _read_stn(self, file):
         state = ""
         for line in file:
             if line.startswith('#'):
@@ -77,7 +111,7 @@ class FileReader:
                 else:
                     pass
 
-    def read_stnu(self, file):
+    def _read_stnu(self, file):
         state = ""
         for line in file:
             if line.startswith('#'):
@@ -99,7 +133,7 @@ class FileReader:
                 if state == 'NO_POINTS':
                     # for testing
                     no_points = int(line)
-                    self.netowrk.length = no_points
+                    self.network.length = no_points
                     self.network.successor_edges = [
                         [] for i in range(no_points)]
                 elif state == 'NO_EDGES':
