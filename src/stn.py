@@ -4,9 +4,7 @@ import heapq
 class STN:
     """
     A class to represent a Simple Temporal Network.
-
     ...
-
     Attributes
     ----------
     names_dict : dict[name: index]
@@ -35,7 +33,6 @@ class STN:
     def __init__(self):
         """
         Constructor for a Simple Temporal Network
-
         Parameters
         ----------
             names_dict : dict[name: index]
@@ -47,7 +44,6 @@ class STN:
                 and the second element is the weight/distance between the i-th and j-th nodes
             length : int
                 number of nodes in the STN
-
         Returns
         -------
         None
@@ -59,14 +55,12 @@ class STN:
     def dijkstra(self, src):
         """
         Calculates the shortest path using Dijkstra's algorithm
-
         Parameters
         ----------
         src : str, int
             The node dijkstra's algorithm uses to find the shortest path from.
             You could provide the index of the node or the name of the node and
             the algorithm should recognize which one you have entered
-
         Returns
         -------
         distances : List[int]
@@ -96,12 +90,10 @@ class STN:
     def johnson(self, src):
         """
         Calculates the shortest path using Johnson's algorithm
-
         Parameters
         ----------
         src : str, int
             An arbitrary node that does not exist in the STN.
-
         Returns
         -------
         distance_matrix : List[List[int]]
