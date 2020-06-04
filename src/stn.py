@@ -52,7 +52,7 @@ class STN:
         self.successor_edges = []
         self.length = 0
 
-    def dijkstra(self, src, reweighting = lemma:):
+    def dijkstra(self, src, weighting_function = lambda u,v,delta:delta):
         """
         Calculates the shortest path using Dijkstra's algorithm
         Parameters
@@ -61,6 +61,9 @@ class STN:
             The node dijkstra's algorithm uses to find the shortest path from.
             You could provide the index of the node or the name of the node and
             the algorithm should recognize which one you have entered
+
+        weighting_function : (int, int -> int)
+            A function for rewieghting the inputs for special uses, e.g. Johnson's Algorithm
         
         Returns
         -------
@@ -80,14 +83,56 @@ class STN:
         heapq.heappush(min_heap, (distances[src_idx], src_idx))
 
         while min_heap:
-            u, u_idx = heapq.heappop(min_heap)
-            for successor_idx, weight in self.successor_edges[u_idx]:
-                if (distances[u_idx] + weight < distances[successor_idx]):
-                    distances[successor_idx] = distances[u_idx] + weight
-                    heapq.heappush(min_heap, distances[successor_idx])
+            dist_u, u = heapq.heappop(min_heap)
+            for v, weight in self.successor_edges[u_idx]:
+                if (distances[u] + weighting_function(u,v,weight) < distances[v]):
+                    distances[v] = distances[u] + weighting_function(u, v, weight)
+                    heapq.heappush(min_heap, (distances[v], v))
 
         return distances
+    
+    def _edges_w_virtual(self, virtual_edges = []): #generator; allows access of all edges including virtual edges for purposes of Bellman Ford
+        """
+        Generator for iterating through all edges in the graph in situations where virtual edges are necessary for use of an algorithm
+        
+        Yields
+        ------
+        edge : (int, int, int)
+            A tuple representing one real or virtual edge in the graph.
+        """
+        for u, edge_list in enumerate(self.successor_edges):
+            for v, delta in edge_list:
+                yield (u, v, delta)
+        for u, v, delta in virtual_edges:
+            yield (u, v, delta)
+    def _virtual_edges_johnson(self): #generator of virtual edges for johnson's algorithm
+        """
+        Generator for virtual edges for the purposes of Johnson's algorithm
 
+        Yields
+        ------
+        edge: (int, int, int)
+            A tuple representing one real or virtual edge in the graph.
+        """
+        for index in range(len(self.successor_edges)):
+            yield (len(self.successor_edges), index, 0)
+    def bellman_ford(self, source = False):
+        length = len(self.names_dict)
+        virt = []
+        source_index = length
+        if not source:
+            virt = self._virtual_edges_johnson(self)
+        else:
+            source_index = names_dict[source_index]
+        dist = [float('inf') for x in range(length)]
+        for n in range(length):
+            for u, v, delta in self._edges_w_virtual(virtual_edges = virt):
+                if dist[u] + delta < dist[v]:
+                    dist[v] = dist[u] + delta
+        for u, v, delta in self._edges_w_virtual(virtual_edges = virt):
+            if dist[u] + delta >= dist[v]:
+                return False
+        return dist
     def johnson(self):
         """
         Calculates the shortest path using Johnson's algorithm
@@ -98,17 +143,22 @@ class STN:
         """
         distance_matrix = [[] for x in range(self.length)]
         # Use bellman ford that takes a node not in the graph
-        bellmanford_distances = self.bellman_ford(source = False)
-        
-        for node_idx, list_of_edges in enumerate(self.successor_edges):
-            for successor_idx, weight in list_of_edges:
-                self.successor_edges[node_idx][1] = (weight + bellmanford_distances[node_idx] - bellmanford_distances[successor_idx])
+        b_dist = self.bellman_ford(source = False)
 
-        for node_idx in range(self.length):
-            distance_matrix[node_idx] = self.dijkstra(node_idx)
+        for i in range(self.length):
+            distance_matrix[node_idx] = self.dijkstra(u, weighting_function = lambda u, v, delta: delta + b_dist[u] - b_dist[v])
+                                            + b_dist[v] - b_dist[u]  
         return distance_matrix
     
     def floyd_warshall(self):
+        """
+        Calculates the distance matrix using the Floyd-Warshall algorithm
+        
+        Returns
+        -------
+        dist : List[List[int]]
+            A 2-D lists representing the distance matrix of the 
+        """
         dist = [[float('inf') for y in range(len(self.names_dict))] for x in range(len(self.names_dict))]
         for i, edge_list in enumerate(self.successor_edges):
             for edge in edge_list:
@@ -124,30 +174,5 @@ class STN:
             if dist[x][x] < 0:
                 return False
         return dist
-    def bellman_ford(self, source = False):
-        length = len(self.names_dict)
-        virt = []
-        source_index = length
-        if not source:
-            virt = self._virtual_edges_johnson(self)
-            length += 1
-        else:
-            source_index = names_dict[source_index]
-        dist = [float('inf') for x in range(length)]
-        for n in range(length):
-            for u, v, delta in self._edges_w_virtual(virtual_edges = virt):
-                if dist[u] + delta < dist[v]:
-                    dist[v] = dist[u] + delta
-        for u, v, delta in self._edges_w_virtual(virtual_edges = virt):
-            if dist[u] + delta >= dist[v]:
-                return False
-        return dist
-    def _edges_w_virtual(self, virtual_edges = []): #generator; allows access of all edges including virtual edges for purposes of Bellman Ford
-        for u, edge_list in enumerate(self.successor_edges):
-            for v, delta in edge_list:
-                yield (u, v, delta)
-        for u, v, delta in virtual_edges:
-            yield (u, v, delta)
-    def _virtual_edges_johnson(self): #generator of virtual edges for johnson's algorithm
-        for index in range(len(self.successor_edges)):
-            yield (len(self.successor_edges), index, 0)
+
+
