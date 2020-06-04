@@ -20,7 +20,7 @@ class STN:
     -------
     floyd_warshall()
         describe
-    bellmann_ford()
+    bellman_ford()
         describe
     dijkstra(src)
         Calculates the shortest path array from src using
@@ -52,7 +52,7 @@ class STN:
         self.successor_edges = []
         self.length = 0
 
-    def dijkstra(self, src):
+    def dijkstra(self, src, reweighting = lemma:):
         """
         Calculates the shortest path using Dijkstra's algorithm
         Parameters
@@ -61,6 +61,7 @@ class STN:
             The node dijkstra's algorithm uses to find the shortest path from.
             You could provide the index of the node or the name of the node and
             the algorithm should recognize which one you have entered
+        
         Returns
         -------
         distances : List[int]
@@ -87,32 +88,26 @@ class STN:
 
         return distances
 
-    def johnson(self, src):
+    def johnson(self):
         """
         Calculates the shortest path using Johnson's algorithm
-        Parameters
-        ----------
-        src : str, int
-            An arbitrary node that does not exist in the STN.
         Returns
         -------
         distance_matrix : List[List[int]]
             A 2-D list representing the shortest distances between all the nodes
         """
         distance_matrix = [[] for x in range(self.length)]
-
         # Use bellman ford that takes a node not in the graph
-        bellmanford_distances = self.bellmanford(src)
+        bellmanford_distances = self.bellman_ford(source = False)
+        
         for node_idx, list_of_edges in enumerate(self.successor_edges):
             for successor_idx, weight in list_of_edges:
-                self.successor_edges[node_idx][1] = (weight
-                  + bellmanford_distances[node_idx]
-                  - bellmanford_distances[successor_idx])
+                self.successor_edges[node_idx][1] = (weight + bellmanford_distances[node_idx] - bellmanford_distances[successor_idx])
 
         for node_idx in range(self.length):
             distance_matrix[node_idx] = self.dijkstra(node_idx)
-
         return distance_matrix
+    
     def floyd_warshall(self):
         print(self.names_dict)
         dist = [[float('inf') for y in range(len(self.names_dict))] for x in range(len(self.names_dict))]
