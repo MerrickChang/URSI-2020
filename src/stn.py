@@ -113,3 +113,21 @@ class STN:
             distance_matrix[node_idx] = self.dijkstra(node_idx)
 
         return distance_matrix
+    def floyd_warshall(self):
+        print(self.names_dict)
+        dist = [[float('inf') for y in range(len(self.names_dict))] for x in range(len(self.names_dict))]
+        for i, edge_list in enumerate(self.successor_edges):
+            for edge in edge_list:
+                dist[i][edge[0]] = edge[1]
+        n = range(len(self.names_dict))
+        for x in n:
+            dist[x][x] = 0
+        for i in n:
+            for j in n:
+                for k in n:
+                    if dist[i][j] > dist[i][k] + dist[k][j]:
+                        dist[i][j] = dist[i][k] + dist[k][j]
+        for x in n:
+            if dist[x][x] < 0:
+                return False
+        return dist
