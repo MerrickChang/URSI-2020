@@ -146,8 +146,7 @@ class STN:
         b_dist = self.bellman_ford(source = False)
 
         for i in range(self.length):
-            distance_matrix[node_idx] = self.dijkstra(u, weighting_function = lambda u, v, delta: delta + b_dist[u] - b_dist[v])
-                                            + b_dist[v] - b_dist[u]  
+            distance_matrix[node_idx] = self.dijkstra(u, weighting_function = lambda u, v, delta: delta + b_dist[u] - b_dist[v]) + b_dist[v] - b_dist[u]  
         return distance_matrix
     
     def floyd_warshall(self):
@@ -162,6 +161,7 @@ class STN:
         dist = [[float('inf') for y in range(len(self.names_dict))] for x in range(len(self.names_dict))]
         for i, edge_list in enumerate(self.successor_edges):
             for edge in edge_list:
+                dist[i][edge[0]] = edge[1]
         n = range(len(self.names_dict))
         for x in n:
             dist[x][x] = 0
@@ -174,5 +174,3 @@ class STN:
             if dist[x][x] < 0:
                 return False
         return dist
-
-
