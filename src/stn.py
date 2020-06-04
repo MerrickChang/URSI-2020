@@ -123,7 +123,7 @@ class STN:
         if not source:
             virt = self._virtual_edges_johnson(self)
         else:
-            source_index = names_dict[source_index]
+            source_index = names_dict[source]
         dist = [float('inf') for x in range(length)]
         for n in range(length):
             for u, v, delta in self._edges_w_virtual(virtual_edges = virt):
