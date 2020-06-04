@@ -1,9 +1,9 @@
 import heapq
 
 
-class STN:
+class STNU:
     """
-    A class to represent a Simple Temporal Network.
+    A class to represent a Simple Temporal Network with uncertainties.
     ...
     Attributes
     ----------
@@ -15,7 +15,7 @@ class STN:
         first element of the tuple is the j-th node that the i-th node is connected to
         and the second element is the weight/distance between the i-th and j-th nodes
     length : int
-        number of nodes in the STN
+        number of nodes in the STNU
     Methods
     -------
     floyd_warshall()
