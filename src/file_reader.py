@@ -1,5 +1,3 @@
-from graph import Graph
-from node import Node
 from stn import STN
 from stnu import STNU
 
@@ -129,4 +127,3 @@ class FileReader:
                     pass
                 else:
                     pass
-
