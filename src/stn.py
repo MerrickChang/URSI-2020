@@ -109,7 +109,6 @@ class STN:
         return distance_matrix
     
     def floyd_warshall(self):
-        print(self.names_dict)
         dist = [[float('inf') for y in range(len(self.names_dict))] for x in range(len(self.names_dict))]
         for i, edge_list in enumerate(self.successor_edges):
             for edge in edge_list:
@@ -136,20 +135,19 @@ class STN:
             source_index = names_dict[source_index]
         dist = [float('inf') for x in range(length)]
         for n in range(length):
-            for u, edge in enumerate(self._edges_w_virtual(virtual_edges = virt)):
-                v = self.name_list[edge[0]]
-                if dist[u] + edge[1] < dist[v]:
-                    dist[v] = dist[u] + edge[1]
-        for u, edge in enumerate(self._edges_w_virtual(virtual_edges = virt)):
-            if dist[u] + edge[1] >= edge[0]:
+            for u, v, delta in self._edges_w_virtual(virtual_edges = virt):
+                if dist[u] + delta < dist[v]:
+                    dist[v] = dist[u] + delta
+        for u, v, delta in self._edges_w_virtual(virtual_edges = virt):
+            if dist[u] + delta >= dist[v]:
                 return False
         return dist
     def _edges_w_virtual(self, virtual_edges = []): #generator; allows access of all edges including virtual edges for purposes of Bellman Ford
-        for edge_list in self.successor_edges:
-            for edge in edge_list:
-                yield edge
-        for edge in virtual_edges:
-            yield edge
+        for u, edge_list in enumerate(self.successor_edges):
+            for v, delta in edge_list:
+                yield (u, v, delta)
+        for u, v, delta in virtual_edges:
+            yield (u, v, delta)
     def _virtual_edges_johnson(self): #generator of virtual edges for johnson's algorithm
-        for name in names_dict:
-            yield (name, 0)
+        for index in range(len(self.successor_edges)):
+            yield (len(self.successor_edges), index, 0)
