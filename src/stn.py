@@ -121,6 +121,21 @@ class STN:
         for index in range(len(self.successor_edges)):
             yield (len(self.successor_edges), index, 0)
     def bellman_ford(self, source = False):
+        """
+        Implements the Bellman-Ford Algorithm
+
+        Parameters
+        ----------
+        source: bool, str
+            Specifies the source node.
+            If no source node is specified, it is assumed that the algorithm is being used for Johnson's algorithm and virtual node is generated.
+        
+        Returns
+        -------
+        dist: List[int]
+            A list of integers representing the distance from the source node
+
+        """
         length = len(self.names_dict)
         virt = []
         source_index = length
@@ -170,7 +185,7 @@ class STN:
         Returns
         -------
         dist : List[List[int]]
-            A 2-D lists representing the distance matrix of the 
+            A 2-D lists representing the distance matrix of the STN
         """
         dist = [[float('inf') for y in range(len(self.names_dict))] for x in range(len(self.names_dict))]
         for u, edge_list in enumerate(self.successor_edges):
