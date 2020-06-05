@@ -1,5 +1,5 @@
-from file_reader.py import FileReader
-from stn.py import STN
+from file_reader import FileReader
+from stn import STN
 
 for test in ["../sample.stn", "../sample2.stn", "../sample3.stn"]:
     reader = FileReader(test)

@@ -52,7 +52,7 @@ class STN:
         self.successor_edges = []
         self.length = 0
 
-    def dijkstra(self, src, weighting_function = lambda u,v,delta:delta):
+    def dijkstra(self, src, reweights = False):
         """
         Calculates the shortest path using Dijkstra's algorithm
         Parameters
@@ -61,9 +61,8 @@ class STN:
             The node dijkstra's algorithm uses to find the shortest path from.
             You could provide the index of the node or the name of the node and
             the algorithm should recognize which one you have entered
-
-        weighting_function : (int, int -> int)
-            A function for rewieghting the inputs for special uses, e.g. Johnson's Algorithm
+        reweighted_edges: bool, List[List[(int,int)]]
+            Specifies if reweighted edges are to be used or not. If so, takes new edges
         
         Returns
         -------
@@ -81,12 +80,17 @@ class STN:
         distances[src_idx] = 0
         min_heap = []
         heapq.heappush(min_heap, (distances[src_idx], src_idx))
-
+        edges = []
+        if reweights:
+            edges = reweights
+        else:
+            edges = self.successor_edges
         while min_heap:
             dist_u, u = heapq.heappop(min_heap)
-            for v, weight in self.successor_edges[u_idx]:
-                if (distances[u] + weighting_function(u,v,weight) < distances[v]):
-                    distances[v] = distances[u] + weighting_function(u, v, weight)
+            for v, weight in edges[u]:
+                alt = distances[u] + weight
+                if (alt < distances[v]):
+                    distances[v] = alt
                     heapq.heappush(min_heap, (distances[v], v))
 
         return distances
@@ -121,16 +125,19 @@ class STN:
         virt = []
         source_index = length
         if not source:
-            virt = self._virtual_edges_johnson(self)
+            virt = self._virtual_edges_johnson()
+            length += 1
         else:
             source_index = names_dict[source]
         dist = [float('inf') for x in range(length)]
+        dist[source_index] = 0
         for n in range(length):
             for u, v, delta in self._edges_w_virtual(virtual_edges = virt):
-                if dist[u] + delta < dist[v]:
-                    dist[v] = dist[u] + delta
+                alt = dist[u] + delta
+                if alt < dist[v]:
+                    dist[v] = alt
         for u, v, delta in self._edges_w_virtual(virtual_edges = virt):
-            if dist[u] + delta >= dist[v]:
+            if dist[u] + delta < dist[v]:
                 return False
         return dist
     def johnson(self):
@@ -144,9 +151,16 @@ class STN:
         distance_matrix = [[] for x in range(self.length)]
         # Use bellman ford that takes a node not in the graph
         b_dist = self.bellman_ford(source = False)
-
-        for i in range(self.length):
-            distance_matrix[node_idx] = self.dijkstra(u, weighting_function = lambda u, v, delta: delta + b_dist[u] - b_dist[v]) + b_dist[v] - b_dist[u]  
+        if not b_dist:
+            return False
+        reweighted_edges =  [[(v,(weight + b_dist[u] - b_dist[v]))
+                                                       for v, weight in edge_list]
+                                                       for u, edge_list in enumerate(self.successor_edges)]
+        for u in range(len(self.names_dict)):
+            distance_matrix[u] = self.dijkstra(u, reweights = reweighted_edges)
+        for u in range(len(distance_matrix)):
+            for v in range(len(distance_matrix)):
+                distance_matrix[u][v] += b_dist[v] - b_dist[u]
         return distance_matrix
     
     def floyd_warshall(self):
@@ -159,18 +173,18 @@ class STN:
             A 2-D lists representing the distance matrix of the 
         """
         dist = [[float('inf') for y in range(len(self.names_dict))] for x in range(len(self.names_dict))]
-        for i, edge_list in enumerate(self.successor_edges):
-            for edge in edge_list:
-                dist[i][edge[0]] = edge[1]
-        n = range(len(self.names_dict))
-        for x in n:
+        for u, edge_list in enumerate(self.successor_edges):
+            for v, weight in edge_list:
+                dist[u][v] = weight
+        for x in range(len(self.names_dict)):
             dist[x][x] = 0
-        for i in n:
-            for j in n:
-                for k in n:
-                    if dist[i][j] > dist[i][k] + dist[k][j]:
-                        dist[i][j] = dist[i][k] + dist[k][j]
-        for x in n:
+        for k in range(len(self.names_dict)):
+            for i in range(len(self.names_dict)):
+                for j in range(len(self.names_dict)):
+                    alt = dist[i][k] + dist[k][j]
+                    if dist[i][j] > alt:
+                        dist[i][j] = alt
+        for x in range(len(self.names_dict)):
             if dist[x][x] < 0:
                 return False
         return dist

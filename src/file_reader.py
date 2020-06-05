@@ -103,8 +103,8 @@ class FileReader:
                     # make a list of list of tuples
                     idxKey = self.network.names_dict[weights[0]]
                     idx_value = self.network.names_dict[weights[2]]
-                    tup = (idx_value, weights[1])
-                    self.network.successor_edges[idx].append(tup)
+                    tup = (idx_value, int(weights[1]))
+                    self.network.successor_edges[idxKey].append(tup)
                 elif state == 'LINKS':
                     # for testing, throw an error
                     pass
