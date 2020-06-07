@@ -1,3 +1,4 @@
+import random
 class BellmanFord:
     def __init__(self):
         pass
@@ -30,6 +31,11 @@ class BellmanFord:
         for index in range(length):
             yield (length, index, 0)
     @staticmethod
+    def _relax(u,v,delta,dist):
+        alt = dist[u] + delta
+        if alt < dist[v]:
+            dist[v] = alt
+    @staticmethod
     def merrick_bellman_ford(stn, source = False):
         """
         Implements the Bellman-Ford Algorithm
@@ -58,11 +64,59 @@ class BellmanFord:
         dist[source_index] = 0
         for n in range(length):
             for u, v, delta in BellmanFord._edges_w_virtual(stn, virtual_edges = virt):
-                alt = dist[u] + delta
-                if alt < dist[v]:
-                    dist[v] = alt
+                BellmanFord._relax(u,v,delta,dist)
         for u, v, delta in BellmanFord._edges_w_virtual(stn, virtual_edges = virt):
             if dist[u] + delta < dist[v]:
                 return False
         return dist
-    
+    @staticmethod
+    def bannister_eppstein(stn, source = False): #WIP based on https://arxiv.org/pdf/1111.5414.pdf
+        length = len(stn.names_dict)
+        source_successor_edges = []
+        source_index = length
+        if not source:
+            source_successor_edges = [(x, 0) for x in range(len(length))]
+            length += 1
+        else:
+            source_index = stn.names_dict[source]
+            source_successor_edges = stn.successor_edges[source_index]
+        dist = [float('inf') for x in range(length)]
+        dist[source_index] = 0
+        C = [source_index]
+        random_order = list(range(length))
+        random_order.pop(source_index)
+        random_order.shuffle()
+        random_order.insert(source_index, 0)
+        G_minus, G_plus = [[] for edge_list in stn.successor_edges]
+        for u, edge_list in enumerate(stn.successor_edges):
+            for v, delta in edge_list:
+                if delta >= 0:
+                    G_plus[u].append(v)
+                else:
+                    G_minus[u].append(v)
+        while len(C) != 0:
+            has_changed = [False for x in range(length)]
+            if source_index in C:
+                for v, delta in source_successor_edges:
+                    BellmanFord._relax(source_index,v,delta,dist)
+                    has_changed[v] = True
+            for u in random_order[1:]:
+                if u in C or has_changed[u]:
+                    for edge_index in G_plus[u]:
+                            v,delta = stn.successor_edges[edge_index]
+                            BellmanFord._relax(u,v,delta,dist)
+                            has_changed[v] = True
+            for u in random_order[:0:-1]:
+                if u in C or has_changed[u]:
+                    for edge_index in G_minus[u]:
+                            v,delta = stn.successor_edges[edge_index]
+                            BellmanFord._relax(u,v,delta,dist)
+                            has_changed[v] = True
+            if source_index in C or has_changed[u]:
+                for v, delta in source_successor_edges:
+                    BellmanFord._relax(source_index,v,delta,dist)
+                    has_changed[v] = True
+            for u,_ in enumerate(has_changed):
+                if _:
+                    C.append(u)
+        return dist
