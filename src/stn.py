@@ -1,6 +1,3 @@
-import heapq
-
-
 class STN:
     """
     A class to represent a Simple Temporal Network.

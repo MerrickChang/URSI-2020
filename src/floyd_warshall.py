@@ -1,4 +1,4 @@
-class FloydWarhall:
+class FloydWarshall:
     def __init__(stn):
         pass
     @staticmethod
