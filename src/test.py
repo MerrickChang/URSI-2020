@@ -1,11 +1,10 @@
 from file_reader import FileReader
 from stn import STN
-from floyd_warshall import FloydWarshall
-from johnson import Johnson
+from bellman_ford import BellmanFord
 
 for test in ["../sample.stn", "../sample2.stn", "../sample3.stn"]:
     reader = FileReader(test)
     reader.read_file()
     network = reader.network
-    print(FloydWarshall.merrick_floyd_warshall(network))
-    print(Johnson.merrick_johnson(network))
+    print(BellmanFord.merrick_bellman_ford(network, list(network.names_dict.keys())[0]))
+    print(BellmanFord.bannister_eppstein(network, list(network.names_dict.keys())[0]))

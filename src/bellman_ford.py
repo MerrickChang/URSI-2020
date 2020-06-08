@@ -35,6 +35,8 @@ class BellmanFord:
         alt = dist[u] + delta
         if alt < dist[v]:
             dist[v] = alt
+            return True
+        return False
     @staticmethod
     def merrick_bellman_ford(stn, source = False):
         """
@@ -75,7 +77,7 @@ class BellmanFord:
         source_successor_edges = []
         source_index = length
         if not source:
-            source_successor_edges = [(x, 0) for x in range(len(length))]
+            source_successor_edges = [(x, 0) for x in range(length)]
             length += 1
         else:
             source_index = stn.names_dict[source]
@@ -85,38 +87,41 @@ class BellmanFord:
         C = [source_index]
         random_order = list(range(length))
         random_order.pop(source_index)
-        random_order.shuffle()
-        random_order.insert(source_index, 0)
-        G_minus, G_plus = [[] for edge_list in stn.successor_edges]
+        random.shuffle(random_order)
+        random_order.insert(0, source_index)
+        G_minus = [[] for edge_list in stn.successor_edges]
+        G_plus = [[] for edge_list in stn.successor_edges]
         for u, edge_list in enumerate(stn.successor_edges):
-            for v, delta in edge_list:
-                if delta >= 0:
-                    G_plus[u].append(v)
-                else:
-                    G_minus[u].append(v)
+            for i, edge in enumerate(edge_list):
+                if u < edge[0]:
+                    G_plus[u].append(i)
+                elif u > edge[0]:
+                    G_minus[u].append(i)
         while len(C) != 0:
             has_changed = [False for x in range(length)]
             if source_index in C:
-                for v, delta in source_successor_edges:
-                    BellmanFord._relax(source_index,v,delta,dist)
-                    has_changed[v] = True
+                for edge_index in G_plus[source_index]:
+                    v,delta = stn.successor_edges[source_index][edge_index]
+                    has_changed[v] = BellmanFord._relax(source_index,v,delta,dist)
             for u in random_order[1:]:
                 if u in C or has_changed[u]:
                     for edge_index in G_plus[u]:
-                            v,delta = stn.successor_edges[edge_index]
-                            BellmanFord._relax(u,v,delta,dist)
-                            has_changed[v] = True
+                            v,delta = stn.successor_edges[u][edge_index]
+                            has_changed[v] = BellmanFord._relax(u,v,delta,dist)
             for u in random_order[:0:-1]:
                 if u in C or has_changed[u]:
                     for edge_index in G_minus[u]:
-                            v,delta = stn.successor_edges[edge_index]
-                            BellmanFord._relax(u,v,delta,dist)
-                            has_changed[v] = True
+                            v,delta = stn.successor_edges[u][edge_index]
+                            has_changed[v] = BellmanFord._relax(u,v,delta,dist)
             if source_index in C or has_changed[u]:
-                for v, delta in source_successor_edges:
-                    BellmanFord._relax(source_index,v,delta,dist)
-                    has_changed[v] = True
+                for edge_index in G_minus[source_index]:
+                    v,delta = stn.successor_edges[source_index][edge_index]
+                    has_changed[v] = BellmanFord._relax(source_index,v,delta,dist)
+            C = []
             for u,_ in enumerate(has_changed):
                 if _:
                     C.append(u)
+        for u, v, delta in BellmanFord._edges_w_virtual(stn, virtual_edges = BellmanFord._virtual_edges_johnson(stn) if not source else []):
+            if dist[u] + delta < dist[v]:
+                return False
         return dist
