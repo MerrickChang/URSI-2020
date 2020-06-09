@@ -23,6 +23,13 @@ class Dispatchability:
             if lower_bound <= time and time <= upper_bound:
                 yield A.pop(i)
 
+    @staticmethod
+    def _check_solution(stn, execution_times):
+        for u, time in enumerate(execution_times):
+            for v, delta in stn.successor_edges[u].items():
+                if execution_times[v]-time > delta:
+                    return False
+        return True
     
     @staticmethod
     def greedy_execute(stn, start):
@@ -39,10 +46,10 @@ class Dispatchability:
         A_max = 0
         S = []
         bounds = []
-        execution_time = []
+        execution_times = []
         for x in n:
             bounds.append([n_inf, p_inf])
-            execution_time.append(p_inf)
+            execution_times.append(p_inf)
         bounds[start_index] = [0,0]
         print(stn.names_dict)
         while len(S) < length:
@@ -56,7 +63,7 @@ class Dispatchability:
             for time_point in Dispatchability._find_point_in_time_window(A, bounds, time):
                 if not time_point in S:
                     S.append(time_point)
-                execution_time[time_point] = time
+                execution_times[time_point] = time
                 for v,delta in stn.successor_edges[time_point].items():
                     alt = time+delta
                     if bounds[v][1] >= alt:
@@ -75,4 +82,4 @@ class Dispatchability:
                     if neg_edges_lead_to_S: 
                         A.append(u)
         for point in S:
-            print(stn.names_list[point]," at time ", execution_time[point],end=",")
+            print(stn.names_list[point]," at time ", execution_times[point],end=",")
