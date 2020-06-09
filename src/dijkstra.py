@@ -36,7 +36,7 @@ class Dijkstra:
                 edges = stn.successor_edges
             while min_heap:
                 dist_u, u = heapq.heappop(min_heap)
-                for v, weight in edges[u]:
+                for v, weight in edges[u].items():
                     alt = distances[u] + weight
                     if (alt < distances[v]):
                         distances[v] = alt

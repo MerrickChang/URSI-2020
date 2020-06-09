@@ -16,7 +16,7 @@ class FloydWarshall:
         n = range(len(stn.names_dict))
         dist = [[float('inf') for y in n] for x in n]
         for u, edge_list in enumerate(stn.successor_edges):
-            for v, weight in edge_list:
+            for v, weight in edge_list.items():
                 dist[u][v] = weight
         for x in n:
             dist[x][x] = 0

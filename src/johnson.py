@@ -20,8 +20,8 @@ class Johnson:
         b_dist = BellmanFord.merrick_bellman_ford(stn, source = False)
         if not b_dist:
             return False
-        reweighted_edges =  [[(v,(weight + b_dist[u] - b_dist[v]))
-                                                       for v, weight in edge_list]
+        reweighted_edges =  [dict([(v,(weight + b_dist[u] - b_dist[v]))
+                                                       for v, weight in edge_list.items()])
                                                        for u, edge_list in enumerate(stn.successor_edges)]
         for u in range(len(stn.names_dict)):
             distance_matrix[u] = Dijkstra.merrick_dijkstra(stn, src = u, reweights = reweighted_edges)
