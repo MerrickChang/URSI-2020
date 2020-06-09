@@ -2,24 +2,22 @@ import heapq
 class Dijkstra:
     def __init__(self):
         pass
+
+
+    
     @staticmethod
     def merrick_dijkstra(stn, src, reweights = False):
             """
             Calculates the shortest path using Dijkstra's algorithm
-            Parameters
-            ----------
-            src : str, int
-                The node dijkstra's algorithm uses to find the shortest path from.
-                You could provide the index of the node or the name of the node and
-                the algorithm should recognize which one you have entered
-            reweighted_edges: bool, List[List[(int,int)]]
-                Specifies if reweighted edges are to be used or not. If so, takes new edges
-            
-            Returns
-            -------
-            distances : List[int]
-                A list representing the shortest distances to each node from the
-                src node
+
+            Inputs:
+                src, an int or a string representing the node dijkstra's algorithm uses to find the shortest path from.
+                    You could provide the index of the node or the name of the node and the algorithm should recognize which one you have entered
+                reweights, a boolean or list that specifies if reweighted edges are to be used or not.
+                        If so, it represents the new edges. If not, it is simply false
+
+            Outputs: 
+                distances, a list of integers representing the shortest distances to each node from the src node
             """
             distances = [float("inf") for i in range(stn.length)]
 

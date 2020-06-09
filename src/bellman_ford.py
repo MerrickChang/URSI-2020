@@ -2,93 +2,88 @@ import random
 class BellmanFord:
     def __init__(self):
         pass
+
+
+    
     @staticmethod
     def _edges_w_virtual(stn, virtual_edges = []): #generator; allows access of all edges including virtual edges for purposes of Bellman Ford
         """
         Generator for iterating through all edges in the graph in situations where virtual edges are necessary for use of an algorithm
+        ---------------------------------------------
+        Inputs:
+            stn, the target stn
+            virtual_edge, an iterable that yields the representation of the virtual edge
 
-        Parameters
-        ----------
-        stn: STN
-            The target stn
-        virtual_edges: Iterable[(int, int, int)]
-            Iterable that yields the representation of the virtual edge
-        
-        Yields
-        ------
-        edge : (int, int, int)
-            A tuple representing one real or virtual edge in the graph.
+        Outputs:
+            edge, a tuple representing one real or virtual edge in the graph.
+        ---------------------------------------------
         """
         for u, edge_list in enumerate(stn.successor_edges):
             for v, delta in edge_list:
                 yield (u, v, delta)
         for u, v, delta in virtual_edges:
             yield (u, v, delta)
+
+
+            
     @staticmethod
     def _virtual_edges_johnson(stn): #generator of virtual edges for johnson's algorithm
         """
         Generator for virtual edges for the purposes of Johnson's algorithm
 
-        Parameters
-        ----------
-        stn: STN
-            The target stn
-        
-        Yields
-        ------
-        edge: (int, int, int)
-            A tuple representing one real or virtual edge in the graph.
+        ---------------------------------------------
+        Inputs:
+            stn, the target stn
+
+        Outputs:
+            edge, a tuple representing one real or virtual edge in the graph.
+        ---------------------------------------------
         """
         length = len(stn.successor_edges)
         for index in range(length):
             yield (length, index, 0)
+
+
+            
     @staticmethod
     def _relax(u,v,delta,dist):
+        
         """
         Helper method to make Bellman-Ford implementations somewhat more readable
+        ------------------------------------------------------------------------------
+        Inputs:
+            u, an integer representing the index of the starting vertex of the edge
+            v, an integer representing the index of the stoping vertex of the edge
+            delta, integer representing the edge wieght
+            dist, the array of distances to be relaxed
 
-        Parameters
-        ----------
-        u: int
-            Index of the starting vertex of the edge
-        v: int
-            Index of the stoping vertex of the edge
-        delta: int
-            The edge wieght
-        dist: List[int]
-            The array of distances to be relaxed
-        
-        Effects
-        -------
-        Relaxes distance values stored in dist accordingly
+        Outputs:
+            was_relaxed, a boolean that is true if the edge was relaxed. False if the edge was not relaxed
 
-        Returns
-        -------
-        True if the edge was relaxed. False if the edge was not relaxed
+        Side Effects:
+            Relaxes distance values stored in dist accordingly
+        ------------------------------------------------------------------------------
         """
         alt = dist[u] + delta
         if alt < dist[v]:
             dist[v] = alt
             return True
         return False
+
+
+    
     @staticmethod
     def merrick_bellman_ford(stn, source = False):
         """
         Implements the Bellman-Ford Algorithm
-
-        Parameters
-        ----------
-        stn: STN
-            The target stn
-        source: bool, str
-            Specifies the source node.
-            If no source node is specified, it is assumed that the algorithm is being used for Johnson's algorithm and virtual node is generated.
-        
-        Returns
-        -------
-        dist: List[int]
-            A list of integers representing the distance from the source node
-
+        -----------------------------------------------------
+        Inputs:
+            stn, the target STN
+            source, a bool or str that specifies the source node.
+                    If no source node is specified, it is assumed that the algorithm is being used for Johnson's algorithm and virtual node is generated.
+        Outputs:
+            dist, a list of integers representing the distance from the source node
+        ------------------------------------------------------
         """
         length = len(stn.names_dict)
         virt = []
@@ -107,22 +102,22 @@ class BellmanFord:
             if dist[u] + delta < dist[v]:
                 return False
         return dist
+
+
+    
     @staticmethod
     def bannister_eppstein(stn, source = False): #WIP based on https://arxiv.org/pdf/1111.5414.pdf
         """Implements the Bannister-Eppstein's improvement of Yen's optimization of the Bellman-Ford Algorithm
 
-        Parameters
-        ----------
-        stn: STN
-            The target stn
-        source: bool, str
-            Specifies the source node.
-            If no source node is specified, it is assumed that the algorithm is being used for Johnson's algorithm and virtual node is generated.
-        
-        Returns
-        -------
-        dist: List[int]
-            A list of integers representing the distance from the source node"""
+        -----------------------------------------------------
+        Inputs:
+            stn, the target STN
+            source, a bool or str that specifies the source node.
+                    If no source node is specified, it is assumed that the algorithm is being used for Johnson's algorithm and virtual node is generated.
+        Outputs:
+            dist, a list of integers representing the distance from the source node
+        ------------------------------------------------------
+        """
         length = len(stn.names_dict)
         source_successor_edges = []
         source_index = length

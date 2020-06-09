@@ -5,11 +5,13 @@ class FloydWarshall:
     def merrick_floyd_warshall(stn):
         """
         Calculates the distance matrix using the Floyd-Warshall algorithm
+        ---------------------------------------------------------------------
+        Inputs:
+            stn, the STN to which the algorithm is applied
         
-        Returns
-        -------
-        dist : List[List[int]]
-            A 2-D lists representing the distance matrix of the STN
+        Output:
+            dist, A 2-D list representing the distance matrix of the STN
+        ---------------------------------------------------------------------
         """
         n = range(len(stn.names_dict))
         dist = [[float('inf') for y in n] for x in n]

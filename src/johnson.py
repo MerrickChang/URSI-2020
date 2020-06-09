@@ -7,10 +7,13 @@ class Johnson:
     def merrick_johnson(stn):
         """
         Calculates the shortest path using Johnson's algorithm
-        Returns
-        -------
-        distance_matrix : List[List[int]]
-            A 2-D list representing the shortest distances between all the nodes
+        ---------------------------------------------------------------------
+        Inputs:
+            stn, the STN to which the algorithm is applied
+        
+        Output:
+            dist, A 2-D list representing the distance matrix of the STN
+        ---------------------------------------------------------------------
         """
         distance_matrix = [[] for x in range(stn.length)]
         # Use bellman ford that takes a node not in the graph

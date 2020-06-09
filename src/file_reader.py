@@ -1,7 +1,3 @@
-from stn import STN
-from stnu import STNU
-
-
 class FileReader:
 
     """
@@ -17,7 +13,8 @@ class FileReader:
     -------
     read_file
     """
-    def __init__(self, file_path):
+
+    def __init__(self):
         """
         Constructor for the file reader
         Parameters
@@ -30,10 +27,8 @@ class FileReader:
         -------
         None
         """
-        self.file_path = file_path
-        self.network = []
 
-    def read_file(self):
+    def read_file(self, file_path):
         """
         Reads the file and decides whether to create an STN or an STNU
         Parameters
@@ -43,7 +38,7 @@ class FileReader:
         -------
         None
         """
-        file = open(self.file_path, "r")
+        file = open(file_path, "r")
         state = ""
         for line in file:
             if "network" in line.lower():
@@ -51,16 +46,14 @@ class FileReader:
                 continue
             if state == "NETWORK_TYPE":
                 if "u" not in line.lower():
-                    self.network = STN()
                     return self._read_stn(file)
                 elif "u" in line.lower():
-                    self.network = STNU()
                     return self._read_stnu(file)
                 else:
-                    # throw an error
-                    pass
+                    raise Exception("Invalid Network Type")
 
     def _read_stn(self, file):
+        network = STN()
         state = ""
         for line in file:
             if line.startswith('#'):
@@ -74,44 +67,52 @@ class FileReader:
                     state = "NAMES"
                 elif "edges" in line.lower():
                     state = "EDGES"
+                    edge_counter = 0
                 elif "links" in line.lower():
                     state = "LINKS"
                 else:
                     pass
             else:
                 if state == 'NO_POINTS':
-                    # for testing
-                    no_points = int(line)
-                    self.network.length = no_points
-                    self.network.successor_edges = [
-                        [] for i in range(no_points)]
+                    num_points = int(line)
+                    network.length = num_points
+                    network.successor_edges = [
+                        {} for i in range(num_points)]
+                    network.names_list = ["0" for i in range(num_points)]
                 elif state == 'NO_EDGES':
-                    # for testing
-                    # no_edges = int(line)
-                    pass
+                    num_edges = int(line)
                 elif state == 'NO_LINKS':
                     # for testing, throw an error
-                    # no_links = int(line)
-                    pass
+                    raise Exception(
+                        "Simple Temporal Networks do not have contingent links.")
                 elif state == 'NAMES':
                     list_of_nodes = line.split()
+                    if len(list_of_nodes) != num_points:
+                        raise Exception(
+                            "Number of names does not match the number of nodes provided")
                     for idx, node_name in enumerate(list_of_nodes):
-                        # idx to node_name dict
-                        self.network.names_dict[node_name] = idx
+                        network.names_dict[node_name] = idx
+                        network.names_list[idx] = node_name
                 elif state == 'EDGES':
                     weights = line.split()
+                    edge_counter += 1
                     # make a list of list of tuples
-                    idxKey = self.network.names_dict[weights[0]]
-                    idx_value = self.network.names_dict[weights[2]]
-                    tup = (idx_value, int(weights[1]))
-                    self.network.successor_edges[idxKey].append(tup)
+                    idx_node = network.names_dict[weights[0]]
+                    idx_successor = network.names_dict[weights[2]]
+                    network.successor_edges[idx_node][idx_successor] = int(
+                        weights[1])
                 elif state == 'LINKS':
-                    # for testing, throw an error
-                    pass
+                    raise Exception(
+                        "Simple Temporal Networks do not have contingent links.")
                 else:
                     pass
+        if num_edges != edge_counter:
+            raise Exception(
+                "Number of edges does not match the number given above")
+        return network
 
     def _read_stnu(self, file):
+        network = STN()
         state = ""
         for line in file:
             if line.startswith('#'):
@@ -128,36 +129,35 @@ class FileReader:
                 elif "links" in line.lower():
                     state = "LINKS"
                 else:
-                    pass
+                    raise Exception("Invalid Network Type")
             else:
                 if state == 'NO_POINTS':
-                    # for testing
-                    no_points = int(line)
-                    self.network.length = no_points
-                    self.network.successor_edges = [
-                        [] for i in range(no_points)]
+                    num_points = int(line)
+                    network.length = num_points
+                    network.successor_edges = [
+                        {} for i in range(num_points)]
+                    network.names_list = ["0" for i in range(num_points)]
                 elif state == 'NO_EDGES':
-                    # for testing
-                    # no_edges = int(line)
-                    pass
+                    num_edges = int(line)
                 elif state == 'NO_LINKS':
-                    # for testing, throw an error
-                    # no_links = int(line)
-                    pass
+                    no_links = int(line)
                 elif state == 'NAMES':
                     list_of_nodes = line.split()
+                    if len(list_of_nodes) != num_points:
+                        raise Exception(
+                            "Number of names does not match the number of nodes provided")
                     for idx, node_name in enumerate(list_of_nodes):
-                        # idx to node_name dict
-                        self.network.names_dict[node_name] = idx
+                        network.names_dict[node_name] = idx
+                        network.names_list[idx] = node_name
                 elif state == 'EDGES':
                     weights = line.split()
                     # make a list of list of tuples
-                    idx = self.network.names_dict[weights[0]]
-                    idx_value = self.network.names_dict[weights[2]]
-                    tup = (idx_value, weights[1])
-                    self.network.successor_edges[idx].append(tup)
+                    idx_node = network.names_dict[weights[0]]
+                    idx_successor = network.names_dict[weights[2]]
+                    network.successor_edges[idx_node][idx_successor] = int(
+                        weights[1])
                 elif state == 'LINKS':
-                    # for testing, throw an error
+                    # deal with contingent links later
                     pass
                 else:
                     pass
