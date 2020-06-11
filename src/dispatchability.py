@@ -10,6 +10,15 @@ class Dispatchability:
 
     @staticmethod
     def _get_precessor_edges(stn, node_index):
+        """
+        Generator that finds precedessor edges of a given node
+        Input:
+            stn, the target stn
+            node_index, index of the target node
+
+        Output:
+            edge, a tuple containing the start node of the edge and the weight of the edge
+        """
         for u, edge_list in enumerate(stn.successor_edges[:node_index]):
             for v, delta in edge_list.items():
                 if v == node_index:
@@ -23,6 +32,20 @@ class Dispatchability:
 
     @staticmethod
     def _find_point_in_time_window(A, bounds, time):
+        """
+        A generator to find all of the points enabled within a given time window
+        
+        Inputs:
+            A, the list of enabled points in the window
+            bounds, a list of tuples representing the time contraints of each node
+            time, the current time in the algorithm
+
+        Outputs:
+            node, an enabled point occuring within the time window
+        
+        Effects:
+            Pops
+        """
         for i, time_point in enumerate(A):
             lower_bound, upper_bound = bounds[time_point]
             if lower_bound <= time and time <= upper_bound:
@@ -33,6 +56,17 @@ class Dispatchability:
 
     @staticmethod
     def _check_solution(stn, execution_times):
+        """
+        Method to check whether a solution works on the target STN or not
+        
+        Input:
+            stn, the target STN
+            execution_times, a list of integers representing the time at which each index is executed
+
+        Output:
+            works, a boolean that is true if the solution is valid and false otherwise.
+
+        """
         for u, time in enumerate(execution_times):
             for v, delta in stn.successor_edges[u].items():
                 if execution_times[v]-time > delta:
@@ -44,6 +78,17 @@ class Dispatchability:
     
     @staticmethod
     def greedy_execute(stn, start):
+        """
+        Greedy executer for dispatchable STNs
+
+        Input:
+            stn, the target stn
+            start, the start node
+
+        Effects:
+            Prints out execution sequence.
+        """
+        
         p_inf = float("inf")
         n_inf = float("-inf")
         start_index = start
