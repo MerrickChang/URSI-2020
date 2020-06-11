@@ -1,6 +1,11 @@
+from copy import deepcopy
+from random import random
+from johnson import Johnson
+
 class Dispatchability:
     def __init__(self):
         pass
+
 
 
     @staticmethod
@@ -23,6 +28,9 @@ class Dispatchability:
             if lower_bound <= time and time <= upper_bound:
                 yield A.pop(i)
 
+
+
+
     @staticmethod
     def _check_solution(stn, execution_times):
         for u, time in enumerate(execution_times):
@@ -30,6 +38,9 @@ class Dispatchability:
                 if execution_times[v]-time > delta:
                     return False
         return True
+
+
+
     
     @staticmethod
     def greedy_execute(stn, start):
@@ -57,7 +68,8 @@ class Dispatchability:
             A_min = min([bounds[l][0] for l in A])
             A_max = min([bounds[u][1] for u in A])
             if time<A_min:
-                time = A_min
+                #time = A_min
+                time = random.choice(list(range(A_min, A_max+1))
             print("Time =", time)
             assert time<=A_max, "The time exceeds the maximum value in the enabled points. This STN is not dispatchable."
             for time_point in Dispatchability._find_point_in_time_window(A, bounds, time):
