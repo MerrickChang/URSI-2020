@@ -1,6 +1,6 @@
 from copy import deepcopy
-from random import random
-from johnson import Johnson
+import random
+from .johnson import Johnson
 
 class Dispatchability:
     def __init__(self):
@@ -108,13 +108,17 @@ class Dispatchability:
             execution_times.append(p_inf)
         bounds[start_index] = [0,0]
         print(stn.names_dict)
+        print(stn.successor_edges)
         while len(S) < length:
             assert len(A) != 0, "There are no more enabled points. This STN is not dispatchable."
             A_min = min([bounds[l][0] for l in A])
             A_max = min([bounds[u][1] for u in A])
+            print(A)
+            if A_max == p_inf:
+                A_max = 100
             if time<A_min:
                 #time = A_min
-                time = random.choice(list(range(A_min, A_max+1))
+                time = random.choice(list(range(max(0, A_min), A_max+1)))
             print("Time =", time)
             assert time<=A_max, "The time exceeds the maximum value in the enabled points. This STN is not dispatchable."
             for time_point in Dispatchability._find_point_in_time_window(A, bounds, time):

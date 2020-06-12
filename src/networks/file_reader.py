@@ -1,5 +1,5 @@
-from stn import STN
-from stnu import STNU
+from .stn import STN
+from .stnu import STNU
 
 class FileReader:
 

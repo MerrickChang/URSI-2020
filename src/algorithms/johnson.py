@@ -1,5 +1,5 @@
-from dijkstra import Dijkstra
-from bellman_ford import BellmanFord
+from .dijkstra import Dijkstra
+from .bellman_ford import BellmanFord
 class Johnson:
     def __init__(self):
         pass
