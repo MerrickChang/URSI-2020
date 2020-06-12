@@ -39,8 +39,11 @@ class IncrementalAlgorithms:
                 if var_1 == D_prime[t_j][t_z]:
                     var_2 = delta + var_1
                     if var_2 <= D_iz:
-                        succ[t_i].pop(t_z)
-                        pred[t_z].pop(t_i)
+                        try:
+                            succ[t_i].pop(t_z)
+                            pred[t_z].pop(t_i)
+                        except KeyError:
+                            pass
                         if var_2 < D_iz:
                             D_prime[t_i][t_z] = var_2
                             affected.add(t_z)
@@ -87,12 +90,13 @@ class IncrementalAlgorithms:
         if type(t_i) == str:
             t_i, t_j = stn.names_dict[start], stn.names_dict[stop]
         D_prime = copy.deepcopy(distance_matrix)
-        if delta == D_prime[t_i][t_j]:
-            return D_prime
+##        if -D_prime[t_j][t_i] <= delta and delta < D_prime[t_i][t_j]:
+##            print("No need to update")
+##            return D_prime
         succ = copy.deepcopy(stn.successor_edges)
         pred = [dict([(q, delta)
                 for q, delta  in IncrementalAlgorithms._get_precessor_edges(stn, r)])
-                for r in range(len(stn.names_dict))]
+                for r in range(stn.length)]
         D_prime[t_i][t_j] = delta
         affected = {t_j}
         IncrementalAlgorithms._prop_fwd(D_prime, t_j, t_i, t_j, affected, set(), delta, succ, pred)
