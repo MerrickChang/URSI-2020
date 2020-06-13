@@ -15,7 +15,7 @@ class IncrementalTest(Test):
             print(FloydWarshall.merrick_floyd_warshall(network))
             network.successor_edges[u].pop(v)
             D = FloydWarshall.merrick_floyd_warshall(network)
-            network.successor_edges[u][v] = delta
+            #network.successor_edges[u][v] = delta
             print(u,v,delta)
             print(IncrementalAlgorithms.propagation(network, D, constraint = (u,v,delta)))
             

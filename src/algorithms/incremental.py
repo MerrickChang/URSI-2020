@@ -90,7 +90,7 @@ class IncrementalAlgorithms:
         if type(t_i) == str:
             t_i, t_j = stn.names_dict[start], stn.names_dict[stop]
         D_prime = copy.deepcopy(distance_matrix)
-##        if -D_prime[t_j][t_i] <= delta and delta < D_prime[t_i][t_j]:
+##        if -D_prime[t_j][t_i] > delta or delta >= D_prime[t_i][t_j]:
 ##            print("No need to update")
 ##            return D_prime
         succ = copy.deepcopy(stn.successor_edges)
