@@ -18,5 +18,6 @@ class IncrementalTest(Test):
             #network.successor_edges[u][v] = delta
             print(u,v,delta)
             print(IncrementalAlgorithms.propagation(network, D, constraint = (u,v,delta)))
-            
+            print(IncrementalAlgorithms.naive(network, D, constraint = (u,v,delta)))
+
         

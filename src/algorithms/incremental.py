@@ -3,14 +3,14 @@ import copy
 class IncrementalAlgorithms:
     
     @staticmethod
-    def _get_precessor_edges(stn, node_index):
+    def _get_precessor_edges(succ, node_index):
         """
         Generator that finds precedessor edges of a given node
 
         --------------------------------------------------------------------------------------------------
 
         Inputs:
-            stn, the target stn
+            succ, the list of sucessor edges
             node_index, index of the target node
 
         Outputs:
@@ -18,11 +18,11 @@ class IncrementalAlgorithms:
 
         --------------------------------------------------------------------------------------------------
         """
-        for u, edge_list in enumerate(stn.successor_edges[:node_index]):
+        for u, edge_list in enumerate(succ[:node_index]):
             for v, delta in edge_list.items():
                 if v == node_index:
                     yield (u, delta)
-        for u, edge_list in enumerate(stn.successor_edges[node_index+1:], start=node_index+1):
+        for u, edge_list in enumerate(succ[node_index+1:], start=node_index+1):
             for v, delta in edge_list.items():
                 if v == node_index:
                     yield (u, delta)
@@ -69,8 +69,71 @@ class IncrementalAlgorithms:
 
 
 
+
     @staticmethod
-    def propagation(stn, distance_matrix, constraint):
+    def _pop_dominated_constraints(succ, pred, D, constraint):
+        marked = []
+        for i, edge_list in enumerate(succ):
+            for j, delta in edge_list.items():
+                if D[i][j] > delta:
+                    continue
+                elif D[i][j] == delta:
+                    enum = dict(enumerate(D[i]))
+                    enum.pop(i)
+                    enum.pop(j)
+                    for k, D_ik in enum.items():
+                        if D[i][k]+D[k][j] == delta:
+                            marked.append((i,j))
+                            break
+                    continue
+                else:
+                    marked.append((i,j))
+        for i,j in marked:
+            succ[i].pop(j)
+            pred[j].pop(i)
+
+
+
+
+    @staticmethod
+    def _find_rigidities(D, i, succ, pred, rigidity = set()):
+        for j, delta in succ[i].items():
+            if delta == -D[j][i] and not j in rigidity:
+                rigidity.add(j)
+                rigidity.add(i)
+                rigidity = IncrementalAlgorithm._find_rigidities(D, j, succ, pred, rigidity)
+        for j, delta in pred[i].items():
+            if delta == -D[i][j] and not j in rigidity:
+                rigidity.add(j)
+                rigidity.add(i)
+                rigidity = IncrementalAlgorithm._find_rigidities(D, j, succ, pred, rigidity)
+        return rigidity
+
+
+    
+
+    @staticmethod
+    def _prop3_1(D_prime, t_i, t_j, delta, succ, pred):
+        IncrementalAlgorithms._pop_dominated_constraints(succ, pred, D_prime, (t_i, t_j, delta))
+        D_prime[t_i][t_j] = delta
+        affected = {t_j}
+        IncrementalAlgorithms._prop_fwd(D_prime, t_j, t_i, t_j, affected, set(), delta, succ, pred)
+        for t_v in affected:
+            IncrementalAlgorithms._prop_bwk(D_prime, t_i, t_v, t_i, set(), succ, pred)
+        return D_prime
+
+
+
+
+    @staticmethod
+    def _prop3_2(D_prime, t_i, t_j, delta, succ, pred):
+        print("Ugh")
+        return _prop3_1(D_prime, t_i, t_j, delta, succ, pred)
+                
+
+        
+    @staticmethod
+    def propagation(stn, distance_matrix, constraint, destructive = False):
         """
         Implements the distance matrix updating algorithm
         Note: This method makes intensive use of deepcopy to make it faster. May strain memory for very large STNs.
@@ -79,27 +142,38 @@ class IncrementalAlgorithms:
         Inputs:
             stn, the target stn
             distance_matrix, 2-D array representing the distance matrix of the target 
-            constrain, the new constraint
+            constraint, the new constraint
+            destructive, a boolean representing whether or not the inputed distance matrix should be overwritten.
 
         Outputs:
             D_prime, the new distance matrix
         --------------------------------------------------------------------------------------------------
         """
-        
         t_i,t_j,delta = constraint
-        if type(t_i) == str:
-            t_i, t_j = stn.names_dict[start], stn.names_dict[stop]
-        D_prime = copy.deepcopy(distance_matrix)
-##        if -D_prime[t_j][t_i] > delta or delta >= D_prime[t_i][t_j]:
-##            print("No need to update")
-##            return D_prime
+        D_prime = distance_matrix if destructive else copy.deepcopy(distance_matrix)
         succ = copy.deepcopy(stn.successor_edges)
         pred = [dict([(q, delta)
-                for q, delta  in IncrementalAlgorithms._get_precessor_edges(stn, r)])
+                for q, delta  in IncrementalAlgorithms._get_precessor_edges(succ, r)])
                 for r in range(stn.length)]
-        D_prime[t_i][t_j] = delta
-        affected = {t_j}
-        IncrementalAlgorithms._prop_fwd(D_prime, t_j, t_i, t_j, affected, set(), delta, succ, pred)
-        for t_v in affected:
-            IncrementalAlgorithms._prop_bwk(D_prime, t_i, t_v, t_i, set(), succ, pred)
+        if type(t_i) == str:
+            t_i, t_j = stn.names_dict[start], stn.names_dict[stop]
+        if delta > -distance_matrix[t_j][t_i]:
+            return IncrementalAlgorithms._prop3_1(D_prime, t_i, t_j, delta, succ, pred)
+        else:
+            return IncrementalAlgorithms._prop3_2(D_prime, t_i, t_j, delta, succ, pred)
+
+
+
+
+    @staticmethod
+    def naive(stn, distance_matrix, constraint):
+        t_i,t_j,delta = constraint
+        D_prime = copy.deepcopy(distance_matrix)
+        D_j = D_prime[t_j]
+        for t_r, row in enumerate(D_prime):
+            D_ri = row[t_i]
+            for t_s, D_rs in enumerate(row):
+                alt = D_ri+delta+D_j[t_s]
+                if alt < D_rs:
+                    D_prime[t_r][t_s] = alt
         return D_prime

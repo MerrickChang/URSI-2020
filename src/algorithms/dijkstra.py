@@ -16,7 +16,8 @@ class Dijkstra:
                 src, an int or a string representing the node dijkstra's algorithm uses to find the shortest path from.
                     You could provide the index of the node or the name of the node and the algorithm should recognize which one you have entered
                 reweights, a boolean or list that specifies if reweighted edges are to be used or not.
-                        If so, it represents the new edges. If not, it is simply false
+                        If so, it represents the new edges in the form List[Dict[Int:Int]] as in the pred_edges in the STN class.
+                        If not, it is simply false
 
             Outputs: 
                 distances, a list of integers representing the shortest distances to each node from the src node
