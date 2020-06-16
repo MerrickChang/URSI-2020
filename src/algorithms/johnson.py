@@ -1,8 +1,20 @@
+##===================================
+##File: johnson.py
+##Author: Merrick Chang
+##Date: May 2020
+##===================================
+
+
 from .dijkstra import Dijkstra
 from .bellman_ford import BellmanFord
+
+
 class Johnson:
-    def __init__(self):
-        pass
+    """
+    The Johnson class implements various static methods associated with Johnson's algorithm.
+    """
+
+    
     @staticmethod
     def merrick_johnson(stn):
         """

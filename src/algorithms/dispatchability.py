@@ -1,15 +1,22 @@
+##===================================
+##File: dispatchability.py
+##Author: Merrick Chang
+##Date: May 2020
+##===================================
+
 from copy import deepcopy
 import random
 from .johnson import Johnson
 
 class Dispatchability:
-    def __init__(self):
-        pass
 
+    """
+    The Dispatchibility class contains static methods relating to dispatchability. 
+    """
 
 
     @staticmethod
-    def _get_precessor_edges(stn, node_index):
+    def _get_predecessor_edges(stn, node_index):
         """
         Generator that finds precedessor edges of a given node
         Input:
@@ -88,7 +95,7 @@ class Dispatchability:
         Effects:
             Prints out execution sequence.
         """
-        
+        #variable names lifted from Muscettola, Morris, and Tsamardinos
         p_inf = float("inf")
         n_inf = float("-inf")
         start_index = start
@@ -97,29 +104,25 @@ class Dispatchability:
         n = range(length)
         if type(start) == str:
             start_index = stn.names_dict[start]
-        A = [start_index]
-        A_min = 0
-        A_max = 0
-        S = []
+        A = [start_index] #enabled time points
+        A_min = 0 #minimum lower bound
+        A_max = 0 #minimum upper bound
+        S = [] #executed time points
         bounds = []
         execution_times = []
         for x in n:
             bounds.append([n_inf, p_inf])
             execution_times.append(p_inf)
         bounds[start_index] = [0,0]
-        print(stn.names_dict)
-        print(stn.successor_edges)
         while len(S) < length:
             assert len(A) != 0, "There are no more enabled points. This STN is not dispatchable."
             A_min = min([bounds[l][0] for l in A])
             A_max = min([bounds[u][1] for u in A])
-            print(A)
             if A_max == p_inf:
                 A_max = 100
             if time<A_min:
                 #time = A_min
                 time = random.choice(list(range(max(0, A_min), A_max+1)))
-            print("Time =", time)
             assert time<=A_max, "The time exceeds the maximum value in the enabled points. This STN is not dispatchable."
             for time_point in Dispatchability._find_point_in_time_window(A, bounds, time):
                 if not time_point in S:
@@ -129,7 +132,7 @@ class Dispatchability:
                     alt = time+delta
                     if bounds[v][1] >= alt:
                         bounds[v][1] = alt
-                for u,delta in Dispatchability._get_precessor_edges(stn, time_point):
+                for u,delta in Dispatchability._get_predecessor_edges(stn, time_point):
                     alt = time-delta
                     if alt >= bounds[u][0]:
                         bounds[u][0] = alt
@@ -142,5 +145,6 @@ class Dispatchability:
                             break
                     if neg_edges_lead_to_S: 
                         A.append(u)
+        print(Dispatchability._check_solution(stn, execution_times))
         for point in S:
             print(stn.names_list[point]," at time ", execution_times[point],end=",")

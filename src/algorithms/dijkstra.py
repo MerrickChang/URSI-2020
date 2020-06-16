@@ -1,10 +1,17 @@
+##===================================
+##File: dijkstra.py
+##Author: Merrick Chang
+##Date: May 2020
+##===================================
+
+
 import heapq
 from copy import deepcopy
 
 class Dijkstra:
-    def __init__(self):
-        pass
-
+    """
+    The Dijkstra class contains various static methods associated Dijksra's algorithm. 
+    """
 
     
     @staticmethod

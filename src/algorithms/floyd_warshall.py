@@ -1,6 +1,15 @@
+
+##===================================
+##File: floyd_warshall.py
+##Author: Merrick Chang
+##Date: May 2020
+##===================================
+
 class FloydWarshall:
-    def __init__(stn):
-        pass
+    """
+    The FloydWarshall class implements static methods associated with the Floyd-Warhall algorithm.
+    """
+    
     @staticmethod
     def merrick_floyd_warshall(stn):
         """

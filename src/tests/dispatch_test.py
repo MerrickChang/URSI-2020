@@ -1,18 +1,14 @@
-from src.networks.file_reader import FileReader
-from src.networks.stn import STN
-from src.algorithms.bellman_ford import BellmanFord
 from src.algorithms.dispatchability  import Dispatchability
-from src.algorithms.johnson import Johnson
-from src.algorithms.floyd_warshall import FloydWarshall
 from src.algorithms.dispatch import Dispatch
+from .test import Test
 
-class DispatchabilityTest:
-    @staticmethod
-    def test():
-        for test in ["../../sample.stn", "../../sample2.stn", "../../sample3.stn"]:
-            reader = FileReader()
-            network =reader.read_file(test)
-            Dispatch.fast_dispatch(network)
+class DispatchabilityTest(Test):
+    def __init__(self, samples):
+        super().__init__(samples)
+        
+    def test(self):
+        for network in self.networks:
+            Dispatch.convert_to_dispatchable(network)
             try:
                 Dispatchability.greedy_execute(network, "Z")
             except AssertionError as e:

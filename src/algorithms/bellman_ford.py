@@ -1,7 +1,15 @@
+##===================================
+##File: bellman_ford.py
+##Author: Merrick Chang
+##Date: May 2020
+##===================================
+
 import random
 class BellmanFord:
-    def __init__(self):
-        pass
+    """
+    The Bellman-Ford class contains static methods associated the Bellman-Ford Algorithm.
+    """
+
     @staticmethod
     def _edges_w_virtual(stn, virtual_edges = []): #generator; allows access of all edges including virtual edges for purposes of Bellman Ford
         """

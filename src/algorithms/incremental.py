@@ -1,9 +1,18 @@
+##===================================
+##File: incremental.py
+##Author: Merrick Chang
+##Date: June 2020
+##===================================
+
 import copy
 
 class IncrementalAlgorithms:
+    """
+    The IncrementalAlgorithms class contains static methods associated with incrementally updating the distance matrix for an STN.
+    """
     
     @staticmethod
-    def _get_precessor_edges(succ, node_index):
+    def _get_predecessor_edges(succ, node_index):
         """
         Generator that finds precedessor edges of a given node
 
@@ -54,15 +63,18 @@ class IncrementalAlgorithms:
     @staticmethod
     def _prop_bwk(D_prime, t_s, t_v, t_i, encountered, succ, pred):
         for t_r, delta_rs in pred[t_s].items():
-            if t_r in encountered:
+            if not t_r in encountered:
                 encountered.add(t_r)
                 D_rv = D_prime[t_r][t_v]
                 var_1 = delta_rs + D_prime[t_s][t_i]
                 if var_1 == D_prime[t_r][t_i]:
-                    var_2 = var_1 + D[t_i][t_v]
+                    var_2 = var_1 + D_prime[t_i][t_v]
                     if var_2 <= D_rv:
-                        pred[t_v].pop(t_r)
-                        succs[t_r].pop(t_v)
+                        try:
+                            pred[t_v].pop(t_r)
+                            succ[t_r].pop(t_v)
+                        except KeyError:
+                            pass
                         if var_2 < D_rv:
                             D_prime[t_r][t_v] = var_2
                             IncrementalAlgorithms._prop_bwk(D_prime, t_r, t_v, t_i, encountered, succ, pred)
@@ -135,8 +147,7 @@ class IncrementalAlgorithms:
     @staticmethod
     def propagation(stn, distance_matrix, constraint, destructive = False):
         """
-        Implements the distance matrix updating algorithm
-        Note: This method makes intensive use of deepcopy to make it faster. May strain memory for very large STNs.
+        Implements a propogating distance matrix updating algorithm
 
         --------------------------------------------------------------------------------------------------
         Inputs:
@@ -153,7 +164,7 @@ class IncrementalAlgorithms:
         D_prime = distance_matrix if destructive else copy.deepcopy(distance_matrix)
         succ = copy.deepcopy(stn.successor_edges)
         pred = [dict([(q, delta)
-                for q, delta  in IncrementalAlgorithms._get_precessor_edges(succ, r)])
+                for q, delta  in IncrementalAlgorithms._get_predecessor_edges(succ, r)])
                 for r in range(stn.length)]
         if type(t_i) == str:
             t_i, t_j = stn.names_dict[start], stn.names_dict[stop]
@@ -166,9 +177,23 @@ class IncrementalAlgorithms:
 
 
     @staticmethod
-    def naive(stn, distance_matrix, constraint):
+    def naive(stn, distance_matrix, constraint, destructive = False):
+        """
+        Implements a naive distance matrix updating algorithm
+
+        --------------------------------------------------------------------------------------------------
+        Inputs:
+            stn, the target stn
+            distance_matrix, 2-D array representing the distance matrix of the target 
+            constraint, the new constraint
+            destructive, a boolean representing whether or not the inputed distance matrix should be overwritten.
+
+        Outputs:
+            D_prime, the new distance matrix
+        --------------------------------------------------------------------------------------------------
+        """
         t_i,t_j,delta = constraint
-        D_prime = copy.deepcopy(distance_matrix)
+        D_prime = distance_matrix if destructive else copy.deepcopy(distance_matrix)
         D_j = D_prime[t_j]
         for t_r, row in enumerate(D_prime):
             D_ri = row[t_i]
