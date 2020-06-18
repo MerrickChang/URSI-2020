@@ -1,5 +1,8 @@
 from .stn import STN
 from .stnu import STNU
+from ..algorithms import *
+from .random_stn import RandomSTN
+
 
 class FileReader:
 

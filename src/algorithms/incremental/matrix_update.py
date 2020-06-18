@@ -1,16 +1,16 @@
 ##===================================
-##File: incremental.py
+##File: matrix_update.py
 ##Author: Merrick Chang
 ##Date: June 2020
 ##===================================
 
 import copy
 
-class IncrementalAlgorithms:
+class DistanceMatrixUpdate:
     """
-    The IncrementalAlgorithms class contains static methods associated with incrementally updating the distance matrix for an STN.
+    The DistanceMatrixUpdate class contains static methods associated with incrementally updating the distance matrix for an STN.
     """
-    
+
     @staticmethod
     def _get_predecessor_edges(succ, node_index):
         """
@@ -56,10 +56,10 @@ class IncrementalAlgorithms:
                         if var_2 < D_iz:
                             D_prime[t_i][t_z] = var_2
                             affected.add(t_z)
-                            IncrementalAlgorithms._prop_fwd(D_prime, t_z, t_i, t_j, affected, encountered, delta, succ, pred)
-                    
+                            DistanceMatrixUpdate._prop_fwd(D_prime, t_z, t_i, t_j, affected, encountered, delta, succ, pred)
 
-    
+
+
     @staticmethod
     def _prop_bwk(D_prime, t_s, t_v, t_i, encountered, succ, pred):
         for t_r, delta_rs in pred[t_s].items():
@@ -77,7 +77,7 @@ class IncrementalAlgorithms:
                             pass
                         if var_2 < D_rv:
                             D_prime[t_r][t_v] = var_2
-                            IncrementalAlgorithms._prop_bwk(D_prime, t_r, t_v, t_i, encountered, succ, pred)
+                            DistanceMatrixUpdate._prop_bwk(D_prime, t_r, t_v, t_i, encountered, succ, pred)
 
 
 
@@ -122,16 +122,16 @@ class IncrementalAlgorithms:
         return rigidity
 
 
-    
+
 
     @staticmethod
     def _prop3_1(D_prime, t_i, t_j, delta, succ, pred):
-        IncrementalAlgorithms._pop_dominated_constraints(succ, pred, D_prime, (t_i, t_j, delta))
+        DistanceMatrixUpdate._pop_dominated_constraints(succ, pred, D_prime, (t_i, t_j, delta))
         D_prime[t_i][t_j] = delta
         affected = {t_j}
-        IncrementalAlgorithms._prop_fwd(D_prime, t_j, t_i, t_j, affected, set(), delta, succ, pred)
+        DistanceMatrixUpdate._prop_fwd(D_prime, t_j, t_i, t_j, affected, set(), delta, succ, pred)
         for t_v in affected:
-            IncrementalAlgorithms._prop_bwk(D_prime, t_i, t_v, t_i, set(), succ, pred)
+            DistanceMatrixUpdate._prop_bwk(D_prime, t_i, t_v, t_i, set(), succ, pred)
         return D_prime
 
 
@@ -141,9 +141,9 @@ class IncrementalAlgorithms:
     def _prop3_2(D_prime, t_i, t_j, delta, succ, pred):
         print("Ugh")
         return _prop3_1(D_prime, t_i, t_j, delta, succ, pred)
-                
 
-        
+
+
     @staticmethod
     def propagation(stn, distance_matrix, constraint, destructive = False):
         """
@@ -152,7 +152,7 @@ class IncrementalAlgorithms:
         --------------------------------------------------------------------------------------------------
         Inputs:
             stn, the target stn
-            distance_matrix, 2-D array representing the distance matrix of the target 
+            distance_matrix, 2-D array representing the distance matrix of the target
             constraint, the new constraint
             destructive, a boolean representing whether or not the inputed distance matrix should be overwritten.
 
@@ -164,14 +164,14 @@ class IncrementalAlgorithms:
         D_prime = distance_matrix if destructive else copy.deepcopy(distance_matrix)
         succ = copy.deepcopy(stn.successor_edges)
         pred = [dict([(q, delta)
-                for q, delta  in IncrementalAlgorithms._get_predecessor_edges(succ, r)])
+                for q, delta  in DistanceMatrixUpdate._get_predecessor_edges(succ, r)])
                 for r in range(stn.length)]
         if type(t_i) == str:
             t_i, t_j = stn.names_dict[start], stn.names_dict[stop]
         if delta > -distance_matrix[t_j][t_i]:
-            return IncrementalAlgorithms._prop3_1(D_prime, t_i, t_j, delta, succ, pred)
+            return DistanceMatrixUpdate._prop3_1(D_prime, t_i, t_j, delta, succ, pred)
         else:
-            return IncrementalAlgorithms._prop3_2(D_prime, t_i, t_j, delta, succ, pred)
+            return DistanceMatrixUpdate._prop3_2(D_prime, t_i, t_j, delta, succ, pred)
 
 
 
@@ -184,7 +184,7 @@ class IncrementalAlgorithms:
         --------------------------------------------------------------------------------------------------
         Inputs:
             stn, the target stn
-            distance_matrix, 2-D array representing the distance matrix of the target 
+            distance_matrix, 2-D array representing the distance matrix of the target
             constraint, the new constraint
             destructive, a boolean representing whether or not the inputed distance matrix should be overwritten.
 

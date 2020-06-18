@@ -153,10 +153,10 @@ class BellmanFord:
         G_plus = [[] for edge_list in stn.successor_edges]
         for u, edge_list in enumerate(stn.successor_edges):
             for v in edge_list:
-                if random_order[u] < random_order[v]:
-                    G_plus[u].append(v)
-                elif random_order[u] > random_order[v]:
-                    G_minus[u].append(v)
+                    if random_order[u] < random_order[v]:
+                        G_plus[u].append(v)
+                    elif random_order[u] > random_order[v]:
+                        G_minus[u].append(v)
         while len(C) != 0:
             has_changed = [False for x in range(length)]
             #For each vertex in order, relax the edges G+

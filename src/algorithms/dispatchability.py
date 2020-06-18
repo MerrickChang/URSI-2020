@@ -6,12 +6,12 @@
 
 from copy import deepcopy
 import random
-from .johnson import Johnson
+from .shortest_path.johnson import Johnson
 
 class Dispatchability:
 
     """
-    The Dispatchibility class contains static methods relating to dispatchability. 
+    The Dispatchibility class contains static methods relating to dispatchability.
     """
 
 
@@ -41,7 +41,7 @@ class Dispatchability:
     def _find_point_in_time_window(A, bounds, time):
         """
         A generator to find all of the points enabled within a given time window
-        
+
         Inputs:
             A, the list of enabled points in the window
             bounds, a list of tuples representing the time contraints of each node
@@ -49,7 +49,7 @@ class Dispatchability:
 
         Outputs:
             node, an enabled point occuring within the time window
-        
+
         Effects:
             Pops
         """
@@ -65,7 +65,7 @@ class Dispatchability:
     def _check_solution(stn, execution_times):
         """
         Method to check whether a solution works on the target STN or not
-        
+
         Input:
             stn, the target STN
             execution_times, a list of integers representing the time at which each index is executed
@@ -82,7 +82,7 @@ class Dispatchability:
 
 
 
-    
+
     @staticmethod
     def greedy_execute(stn, start):
         """
@@ -143,7 +143,7 @@ class Dispatchability:
                         if delta<0 and v not in S:
                             neg_edges_lead_to_S = False
                             break
-                    if neg_edges_lead_to_S: 
+                    if neg_edges_lead_to_S:
                         A.append(u)
         print(Dispatchability._check_solution(stn, execution_times))
         for point in S:

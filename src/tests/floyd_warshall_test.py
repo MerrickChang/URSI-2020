@@ -1,9 +1,8 @@
-from ..algorithms.incremental.matrix_update import DistanceMatrixUpdate
 from .test import Test
 from ..algorithms.shortest_path.floyd_warshall import FloydWarshall
 import random
 
-class IncrementalTest(Test):
+class FloydWarshallTest(Test):
     def __init__(self, samples):
         super().__init__(samples)
 
@@ -15,7 +14,3 @@ class IncrementalTest(Test):
             print(FloydWarshall.merrick_floyd_warshall(network))
             network.successor_edges[u].pop(v)
             D = FloydWarshall.merrick_floyd_warshall(network)
-            #network.successor_edges[u][v] = delta
-            print(u,v,delta)
-            print(DistanceMatrixUpdate.propagation(network, D, constraint = (u,v,delta)))
-            print(DistanceMatrixUpdate.naive(network, D, constraint = (u,v,delta)))

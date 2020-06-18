@@ -10,10 +10,10 @@ from copy import deepcopy
 
 class Dijkstra:
     """
-    The Dijkstra class contains various static methods associated Dijksra's algorithm. 
+    The Dijkstra class contains various static methods associated Dijksra's algorithm.
     """
 
-    
+
     @staticmethod
     def merrick_dijkstra(stn, src, reweights = False):
             """
@@ -26,7 +26,7 @@ class Dijkstra:
                         If so, it represents the new edges in the form List[Dict[Int:Int]] as in the pred_edges in the STN class.
                         If not, it is simply false
 
-            Outputs: 
+            Outputs:
                 distances, a list of integers representing the shortest distances to each node from the src node
             """
             distances = [float("inf") for i in range(stn.length)]
@@ -53,8 +53,9 @@ class Dijkstra:
                         heapq.heappush(min_heap, (distances[v], v))
 
             return distances
+
     @staticmethod
-    def dijkstra(network, src, succ_direction=True, potential_function=False):
+    def dijkstra(network, src, succ_direction=True, potential_function=False, path=False, list_of_leaders=None):
         """
         A static method that calls one of the variants of Dikstra's algorithm
         depending on the inputs given.
@@ -85,6 +86,11 @@ class Dijkstra:
 
         distances = [float("inf") for i in range(network.length)]
         distances[src_idx] = 0
+
+        if path:
+            if not list_of_leaders:
+                return False
+            return Dijkstra._dispatch_dijkstra(network, src_idx, distances, potential_function, list_of_leaders)
 
         if not potential_function:
             if succ_direction:
@@ -207,34 +213,82 @@ class Dijkstra:
         reweighted_edges = deepcopy(network.successor_edges)
 
         for node_idx, dict_of_edges in enumerate(reweighted_edges):
-            # do we not need tuple_idx
-            for tuple_idx, (successor_idx, weight) in enumerate(dict_of_edges.items()):
-                reweighted_edges[node_idx][successor_idx] = weight + potential_function[node_idx] - potential_function[successor_idx]
+            for _, (successor_idx, weight) in enumerate(dict_of_edges.items()):
+                reweighted_edges[node_idx][successor_idx] = weight + \
+                    potential_function[node_idx] - \
+                    potential_function[successor_idx]
 
         min_heap = []
         in_queue = {}
 
         heapq.heappush(min_heap, (distances[src_idx], src_idx))
-        in_queue[src_idx] = True
 
         while min_heap:
             _, u_idx = heapq.heappop(min_heap)
-            for successor_idx, weight in reweighted_edges[u_idx].items():
+            for successor_idx, new_weight in reweighted_edges[u_idx].items():
+                if (distances[u_idx] + new_weight < distances[successor_idx]):
+                    distances[successor_idx] = new_weight + distances[u_idx]
 
-                new_weight = weight + \
-                    potential_function[successor_idx] - \
-                    potential_function[u_idx]
-
-                if successor_idx not in in_queue:
-                    heapq.heappush(min_heap, (new_weight, successor_idx))
-                    in_queue[successor_idx] = True
-                else:
-                    if (new_weight < distances[successor_idx]):
-
-                        distances[successor_idx] = new_weight
-
-                        heapq.heappush(
-                            min_heap, (distances[successor_idx], successor_idx))
-                        in_queue[successor_idx] = True
+                    heapq.heappush(
+                        min_heap, (distances[successor_idx], successor_idx))
 
         return distances
+
+    @staticmethod
+    def _dispatch_dijkstra(network, src_idx, distances, potential_function, list_of_leaders):
+        predecessor_graphs = [[] for i in list_of_leaders]
+        list_of_distances = [[] for i in list_of_leaders]
+        print(src_idx)
+        for idx, leader in enumerate(list_of_leaders):
+            if leader == src_idx:
+                continue
+            reweighted_edges = deepcopy(network.successor_edges)
+
+            for node_idx, dict_of_edges in enumerate(reweighted_edges):
+                # do we not need tuple_idx?
+                for _, (successor_idx, weight) in enumerate(dict_of_edges.items()):
+                    reweighted_edges[node_idx][successor_idx] = weight + \
+                        potential_function[node_idx] - \
+                        potential_function[successor_idx]
+
+            min_heap = []
+            in_queue = {}
+            previous = ["" for i in range(network.length)]
+
+            heapq.heappush(min_heap, (distances[src_idx], src_idx))
+            in_queue[src_idx] = True
+
+            while min_heap:
+                _, u_idx = heapq.heappop(min_heap)
+
+                if leader == u_idx:
+                    rtn = []
+                    rtn.append(u_idx)
+                    while previous[u_idx] != src_idx:
+                        u_idx = previous[u_idx]
+                        rtn.append(u_idx)
+                    rtn.append(src_idx)
+                    predecessor_graphs[idx] = rtn
+                    list_of_distances[idx] = distances
+                    break
+
+                for successor_idx, weight in reweighted_edges[u_idx].items():
+
+                    new_weight = weight + \
+                        potential_function[successor_idx] - \
+                        potential_function[u_idx]
+
+                    if successor_idx not in in_queue:
+                        heapq.heappush(min_heap, (new_weight, successor_idx))
+                        previous[successor_idx] = u_idx
+                        in_queue[successor_idx] = True
+                    else:
+                        if (new_weight < distances[successor_idx]):
+
+                            distances[successor_idx] = new_weight
+                            heapq.heappush(
+                                min_heap, (distances[successor_idx], successor_idx))
+                            previous[successor_idx] = u_idx
+                            in_queue[successor_idx] = True
+
+        return list_of_distances, predecessor_graphs
