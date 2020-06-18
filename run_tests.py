@@ -4,15 +4,19 @@ from src.tests.johnson_test import JohnsonTest
 from src.algorithms.dispatchability import Dispatchability
 from src.networks.file_reader import FileReader
 from src.tests.floyd_warshall_test import FloydWarshallTest
+from src.tests.solution_update_test import SolutionUpdateTest
 
-johnson_test = JohnsonTest(["sample.stn", "sample2.stn", "sample3.stn"])
-floyd_warshall_test = FloydWarshallTest(["sample.stn", "sample2.stn", "sample3.stn"])
-ddispatch_test = DispatchabilityTest(["sample.stn", "sample2.stn", "sample3.stn"])
-for x in range(40):
-    print("Test ", x, ":")
-    test = IncrementalTest(["sample_dispatchable.stn"])
+#johnson_test = JohnsonTest(["sample.stn", "sample2.stn", "sample3.stn"])
+#floyd_warshall_test = FloydWarshallTest(["sample.stn", "sample2.stn", "sample3.stn"])
+##ddispatch_test = DispatchabilityTest(["sample2.stn", "sample3.stn"])
+for x in range(10):
+   print("Test ", x, ":")
+   test = SolutionUpdateTest(["sample_dispatchable.stn"])
 
 ##
-##reader = FileReader()
-##stn = reader.read_file("sample_dispatchable.stn")
-##Dispatchability.greedy_execute(stn, "Z")
+# reader = FileReader()
+# stn = reader.read_file("sample_dispatchable.stn")
+# Dispatchability.greedy_execute(stn, "Z")
+# Dispatchability.greedy_execute(stn, "B")
+# Dispatchability.greedy_execute(stn, "C")
+# Dispatchability.greedy_execute(stn, "E")

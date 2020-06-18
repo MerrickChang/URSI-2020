@@ -92,12 +92,15 @@ class Dispatchability:
             stn, the target stn
             start, the start node
 
+        Output:
+            execution_times, a list of integers; execution_times[i] represents the time the ith node
+                             (ordered as in stn.names_list) is executed
         Effects:
             Prints out execution sequence.
         """
         #variable names lifted from Muscettola, Morris, and Tsamardinos
-        p_inf = float("inf")
-        n_inf = float("-inf")
+        p_inf = 2147483646
+        n_inf = -2147483648
         start_index = start
         time = 0
         length = len(stn.names_dict)
@@ -118,12 +121,10 @@ class Dispatchability:
             assert len(A) != 0, "There are no more enabled points. This STN is not dispatchable."
             A_min = min([bounds[l][0] for l in A])
             A_max = min([bounds[u][1] for u in A])
-            if A_max == p_inf:
-                A_max = 100
-            if time<A_min:
-                #time = A_min
-                time = random.choice(list(range(max(0, A_min), A_max+1)))
-            assert time<=A_max, "The time exceeds the maximum value in the enabled points. This STN is not dispatchable."
+            assert A_min <= A_max, "The minimum time is more than the maximum time. This STN is not dispatchable."
+            if time<A_min or time>A_max:
+                time = random.choice(list(range(A_min, A_max+1)))
+#W            assert time<=A_max, "The time exceeds the maximum value in the enabled points. This STN is not dispatchable."
             for time_point in Dispatchability._find_point_in_time_window(A, bounds, time):
                 if not time_point in S:
                     S.append(time_point)
@@ -145,6 +146,4 @@ class Dispatchability:
                             break
                     if neg_edges_lead_to_S:
                         A.append(u)
-        print(Dispatchability._check_solution(stn, execution_times))
-        for point in S:
-            print(stn.names_list[point]," at time ", execution_times[point],end=",")
+        return execution_times

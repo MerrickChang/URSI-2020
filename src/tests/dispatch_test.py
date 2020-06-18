@@ -8,8 +8,10 @@ class DispatchabilityTest(Test):
 
     def test(self):
         for network in self.networks:
-            Dispatch.convert_to_dispatchable(network)
-            try:
-                Dispatchability.greedy_execute(network, 0)
-            except AssertionError as e:
-                print(e)
+            converted = Dispatch.convert_to_dispatchable(network)
+            print(converted)
+            for n in converted.names_dict:
+                try:
+                    Dispatchability.greedy_execute(converted, n)
+                except AssertionError as e:
+                    print(e)

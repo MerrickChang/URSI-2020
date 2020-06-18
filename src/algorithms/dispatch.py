@@ -38,7 +38,7 @@ class Dispatch:
             list_of_distances, predecessor_graph = Dijkstra.dijkstra(
                 network, src_idx, potential_function=potential_function, path=True, list_of_leaders=list_of_leaders)
 
-            print(list_of_distances, predecessor_graph)
+            #print(list_of_distances, predecessor_graph)
 
             # listy = [path from 3 to 0] = [3, 2, 1, 0]
             for listy in predecessor_graph:
@@ -78,16 +78,14 @@ class Dispatch:
     @ staticmethod
     def convert_to_dispatchable(network):
         # O(N^3) time, O(N^2) extra space
-        if not network.dist_up_to_date and network.distance_matrix:
-            pass
-        else:
+        if not network.distance_matrix:
             FloydWarshall.floyd_warshall(network)
 
         distance_matrix = deepcopy(network.distance_matrix)
         marked_edges = []
 
         intersecting_edges = Dispatch._get_intersecting_edges(network)
-        print(intersecting_edges)
+
         # print(distance_matrix)
         for (src_idx, middle_idx), target_idx in intersecting_edges:
             D_A_B = distance_matrix[src_idx][middle_idx] + \
