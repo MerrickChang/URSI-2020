@@ -100,7 +100,7 @@ class Dispatchability:
         """
         #variable names lifted from Muscettola, Morris, and Tsamardinos
         p_inf = 2147483646
-        n_inf = -2147483648
+#        n_inf = -2147483648
         start_index = start
         time = 0
         length = len(stn.names_dict)
@@ -114,7 +114,7 @@ class Dispatchability:
         bounds = []
         execution_times = []
         for x in n:
-            bounds.append([n_inf, p_inf])
+            bounds.append([0, p_inf])
             execution_times.append(p_inf)
         bounds[start_index] = [0,0]
         while len(S) < length:
@@ -122,7 +122,7 @@ class Dispatchability:
             A_min = min([bounds[l][0] for l in A])
             A_max = min([bounds[u][1] for u in A])
             assert A_min <= A_max, "The minimum time is more than the maximum time. This STN is not dispatchable."
-            if time<A_min or time>A_max:
+            if time<A_min:
                 time = random.choice(list(range(A_min, A_max+1)))
 #W            assert time<=A_max, "The time exceeds the maximum value in the enabled points. This STN is not dispatchable."
             for time_point in Dispatchability._find_point_in_time_window(A, bounds, time):

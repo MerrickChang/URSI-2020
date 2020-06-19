@@ -18,4 +18,7 @@ class SolutionUpdateTest(Test):
             print(solution)
             s_prime  = SolutionUpdate.rsjm(network, solution, (u,v,delta))
             print(s_prime)
-            print(Dispatchability._check_solution(network, s_prime))
+            if s_prime:
+                print(Dispatchability._check_solution(network, s_prime))
+            else:
+                print("Adding constraint makes system infeasible.")

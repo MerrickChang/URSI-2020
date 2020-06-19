@@ -84,6 +84,19 @@ class DistanceMatrixUpdate:
 
     @staticmethod
     def _pop_dominated_constraints(succ, pred, D, constraint):
+        """
+        Pops constraints dominated by constraint to make the propogating update method more efficent.
+        ------------------------------------------------------------------------------
+        Inputs:
+            succ, an list of dictionaries representing the successor edges of the stn
+            pred, an list of dictionaries representing the precedessor edges of the stn
+            D, the distance_matrix of the stn
+            constraint, the new constraint being used to update the distance matrix
+            
+        Effects:
+            Pops dominated edges from succ and pred.
+        ------------------------------------------------------------------------------
+        """
         marked = []
         for i, edge_list in enumerate(succ):
             for j, delta in edge_list.items():
@@ -106,20 +119,20 @@ class DistanceMatrixUpdate:
 
 
 
-
-    @staticmethod
-    def _find_rigidities(D, i, succ, pred, rigidity = set()):
-        for j, delta in succ[i].items():
-            if delta == -D[j][i] and not j in rigidity:
-                rigidity.add(j)
-                rigidity.add(i)
-                rigidity = IncrementalAlgorithm._find_rigidities(D, j, succ, pred, rigidity)
-        for j, delta in pred[i].items():
-            if delta == -D[i][j] and not j in rigidity:
-                rigidity.add(j)
-                rigidity.add(i)
-                rigidity = IncrementalAlgorithm._find_rigidities(D, j, succ, pred, rigidity)
-        return rigidity
+    #
+    # @staticmethod
+    # def _find_rigidities(D, i, succ, pred, rigidity = set()):
+    #     for j, delta in succ[i].items():
+    #         if delta == -D[j][i] and not j in rigidity:
+    #             rigidity.add(j)
+    #             rigidity.add(i)
+    #             rigidity = IncrementalAlgorithm._find_rigidities(D, j, succ, pred, rigidity)
+    #     for j, delta in pred[i].items():
+    #         if delta == -D[i][j] and not j in rigidity:
+    #             rigidity.add(j)
+    #             rigidity.add(i)
+    #             rigidity = IncrementalAlgorithm._find_rigidities(D, j, succ, pred, rigidity)
+    #     return rigidity
 
 
 
