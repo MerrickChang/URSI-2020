@@ -70,22 +70,25 @@ class Dispatch:
 
         return network
 
+
     @ staticmethod
     def _tarjan(network):
         t = Tarjan(network)
         return t.tarjan()
 
-    @ staticmethod
+
     def convert_to_dispatchable(network):
         # O(N^3) time, O(N^2) extra space
-        if not network.distance_matrix:
+        if not network.dist_up_to_date and network.distance_matrix:
+            pass
+        else:
             FloydWarshall.floyd_warshall(network)
 
         distance_matrix = deepcopy(network.distance_matrix)
         marked_edges = []
 
         intersecting_edges = Dispatch._get_intersecting_edges(network)
-
+        print(intersecting_edges)
         # print(distance_matrix)
         for (src_idx, middle_idx), target_idx in intersecting_edges:
             D_A_B = distance_matrix[src_idx][middle_idx] + \
@@ -105,11 +108,12 @@ class Dispatch:
                     marked_edges.append((src_idx, target_idx))
                 if D_A == D_C_B:
                     marked_edges.append((src_idx, middle_idx))
-        print(marked_edges)
+        for i, row in enumerate(distance_matrix):
+            for j, delta in enumerate(row):
+                network.successor_edges[i][j] = delta
         for node_idx, succ_idx in marked_edges:
             if succ_idx in network.successor_edges[node_idx]:
                 network.delete_edge(node_idx, succ_idx)
-
         return network
 
     @ staticmethod

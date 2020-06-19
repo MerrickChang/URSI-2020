@@ -9,9 +9,10 @@ class DispatchabilityTest(Test):
     def test(self):
         for network in self.networks:
             converted = Dispatch.convert_to_dispatchable(network)
-            print(converted)
-            for n in converted.names_dict:
+            for n in range(network.length):
                 try:
-                    Dispatchability.greedy_execute(converted, n)
+                    for delta in network.successor_edges[n].values():
+                        assert delta >= 0
+                    print(Dispatchability.greedy_execute(converted, n))
                 except AssertionError as e:
                     print(e)

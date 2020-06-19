@@ -7,6 +7,9 @@
 import heapq
 import copy
 class SolutionUpdate:
+    """
+    A class which contains static methods for incrementally updating a solution to an STN upon the addition of a constraint.
+    """
     @staticmethod
     def _adjust_heap(min_heap, y, scaled_path_length):
         """

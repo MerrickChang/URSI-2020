@@ -8,10 +8,10 @@ from src.tests.solution_update_test import SolutionUpdateTest
 
 #johnson_test = JohnsonTest(["sample.stn", "sample2.stn", "sample3.stn"])
 #floyd_warshall_test = FloydWarshallTest(["sample.stn", "sample2.stn", "sample3.stn"])
-##ddispatch_test = DispatchabilityTest(["sample2.stn", "sample3.stn"])
-for x in range(10):
-   print("Test ", x, ":")
-   test = SolutionUpdateTest(["sample_dispatchable.stn"])
+ddispatch_test = DispatchabilityTest(["sample3.stn"])
+# for x in range(10):
+#    print("Test ", x, ":")
+#    test = SolutionUpdateTest(["sample_dispatchable.stn"])
 
 ##
 # reader = FileReader()

@@ -40,7 +40,7 @@ class Dispatchability:
     @staticmethod
     def _find_point_in_time_window(A, bounds, time):
         """
-        A generator to find all of the points enabled within a given time window
+        Find a point enabled within a given time window
 
         Inputs:
             A, the list of enabled points in the window
@@ -56,7 +56,7 @@ class Dispatchability:
         for i, time_point in enumerate(A):
             lower_bound, upper_bound = bounds[time_point]
             if lower_bound <= time and time <= upper_bound:
-                yield A.pop(i)
+                return A.pop(i)
 
 
 
@@ -125,23 +125,22 @@ class Dispatchability:
             if time<A_min:
                 time = random.choice(list(range(A_min, A_max+1)))
 #W            assert time<=A_max, "The time exceeds the maximum value in the enabled points. This STN is not dispatchable."
-            for time_point in Dispatchability._find_point_in_time_window(A, bounds, time):
-                if not time_point in S:
-                    S.append(time_point)
-                execution_times[time_point] = time
-                for v,delta in stn.successor_edges[time_point].items():
-                    alt = time+delta
-                    if bounds[v][1] >= alt:
-                        bounds[v][1] = alt
-                for u,delta in Dispatchability._get_predecessor_edges(stn, time_point):
-                    alt = time-delta
-                    if alt >= bounds[u][0]:
-                        bounds[u][0] = alt
+            time_point = Dispatchability._find_point_in_time_window(A, bounds, time)
+            S.append(time_point)
+            execution_times[time_point] = time
+            for v,delta in stn.successor_edges[time_point].items():
+                alt = time+delta
+                if bounds[v][1] >= alt:
+                    bounds[v][1] = alt
+            for u,delta in Dispatchability._get_predecessor_edges(stn, time_point):
+                alt = time-delta
+                if alt >= bounds[u][0]:
+                    bounds[u][0] = alt
             for u, edge_dict in enumerate(stn.successor_edges):
                 if not (u in A or u in S):
                     neg_edges_lead_to_S = True
                     for v, delta in stn.successor_edges[u].items():
-                        if delta<0 and v not in S:
+                        if delta<0 and not v in S:
                             neg_edges_lead_to_S = False
                             break
                     if neg_edges_lead_to_S:
