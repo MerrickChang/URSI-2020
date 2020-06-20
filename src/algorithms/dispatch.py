@@ -79,57 +79,58 @@ class Dispatch:
 
     def convert_to_dispatchable(network):
         # O(N^3) time, O(N^2) extra space
-        if not network.dist_up_to_date and network.distance_matrix:
-            pass
-        else:
+        if not network.dist_up_to_date:
             FloydWarshall.floyd_warshall(network)
-
-        distance_matrix = deepcopy(network.distance_matrix)
-        marked_edges = []
-
-        intersecting_edges = Dispatch._get_intersecting_edges(network)
-        print(intersecting_edges)
-        # print(distance_matrix)
-        for (src_idx, middle_idx), target_idx in intersecting_edges:
-            D_A_B = distance_matrix[src_idx][middle_idx] + \
-                distance_matrix[middle_idx][target_idx]
-            D_C = distance_matrix[src_idx][target_idx]
-            D_A = distance_matrix[src_idx][middle_idx]
-            D_C_B = distance_matrix[src_idx][target_idx] + \
-                distance_matrix[target_idx][middle_idx]
-            if D_A_B == D_C and D_A == D_C_B:
-                if (src_idx, target_idx) not in marked_edges and (src_idx, middle_idx) not in marked_edges:
-                    if random() < 0.5:
-                        marked_edges.append((src_idx, target_idx))
-                    else:
-                        marked_edges.append((src_idx, middle_idx))
-            else:
-                if D_A_B == D_C:
-                    marked_edges.append((src_idx, target_idx))
-                if D_A == D_C_B:
-                    marked_edges.append((src_idx, middle_idx))
-        for i, row in enumerate(distance_matrix):
-            for j, delta in enumerate(row):
-                network.successor_edges[i][j] = delta
+        for u, distances in enumerate(network.distance_matrix):
+            for v, delta in enumerate(distances):
+                network.successor_edges[u][v] = delta
+        marked_edges = Dispatch._get_marked_edges(network)
         for node_idx, succ_idx in marked_edges:
             if succ_idx in network.successor_edges[node_idx]:
                 network.delete_edge(node_idx, succ_idx)
         return network
 
+
+
     @ staticmethod
     def _get_intersecting_edges(network):
         length = network.length
         intersecting_edges = []
-        arr = []
         for i in range(length):
-            for j in range(length):
-                if i == j:
-                    continue
-                for k in range(length):
-                    if k == i or k == j:
-                        continue
-                    if sorted([i, j]) in arr:
-                        continue
-                    arr.append(sorted([i, j]))
-                    intersecting_edges.append(((i, j), k))
-        return intersecting_edges
+            for j in range(i+1,length):
+                for k in range(j+1, length):
+                    yield (i,j,k)
+                    yield (i,k,j)
+                    yield (j,i,k)
+                    yield (j,k,i)
+                    yield (k,i,j)
+                    yield (k,j,i)
+
+    @staticmethod
+    def _is_dominated(D_ac, D_ab, D_bc):
+        return D_ac == D_ab + D_bc
+
+    @staticmethod
+    def _get_marked_edges(network):
+        D = network.distance_matrix
+        marked_edges = []
+        for i,j,k in Dispatch._get_intersecting_edges(network):)
+            if D[i][j] >= 0 and D[i][k] >= 0:
+                if Dispatch.is_dominated(D[i][k], D[i][j], D[j][k]):
+                    if Dispatch.is_dominated(D[i][j], D[i][k], D[k][j]):
+                        if not (i,j) in marked_edges and not (i,k) in marked_edges:
+                            marked_edges.append((i,j))
+                    else:
+                        marked_edges.append((i,k))
+                elif Dispatch.is_dominated(D[i][j], D[i][k], D[k][j]):
+                    marked_edges.append((i,j))
+            elif D[j][k] < 0:
+                if Dispatch.is_dominated(D[i][k], D[k][j], D[j][i]):
+                    if Dispatch.is_dominated(D[j][k], D[k][i], D[i][j]):
+                        if not (i,k) in marked_edges and not (j,k) in marked_edges:
+                            marked_edges.append((j,k))
+                    else:
+                        marked_edges.append((i,k))
+                elif Dispatch.is_dominated(D[j][k], D[k][i], D[i][j]):
+                    marked_edges.append((j,k))
+        return marked_edges
