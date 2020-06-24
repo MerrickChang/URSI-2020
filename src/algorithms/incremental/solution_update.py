@@ -72,7 +72,7 @@ class SolutionUpdate:
             var = solution[u] + delta + solution[x] + delta_x - solution[v]
             if var < solution[x]:
                 if x == u:
-                    bla = stn.successor_edges[u].pop(v)
+                    stn.successor_edges[u].pop(v)
                     return False
                 else:
                     S_prime[x] = var
@@ -82,12 +82,24 @@ class SolutionUpdate:
 
     @staticmethod
     def update_potential(stn, A, h):
+        """
+        Based on upcoming Hunsberger and Posenato paper. Incremental method for updating potential function.
+        Propogates backwards. New edges are supposed to already be in the target stn.
+        ----------------------------------------------------------------------------------------
+        Inputs:
+            stn, the target network
+            A, the index of the starting vertex
+            h, the old potential function
+        Outputs:
+            newH, the updated potential function
+        ----------------------------------------------------------------------------------------
+        """
         newH = copy.deepcopy(h)
         Q = []
         Z = []
         if not stn.pred_edges_up_to_date:
             stn.update_predecessors()
-        blah = heapq.heappush(Q, (0, A))
+        heapq.heappush(Q, (0, A))
         while len(Q) != 0:
             keyV, V = heapq.heappop(Q)
             for U, delta in stn.predecessor_edges[V].items():
@@ -101,7 +113,7 @@ class SolutionUpdate:
                         keyX, X = values
                         if keyX > newKey:
                             if X == U:
-                                bla = Q.pop(index)
+                                Q.pop(index)
                                 heapq.heappush(Q, (newKey, U))
                         else:
                             break

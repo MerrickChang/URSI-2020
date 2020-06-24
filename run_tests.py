@@ -5,11 +5,11 @@ from src.algorithms.dispatchability import Dispatchability
 from src.networks.file_reader import FileReader
 from src.tests.floyd_warshall_test import FloydWarshallTest
 from src.tests.solution_update_test import SolutionUpdateTest
-
+from src.tests.hp_test import HPTest
 #johnson_test = JohnsonTest(["sample.stn", "sample2.stn", "sample3.stn"])
 #floyd_warshall_test = FloydWarshallTest(["sample.stn", "sample2.stn", "sample3.stn"])
 #ddispatch_test = DispatchabilityTest(["sample3.stn"])
-test = SolutionUpdateTest(20)
+test = HPTest(10)
 
 ##
 # reader = FileReader()

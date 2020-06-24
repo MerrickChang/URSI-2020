@@ -153,10 +153,10 @@ class Dispatch:
             for v, delta in enumerate(distances):
                 if u != v:
                     network.successor_edges[u][v] = delta
-        # marked_edges = Dispatch._get_marked_edges(network)
-        # for node_idx, succ_idx in marked_edges:
-        #     if succ_idx in network.successor_edges[node_idx]:
-        #         network.delete_edge(node_idx, succ_idx)
+        marked_edges = Dispatch._get_marked_edges(network)
+        for node_idx, succ_idx in marked_edges:
+            if succ_idx in network.successor_edges[node_idx]:
+                network.delete_edge(node_idx, succ_idx)
         return network
 
 
