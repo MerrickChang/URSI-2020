@@ -33,7 +33,7 @@ class SolutionUpdate:
             path_length, z = values
             if z==y:
                 if scaled_path_length < path_length:
-                    min_heap.pop(index)
+                    bla = min_heap.pop(index)
                     heapq.heappush(min_heap, (scaled_path_length, y))
                     return True
                 else:
@@ -67,14 +67,42 @@ class SolutionUpdate:
         min_heap = []
         heapq.heappush(min_heap, (0, v))
         while len(min_heap) != 0:
+            print(min_heap)
             delta_x, x = heapq.heappop(min_heap)
             var = solution[u] + delta + solution[x] + delta_x - solution[v]
             if var < solution[x]:
                 if x == u:
-                    stn.successor_edges[u].pop(v)
+                    bla = stn.successor_edges[u].pop(v)
                     return False
                 else:
                     S_prime[x] = var
                     for y, delta_xy in stn.successor_edges[x].items():
                         SolutionUpdate._adjust_heap(min_heap, y, delta_x + solution[x] + delta_xy - solution[y])
         return S_prime
+
+    @staticmethod
+    def update_potential(stn, A, h):
+        newH = copy.deepcopy(h)
+        Q = []
+        Z = []
+        if not stn.pred_edges_up_to_date:
+            stn.update_predecessors()
+        blah = heapq.heappush(Q, (0, A))
+        while len(Q) != 0:
+            keyV, V = heapq.heappop(Q)
+            for U, delta in stn.predecessor_edges[V].items():
+                newVal = newH[V] - delta
+                if newH[U] < newVal:
+                    newH[U] = newVal
+                    newKey = h[U] - newH[U]
+                    if U in Z:
+                        return False
+                    for index, values in enumerate(Q):
+                        keyX, X = values
+                        if keyX > newKey:
+                            if X == U:
+                                bla = Q.pop(index)
+                                heapq.heappush(Q, (newKey, U))
+                        else:
+                            break
+        return newH

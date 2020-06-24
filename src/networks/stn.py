@@ -29,7 +29,7 @@ class STN:
     distance_matrix : List[List[int]]
         (optional) if used, holds the NxN all-pairs, shortest-paths (APSP) matrix
         for the STN.
-    dist_up_to_date : boolean  
+    dist_up_to_date : boolean
         True, if the distance_matrix is up-to-date; False, otherwise.
     ---------------------------------------------------
     """
@@ -55,7 +55,7 @@ class STN:
         distance_matrix : List[List[int]]
             (optional) if used, holds the NxN all-pairs, shortest-paths (APSP) matrix
             for the STN.
-        dist_up_to_date : boolean  
+        dist_up_to_date : boolean
             True, if the distance_matrix is up-to-date; False, otherwise.
         -------
         Returns
@@ -69,6 +69,8 @@ class STN:
         self.length = 0
         self.distance_matrix = []
         self.dist_up_to_date = False
+        self.predecessor_edges = False
+        self.pred_edges_up_to_date = False
 
     def __str__(self):
         """
@@ -101,7 +103,7 @@ class STN:
         Parameters:
         -----------
         tp1, either a numerical index or the name of a time-point
-        tp2, ditto 
+        tp2, ditto
         weight, the numerical weight of the edge to be added
         -----------
         Returns:  none
@@ -115,6 +117,8 @@ class STN:
         tp2_idx = self.names_dict[tp2] if type(tp2) == str else tp2
 
         self.successor_edges[tp1_idx][tp2_idx] = int(weight)
+        if predecessor_edges:
+            self.predecessor_edges[tp2_idx][tp1_idx] = int(weight)
         self.dist_up_to_date = False
 
     def delete_edge(self, tp1, tp2):
@@ -125,7 +129,7 @@ class STN:
         Parameters:
         -----------
         tp1, either a numerical index or the name of a time-point
-        tp2, ditto 
+        tp2, ditto
         weight, the numerical weight of the edge to be added
         -----------
         Returns:  none
@@ -139,6 +143,8 @@ class STN:
         tp2_idx = self.names_dict[tp2] if type(tp2) == str else tp2
 
         del self.successor_edges[tp1_idx][tp2_idx]
+        if self.predecessor_edges:
+            del self.predecessor_edges[tp2_idx][tp1_idx]
         self.dist_up_to_date = False
 
     def insert_new_tp(self, tp):
@@ -187,3 +193,11 @@ class STN:
         self.names_list = temp_names_list
         self.names_dict = temp_names_dict
         self.length -= 1
+
+    def update_predecessors(self):
+        if not self.predecessor_edges:
+            self.predecessor_edges = [{} for x in range(self.length)]
+        for u, edge_list in enumerate(self.successor_edges):
+            for v, delta in edge_list.items():
+                self.predecessor_edges[v][u] = delta
+        self.pred_edges_up_to_date = True

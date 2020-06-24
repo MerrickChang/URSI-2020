@@ -1,10 +1,10 @@
-from .stn import STN
+from ..networks.stn import STN
 from random import random, randrange
 
 
 class RandomSTN:
 
-    def random_stns(self, no_of_stns, max_no_of_nodes, max_weight=100, min_weight=-100):
+    def random_stns(self, no_of_stns, max_no_of_nodes, max_weight=100, min_weight=-100, write_to_file = False):
         """
          random_stns: Generates and writes to files as many STNs as the user
                       wants.
@@ -26,7 +26,9 @@ class RandomSTN:
             num = max(3, num)
             network = self.random_stn(num, max_weight, min_weight)
             networks.append(network)
-            self.write_stn(network, _)
+        if write_to_file:
+            for network in networks:
+                self.write_stn(network, _)
         return networks
 
     def random_stn(self, no_of_nodes, max_weight=100, min_weight=-100, density_probability=None, node_names=None):
@@ -80,7 +82,7 @@ class RandomSTN:
                     network.successor_edges[i][j] = int(
                         randrange(1, max_weight, 1))
                     counter += 1
-                elif rand < density_probability:
+                elif rand < density_probability and i!=j:
                     network.successor_edges[i][j] = int(
                         randrange(min_weight, -1, 1))
                     counter += 1
@@ -117,13 +119,7 @@ class RandomSTN:
              "# Time-Point Names \n", names_string + "\n", "# Ordinary Edges \n", edge_string]
         file.writelines(L)
 
-        # alpha => the grid ratio (P/T)
-        # beta => grid density (no_grid_points : no_of_nodes => |V|)
-        # s_min, s_max => real and non-negative, control the amplitude of the
-        #                 interval between two nodes
-        # u => the number of units per each grid interval
-        def ntm(self, no_of_nodes, alpha, beta, edge_density, s_min, s_max, u):
-            pass
-
-        def random_mappping(self, alpha, beta):
-            pass
+        @staticmethod
+        def generate_random_consistent_dgraph(n, min_dist, max_dist):
+            dgraph = [[0 for x in range(len(n))] for x in range(n)]
+            return dgraph
