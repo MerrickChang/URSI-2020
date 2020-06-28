@@ -1,0 +1,85 @@
+
+\documentclass[12pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{hyperref}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+ \newcommand{\Q}{\mathbb{Q}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+
+\begin{document}
+ \title{A Proposal for an Algorithm to Generate Consistent STNs}
+ \author{Merrick Chang}
+ \maketitle
+ 
+I have a proposal for an algorithm for the random generation of consistent STNs. I  \textit{think} that this algorithm is truly random in the sense that it is able to generate any consistent STN. I'll go through the necesary proofs in the Preliminaries section and propose a sketch of the algorithm in the Proposal section. I haven't sketched out the psuedo-code specifically, but it ought to work and work quite quickly.
+
+\section{Preliminaries}
+
+We start with the following definition:
+
+\begin{definition} We say that a digraph $G = (V, E)$ is a \textbf{diforest} if it is accylic. We call diforest a \textbf{ditree} if additionally there exists some (unique) vertex $x$ such that for all $v \in V$ such that $v \neq x$. We call this vertex the \textbf{source}.
+\end{definition}
+
+\begin{remark}That $x$ is unique is an obvious consequence of its property. If there exists a second vertex $y$ with this property, then there exists a path from $x$ to $y$ and from $y$ to $x$ and the union of those paths is thusly a cycle.\end{remark}
+
+Much like forests can be described as a number of trees for undirected graphs, diforrests can be described as compositions of ditrees as well, albeit less neatly.
+
+\begin{theorem} Every diforest, $G = (V, E)$, can be written as the union of edge-wise dijoint (but not necessarily vertex-wise disjoint) of ditrees.
+\end{theorem}
+
+\begin{proof}The proof proceeds by induction. Suppose $|V|=1$. Then obviously the statement is trivially true. Suppose that the statement is true for all $|V| \leq n$. Consider the case where $|V| = n+1$. Then, choose some $v$ in $V$. The graph $H = (V-\{v\}, E)$ is acyclic, so it is a diforrest and thus the union of ditrees $T_1,T_2, \dots T_m$. Now, for each inedge, $e$, from some vertex $u \in V$ to $v$, abitrarily choose ditree containing $u$ and add $v$ and $e$ to the ditree. Then likewise, create a new ditree with $v$ in it and for outedge, $e$, from $v$ to $w \in V$ add $e$ and $w$ to this new ditree. Call the resulting trees $T_1',T_2', \dots T_{m+1}'$. $G$ is a union of these ditrees. Thus the statement is true for $|V| = n+1$.
+\end{proof}
+
+\begin{remark} Obviously the converse statement, every edgewise dijsoint union of ditrees is a diforest is untrue and has trivial counterexamples. There is certainly a more precise statement for which the converse is true but it is unimportant for the purposes of these proofs.\end{remark}
+
+%\begin{theorem} For each ditree, $G = (V, E)$ with $|V| > 1$, there exists some vertex $v \in V$ such that $G - \{v\}$ is a ditree. Call such a vertex a \emph{\textbf{cut vertex}}.
+%\end{theorem}
+%\begin{proof} Let $$M = \max\{\delta(x,y) \in \N: y \in V\}$$ and $$S = \{y \in V: \delta(x,v) = M\}$$ where $x$ is the source of $G$. Choose some $v \in S$. Each path running from $x$ through $v$ to some vertex $y$ is of at least length $M+1$. Thus there must exist some path of length less than or equal to $M$ from $x$ to $y$ which does not contain $v$. Because the graph $G-\{v\}$ is trivially accylic $v$ is a cut vertex.
+%\end{proof}
+
+\begin{definition} Let $G = (V,E)$ be a digraph. We say that a function $f: V \to \N$ is an \textbf{ordering} iff it is injective. 
+\end{definition}
+
+\begin{theorem} For every diforest $G = (V,E)$, there exists some ordering $f: V \to \N$ such that for each edge $e_{uv}$ from $u$ to $v$, $f(u) < f(v)$. 
+\end{theorem}
+
+\begin{proof} The proof proceeds by induction. For the case, $|V| = 1$, this result is trivial. Let the statement of the theorem hold for $|V| \leq n$. Suppose $|V| = n+1$.  Let $v \in G$. Then $G - \{v\}$ is a graph with $n$ vertices so there exists some ordering $g: V - \{v\} \to \N$ such that for all edges $e_{ab}$ from $a$ to $b$ where $a,b \in V - \{v\}$, $g(a) < g(b)$. Then let
+$$f(x) = \begin{cases} g(x) & g(x) < M \\ 
+M & v = x\\
+g(x) + 1 & g(x) > M
+\end{cases}$$ where $M = \max\{g(x) \in \N: \textrm{there exists some edge } e_{xv} \in E \textrm{ from } x \textrm{ to } v\}$.
+\end{proof}
+
+\begin{corollary}For every ditree $G = (V,E)$, there exists some ordering $f: V \to \N$ such that for each edge $e_{uv}$ from $u$ to $v$, $f(u) < f(v)$. 
+\end{corollary}
+
+\section{Proposal}
+
+Now, each STN can be represented by weighted graph $G = (V, E, w)$. Now, by definition $G$ has no negative cycles so $G_-$ the unweighted digraph containing only edges in $G$ with negative weights is a diforest. The premise is that we can generate a diforrest first which minimizes the amount of computation you need to do to ensure the STN is consistent. My suggested algorithm goes roughly as follows:
+
+\begin{enumerate}
+\item Generate a list of nodes
+\item Generate an empty hashtable of source vertices and their respective distances to each other vertex
+\item For each node $u$,
+	 \begin{enumerate} 
+	 	\item for each node $v$ with index greater than $u$, create an edge from $v$ to $u$ with some specified probability; generate a random negative weight for this edge; if an edge is created this way and update the distance from each source node
+	 	\item if edges were just created and $u$ has no predecessors, mark it as a source node; for each source node keep track of the minimum (in terms of absolute value) distance from the source node and each other node; if there is no path from the source node to another node, mark it as being infinite; mark the distance to itself as 0
+	\end{enumerate}
+\item For each node $u$ and each other node $v$ generate an edge from $u$ to $v$ with some specified probablity. If $u$ is a child of $v$ in some ditree, take the difference, $\delta$ between the distance from the source to $v$ and the distance from the source to $u$; assign the edge a wieght of at least $\delta$; else generate a random positive weight
+\end{enumerate}
+
+By Theorem 1.2, any consistent STN should be able to be generated in this manner. Furthermore, this method saves the trouble of generating random STNs and checking if they are consistent or not.
+\end{document}

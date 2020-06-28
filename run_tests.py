@@ -6,11 +6,14 @@ from src.networks.file_reader import FileReader
 from src.tests.floyd_warshall_test import FloydWarshallTest
 from src.tests.solution_update_test import SolutionUpdateTest
 from src.tests.hp_test import HPTest
+from src.networks.random_stn import RandomSTN
+from src.algorithms.shortest_path.floyd_warshall import FloydWarshall
 #johnson_test = JohnsonTest(["sample.stn", "sample2.stn", "sample3.stn"])
 #floyd_warshall_test = FloydWarshallTest(["sample.stn", "sample2.stn", "sample3.stn"])
 #ddispatch_test = DispatchabilityTest(["sample3.stn"])
-test = HPTest(10)
-
+#test = HPTest(10)
+for network in [RandomSTN.merrick_consistent_stn(5, 10, 0.7, -10, 10) for x in range(5)]:
+    print(FloydWarshall.merrick_floyd_warshall(network))
 ##
 # reader = FileReader()
 # stn = reader.read_file("sample_dispatchable.stn")

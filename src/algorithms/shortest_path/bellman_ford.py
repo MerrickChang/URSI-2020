@@ -21,7 +21,7 @@ class BellmanFord:
             The target stn
         virtual_edges: Iterable[(int, int, int)]
             Iterable that yields the representation of the virtual edge
-        
+
         Yields
         ------
         edge : (int, int, int)
@@ -32,6 +32,11 @@ class BellmanFord:
                 yield (u, v, delta)
         for u, v, delta in virtual_edges:
             yield (u, v, delta)
+
+
+
+
+
     @staticmethod
     def _virtual_edges_johnson(stn): #generator of virtual edges for johnson's algorithm
         """
@@ -41,7 +46,7 @@ class BellmanFord:
         ----------
         stn: STN
             The target stn
-        
+
         Yields
         ------
         edge: (int, int, int)
@@ -50,6 +55,12 @@ class BellmanFord:
         length = len(stn.successor_edges)
         for index in range(length):
             yield (length, index, 0)
+
+
+
+
+
+            
     @staticmethod
     def _relax(u,v,delta,dist):
         """
@@ -65,7 +76,7 @@ class BellmanFord:
             The edge wieght
         dist: List[int]
             The array of distances to be relaxed
-        
+
         Effects
         -------
         Relaxes distance values stored in dist accordingly
@@ -79,6 +90,10 @@ class BellmanFord:
             dist[v] = alt
             return True
         return False
+
+
+
+
     @staticmethod
     def merrick_bellman_ford(stn, source = False):
         """
@@ -91,7 +106,7 @@ class BellmanFord:
         source: bool, str
             Specifies the source node.
             If no source node is specified, it is assumed that the algorithm is being used for Johnson's algorithm and virtual node is generated.
-        
+
         Returns
         -------
         dist: List[int]
@@ -115,6 +130,9 @@ class BellmanFord:
             if dist[u] + delta < dist[v]:
                 return False
         return dist
+
+
+
     @staticmethod
     def bannister_eppstein(stn, source = False): #WIP based on https://arxiv.org/pdf/1111.5414.pdf
         """Implements the Bannister-Eppstein's improvement of Yen's optimization of the Bellman-Ford Algorithm
@@ -126,7 +144,7 @@ class BellmanFord:
         source: bool, str
             Specifies the source node.
             If no source node is specified, it is assumed that the algorithm is being used for Johnson's algorithm and virtual node is generated.
-        
+
         Returns
         -------
         dist: List[int]
@@ -169,7 +187,7 @@ class BellmanFord:
                     for v in G_plus[u]:
                             delta = stn.successor_edges[u][v]
                             has_changed[v] = BellmanFord._relax(u,v,delta,dist)
-            #For each vertex in reverse order, relax the edge in G- 
+            #For each vertex in reverse order, relax the edge in G-
             for u in random_order[:0:-1]:
                 if u in C or has_changed[u]:
                     for v in G_minus[u]:
