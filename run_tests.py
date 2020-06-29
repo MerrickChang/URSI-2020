@@ -13,6 +13,7 @@ from src.algorithms.shortest_path.floyd_warshall import FloydWarshall
 #ddispatch_test = DispatchabilityTest(["sample3.stn"])
 #test = HPTest(10)
 for network in [RandomSTN.merrick_consistent_stn(5, 10, 0.7, -10, 10) for x in range(5)]:
+    print(network)
     print(FloydWarshall.merrick_floyd_warshall(network))
 ##
 # reader = FileReader()

@@ -8,7 +8,7 @@ class Probability:
         for x, cum_mass in enumerate(Probability._binomial_cmf(num_events, prob)):
             if roll < cum_mass:
                 return x
-
+        return num_events
 
     @staticmethod
     def _binomial_cmf(num_events, prob):

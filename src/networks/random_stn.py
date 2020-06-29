@@ -1,6 +1,7 @@
 from ..networks.stn import STN
 from random import random, randrange, sample, randint
 import math
+import heapq
 from ..utils.probability import Probability
 
 
@@ -131,6 +132,20 @@ class RandomSTN:
              "# Time-Point Names \n", names_string + "\n", "# Ordinary Edges \n", edge_string]
         file.writelines(L)
 
+    # @staticmethod
+    # def _diforest_prim(stn, sources, heap = False):
+    #     """
+    #     Implements a modified version of Prim's algorithm designed to assist with consistent STN generation
+    #     """
+    #     diforest_pred = dict()
+    #     incident = set()
+    #     if not heap:
+    #         heap = [(delta, u, v) for u, v in edge_list for u, edge_list in enumerate(stn.successor_edges)]
+    #     heapq.heapify(heap)
+    #     while len(heap)!=0 and len(incident) < stn.length:
+    #
+    #     return diforest_pred
+
     @staticmethod
     def merrick_consistent_stn(min_no_of_nodes, max_no_of_nodes, edge_prob, min_weight, max_weight):
         stn = STN()
@@ -145,44 +160,46 @@ class RandomSTN:
         stn.successor_edges = [{} for x in range(length)]
         stn.pred_edges_up_to_date = True
         sources_w_pot = dict()
+        #heap = []
         default_pot = [float("inf") for x in range(length)]
-        if min_weight < 0:
-            for u in range(length):
-                num_neg_outedges = round(Probability.binom_dist(length - u, edge_prob)/3) #it looks like somthing bogus
-                ends = sample(list(range(u+1, length)), num_neg_outedges)
-                if not u in stn.predecessor_edges:
-                    sources_w_pot[u] = default_pot.copy()
-                    sources_w_pot[u][u] = 0
-                    for v in ends:
-                        delta = randint(min_weight, -1)
-                        stn.predecessor_edges[v][u] = delta
-                        stn.successor_edges[u][v] = delta
-                        sources_w_pot[u][v] = delta
-                else:
-                     for v in ends:
-                         delta = randint(min_weight, -1)
-                         stn.predecessor_edges[v][u] = delta
-                         stn.successor_edges[u][v] = delta
-                         for pot in sources_w_pot.values():
-                             pot[v] = pot[u] + delta
+        for u in range(length-1):
+            num_neg_outedges = Probability.binom_dist(length - u - 1, 2*edge_prob/3)
+            ends = sample(list(range(u+1, length)), num_neg_outedges)
+            if not u in stn.predecessor_edges:
+                sources_w_pot[u] = default_pot.copy()
+                sources_w_pot[u][u] = 0
+                for v in ends:
+                    delta = randint(min_weight, max_weight)
+                    #heap.append((delta, u, v))
+                    stn.predecessor_edges[v][u] = delta
+                    stn.successor_edges[u][v] = delta
+                    sources_w_pot[u][v] = delta
+            else:
+                 for v in ends:
+                     delta = randint(min_weight, max_weight)
+                     #heap.append((delta, u, v))
+                     stn.predecessor_edges[v][u] = delta
+                     stn.successor_edges[u][v] = delta
+                     for pot in sources_w_pot.values():
+                         alt = pot[u] + delta
+                         if alt < pot[v]:
+                             pot[v] = alt
         min_weight = max(min_weight, 0)
-        for u in range(length):
-            num_neg_outedges = round(Probability.binom_dist(length - u, edge_prob)/2)
-            valid_targets = list(range(length))
-            valid_targets.pop(u)
-            ends = sample(valid_targets, num_neg_outedges)
+        #min_spanning_forrest = RandomSTN._diforest_prim(stn, sources, heap)
+        for u in range(length-1, 0, -1):
+            num_neg_outedges = Probability.binom_dist(u-1, edge_prob)
+            ends = sample(range(u-1, -1, -1), num_neg_outedges)
             for v in ends:
                 if not v in stn.successor_edges[u]:
-                    #needs some adjustment to be truly random here... I'll need to trance the ditrees backwards to make sure that v is legitmately a predecessor
-                    delta = randint(min_weight, max_weight)
-                    valid = True
-                    if v < u:
-                        for x in sources_w_pot.values():
-                            if x[v] - x[u] + delta < 0:
-                                valid = False
-                    if valid:
+                    min_weight_consistent = max([x[v] - x[u] for x in sources_w_pot.values()])
+                    if min_weight_consistent <= max_weight:
+                        delta = randint(max(min_weight, min_weight_consistent), max_weight)
                         stn.predecessor_edges[v][u] = delta
                         stn.successor_edges[u][v] = delta
+                        for x in sources_w_pot.values():
+                            alt = x[u] + delta
+                            if alt < x[v]:
+                                x[v] = alt
         return stn
 
 
