@@ -92,7 +92,7 @@ class DistanceMatrixUpdate:
             pred, an list of dictionaries representing the precedessor edges of the stn
             D, the distance_matrix of the stn
             constraint, the new constraint being used to update the distance matrix
-            
+
         Effects:
             Pops dominated edges from succ and pred.
         ------------------------------------------------------------------------------

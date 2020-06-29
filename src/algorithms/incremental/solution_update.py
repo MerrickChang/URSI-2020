@@ -46,7 +46,7 @@ class SolutionUpdate:
 
     def rsjm_fwd(stn, solution, constraint):
         """
-        Implements incremental update method for STN solutions from G. Ramalingam et al. (1999).
+        Implements incremental update method for STN solutions from G. Ramalingam et al. (1999). Propogates foward.
         -------------------------------------------------------------------------------------------
         Inputs:
             stn, the stn being updated
@@ -86,7 +86,7 @@ class SolutionUpdate:
     @staticmethod
     def rsjm_bwk(stn, solution, constraint): #UNTESTED!!!! Remember to check this!
         """
-        Implements incremental update method for STN solutions from G. Ramalingam et al. (1999).
+        Implements incremental update method for STN solutions from G. Ramalingam et al. (1999). Propogates backwards.
         -------------------------------------------------------------------------------------------
         Inputs:
             stn, the stn being updated

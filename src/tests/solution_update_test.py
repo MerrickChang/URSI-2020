@@ -35,7 +35,8 @@ class SolutionUpdateTest(Test):
                     assert solution
                     print(u,v,delta)
                     print(solution)
-                    s_prime  = SolutionUpdate.rsjm(network, solution, (u,v,delta))
+                    s_prime = SolutionUpdate.rsjm_fwd(network, solution, (u,v,delta))
+                    s_prime1  = SolutionUpdate.rsjm_bwk(network, solution, (u,v,delta))
                     s_prime2 = SolutionUpdate.update_potential(network, h=solution, A=v)
                     if s_prime:
                         print(s_prime)
@@ -43,6 +44,11 @@ class SolutionUpdateTest(Test):
                         print("Adding constraint makes system infeasible.")
                     if s_prime2:
                         print(s_prime2)
+                    else:
+                        print("Adding constraint makes system infeasible.")
+                    if s_prime1:
+                        print(s_prime1)
+                        print(Dispatchability._check_solution(network, s_prime1))
                     else:
                         print("Adding constraint makes system infeasible.")
                 else:
