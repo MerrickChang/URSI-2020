@@ -90,7 +90,7 @@ class Dispatchability:
 
         Input:
             stn, the target stn
-            start, the start node
+            start, the start node (for the algoritm to work, this node must not have negative successors)
 
         Output:
             execution_times, a list of integers; execution_times[i] represents the time the ith node
@@ -118,7 +118,6 @@ class Dispatchability:
             execution_times.append(p_inf)
         bounds[start_index] = [0,0]
         while len(S) < length:
-            print(bounds)
             assert len(A) != 0, "There are no more enabled points. This STN is not dispatchable."
             A_min = min([bounds[l][0] for l in A])
             A_max = min([bounds[u][1] for u in A])

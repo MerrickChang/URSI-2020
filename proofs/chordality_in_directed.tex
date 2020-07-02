@@ -1,0 +1,41 @@
+
+\documentclass[12pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{hyperref}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+ \newcommand{\Q}{\mathbb{Q}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+
+\begin{document}
+ \title{Dichordality and Ditriangulation}
+ \author{Merrick Chang}
+ \maketitle
+
+\section{Preliminaries}
+
+\begin{definition} We call a directed edge, $e_{xy}$, a \textbf{dicord} if there exists some directed cycle, $C = (v_1,v_2, \dots, v_k, v_1)$, of length $k>3$ such that $1 \leq x < y \leq k$ and $v_x$ and $v_y$ are non-adjactent in the cycle. We say a directed graph is \textbf{dichordal} if for each directed cycle of length 4 or greater has a dicord.
+\end{definition}
+
+To meaningfully create a directed counterpart to triangulation algorithms, we need an analogue to the simplical vertices in undirected graphs. Unfortunately, the obvious analogue, that a vertex induces a clique, is denied. We thus pause on this point for a moment.
+
+%\begin{definition}Let $G = (V,E)$ be a dicordal graph. Let $S_{C_3}(G)$ be the set of 3-cycles in G. Then, we call the graph $H = (T, F)$ the \textbf{triangular representation} of $G$ if it satisfies the following:
+%\begin{enumerate}
+%\item There exists a 3-cycle $C = (a,b,c,a)$ iff there exists a vertex $v_{abc} \in T$.
+%\item For two 
+%\end{enumerate}
+%\end{definition}
+
+\end{document}

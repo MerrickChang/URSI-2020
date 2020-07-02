@@ -19,11 +19,13 @@ class STN:
         A dictionary that maps the name of the node to its index
     names_list : List[Int]
         A list that maps the numerical index of a node to its name
-    successor_edges : List[List[tuples]]
-        A list of lists of successor edges. The list at index i of this attribute is
+    successor_edges : List[Dict[Int:Int]]
+        A list of dictionaries of successor edges. The list at index i of this attribute is
         the list of edges of the i-th node. Each edge is represented by a tuple - the
         first element of the tuple is the j-th node that the i-th node is connected to
         and the second element is the weight/distance between the i-th and j-th nodes
+    predecessor_edges: List[Dict[Int:Int]]
+        A list of dictionaries of predecessor_edges
     length : int
         Number of nodes in the STN
     distance_matrix : List[List[int]]

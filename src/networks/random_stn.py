@@ -148,6 +148,24 @@ class RandomSTN:
 
     @staticmethod
     def merrick_consistent_stn(min_no_of_nodes, max_no_of_nodes, edge_prob, min_weight, max_weight):
+        """
+        Randomly generates a consistent STN. A custom algorithm designed by Merrick Chang.
+        ------------------------------------------------------------------
+
+        Inputs:
+            min_no_of_nodes, the minimum number of nodes that can be in the stn
+            max_no_of_nodes, the maximum number of nodes that can be in the stn
+            edge_prob, the probability that there is an edge between two arbitary nodes **in either direction**
+            min_weight, the minimum allowed weight for an edge in the STN
+            max_weight, the maximum allowed wieght for an edge in the STN
+
+        Outputs:
+            stn, an stn
+
+        Effects:
+            stn will be generated with predecessor_edges filled automatically
+        -------------------------------------------------------------------
+        """
         stn = STN()
         length = randint(min_no_of_nodes, max_no_of_nodes)
         stn.length = length
