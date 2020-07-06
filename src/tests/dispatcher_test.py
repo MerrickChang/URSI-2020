@@ -12,6 +12,7 @@ class DispatcherTest(Test):
                 try:
                     for delta in network.successor_edges[n].values():
                         assert delta >= 0
+                    print(network)
                     print(Dispatchability.greedy_execute(network, n))
                 except AssertionError as e:
                     print(e)

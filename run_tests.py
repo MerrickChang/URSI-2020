@@ -9,13 +9,15 @@ from src.tests.hp_test import HPTest
 from src.networks.random_stn import RandomSTN
 from src.algorithms.shortest_path.floyd_warshall import FloydWarshall
 from src.tests.dispatcher_test import DispatcherTest
+from src.tests.cordality_test import CordalityTest
 
-DispatcherTest(["fast_dispatch_APSP.stn", "slow_dispatch_APSP.stn"])
+
 #johnson_test = JohnsonTest(["sample.stn", "sample2.stn", "sample3.stn"])
 #floyd_warshall_test = FloydWarshallTest(["sample.stn", "sample2.stn", "sample3.stn"])
 #ddispatch_test = DispatchabilityTest(["sample3.stn"])
 #test = HPTest(10)
-SolutionUpdateTest(10)
+#SolutionUpdateTest(10)
+CordalityTest(10)
 # for network in [RandomSTN.merrick_consistent_stn(5, 10, 0.7, -10, 10) for x in range(5)]:
 #     print(network)
 #     print(FloydWarshall.merrick_floyd_warshall(network))
