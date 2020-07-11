@@ -1,5 +1,5 @@
 from ..networks.stn import STN
-from random import random, randrange, sample, randint
+from random import random, randrange, sample, randint, choice
 import math
 import heapq
 from ..utils.probability import Probability
@@ -97,9 +97,11 @@ class RandomSTN:
                         randrange(min_weight, -1, 1))
                     counter += 1
         if counter == 0:
-            network.successor_edges[randrange(
-                0, network.length, 1)][randrange(0, network.length, 1)] = int(
-                randrange(min_weight, -1, 1))
+            x = randrange(0, network.length, 1)
+            r = list(range(network.length))
+            r.pop(x)
+            y = choice(r)
+            network.successor_edges[x][y] = int(randrange(min_weight, -1, 1))
 
 
 
