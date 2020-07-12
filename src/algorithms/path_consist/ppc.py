@@ -23,11 +23,16 @@ class PartialPathConsistency:
         while len(queue) != 0:
             u,v = queue.pop()
             for x in range(stn.length):
-                if x in stn.successor_edges[u] and x in stn.successor_edges[v]:
-                    alt = stn.successor_edges[u][v] + stn.successor_edges[v][x]
-                    if alt < stn.successor_edges[u][x]:
-                        stn.successor_edges[u][v] = alt
-                        queue.append((v,x))
+                if v in stn.successor_edges[u]:
+                    if x in stn.successor_edges[v]:
+                        alt = stn.successor_edges[u][v] + stn.successor_edges[v][x]
+                        if x in stn.successor_edges[u]:
+                            if alt < stn.successor_edges[u][x]:
+                                stn.successor_edges[u][x] = alt
+                                queue.append((v,x))
+                        else:
+                            stn.successor_edges[u][x] = alt
+                            queue.append((v,x))
         return stn
 
     @staticmethod
@@ -51,15 +56,12 @@ class PartialPathConsistency:
                 x_k = ordering[k]
                 for i in range(k):
                     x_i = ordering[i]
-                    if x_k in stn.successor_edges[x_i]:
-                        for j in range(k):
-                            x_j = ordering[j]
-                            if x_k in stn.successor_edges[x_j] and x_j in stn.successor_edges[x_i] and x_k in stn.successor_edges[x_i]:
+                    for j in range(k):
+                        x_j = ordering[j]
+                        if x_j in stn.successor_edges[x_i]:
+                            if x_k in stn.successor_edges[x_j] and x_k in stn.successor_edges[x_i]:
                                 stn.successor_edges[x_i][x_k] = min(stn.successor_edges[x_i][x_k], stn.successor_edges[x_i][x_j] + stn.successor_edges[x_j][x_k])
-                    if x_i in stn.successor_edges[x_k]:
-                        for j in range(k):
-                            x_j = ordering[j]
-                            if x_j in stn.successor_edges[x_k] and x_j in stn.successor_edges[x_i] and x_i in stn.successor_edges[x_k]:
+                            if x_j in stn.successor_edges[x_k] and x_i in stn.successor_edges[x_k]:
                                 stn.successor_edges[x_k][x_j] = min(stn.successor_edges[x_k][x_j], stn.successor_edges[x_k][x_i] + stn.successor_edges[x_i][x_j])
             return stn
         else:
