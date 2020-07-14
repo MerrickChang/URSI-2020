@@ -49,7 +49,7 @@ Folders:
 
         * dispatchability.py- primarily, contains greedy executer
 	
-	* potential.py- Hunsberger and Posenato algorithm for the potential function
+	    * potential.py- Hunsberger and Posenato algorithm for the potential function
 
         * tarjan.py- (outdated, not functional) Sudais's implementation of Tarjan's algorithm
 
