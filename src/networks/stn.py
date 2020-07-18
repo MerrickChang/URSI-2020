@@ -85,7 +85,10 @@ class STN:
         stringy = "STN:\n"
         stringy += f"Number of nodes in network: {self.length}\n"
         stringy += f"Dictionary of names -> index: {self.names_dict}\n"
-        stringy += f"Successor edges of each node: {self.successor_edges}\n"
+        stringy += "Edges:\n"
+        for u, edge_list in enumerate(self.successor_edges):
+            for v, delta in edge_list.items():
+                stringy += str(u) + "---" + str(delta) + "--->" + str(v) + "\n"
         # Display the distance_matrix if it is being used
         if self.distance_matrix:
             stringy += f"Distance matrix: {self.distance_matrix}\n"

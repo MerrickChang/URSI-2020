@@ -84,13 +84,14 @@ class Dispatchability:
 
 
     @staticmethod
-    def greedy_execute(stn, start):
+    def greedy_execute(stn, start, max_window = 1000):
         """
         Greedy executer for dispatchable STNs
 
         Input:
             stn, the target stn
             start, the start node (for the algoritm to work, this node must not have negative successors)
+            max_window, the maximum possible time for execution
 
         Output:
             execution_times, a list of integers; execution_times[i] represents the time the ith node
@@ -99,8 +100,7 @@ class Dispatchability:
             Prints out execution sequence.
         """
         #variable names lifted from Muscettola, Morris, and Tsamardinos
-        p_inf = 2147483646
-#        n_inf = -2147483648
+        p_inf = max_window
         start_index = start
         time = 0
         length = len(stn.names_dict)

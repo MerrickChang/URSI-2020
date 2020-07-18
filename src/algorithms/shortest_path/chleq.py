@@ -21,18 +21,18 @@ class Chleq:
         """
         D = [float('inf') for i in range(stn.length)]
         D[s] = 0
-        for k in range(s):
+        for k in range(s, 0, -1):
             x_k = ordering[k]
             for j in range(k):
                 x_j = ordering[j]
-                if x_k in stn.successor_edges[x_j]:
-                    D[x_j] = min(D[x_j], D[x_k] + stn.successor_edges[x_j][x_k])
+                if x_j in stn.successor_edges[x_k]:
+                    D[x_j] = min(D[x_j], D[x_k] + stn.successor_edges[x_k][x_j])
         for k in range(stn.length):
             x_k = ordering[k]
-            for j in range(k):
+            for j in range(k+1, stn.length):
                 x_j = ordering[j]
-                if x_k in stn.successor_edges[x_j]:
-                    D[x_j] = min(D[j], D[k] + stn.successor_edges[j][k])
+                if x_j in stn.successor_edges[x_k]:
+                    D[x_j] = min(D[x_j], D[x_k] + stn.successor_edges[x_k][x_j])
         return D
 
     @staticmethod
@@ -52,8 +52,9 @@ class Chleq:
         --------------------------------------------------------------------
         """
         if DPC.convert_to_DPC(stn, ordering):
-            D = [[float('inf') for y in range(length)] for x in range(stn.length)]
+            D = [[float('inf') for y in range(stn.length)] for x in range(stn.length)]
             for i in range(stn.length):
-                D[i] = min_paths(stn, i, ordering)
+                D[i] = Chleq.min_paths(stn, i, ordering)
+            return D
         else:
             return False

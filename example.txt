@@ -1,0 +1,619 @@
+Test of ASAP Methods
+17/07/2020 15:02:55
+============================================
+TEST 1:
+STN:
+Number of nodes in network: 6
+Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5}
+Edges:
+0---3--->2
+1----4--->4
+1---0--->5
+1----1--->2
+2---7--->4
+2----3--->3
+4----2--->5
+(STN generated using the merrick_consistent_stn function)
+
+
+CHLEQ completed execution in 0.006021261215209961.
+Output:
+ [[0, inf, 3, 0, 10, 8],
+[inf, 0, -1, -4, -4, -6],
+[inf, inf, 0, -3, 7, 5],
+[inf, inf, inf, 0, inf, inf],
+[inf, inf, inf, inf, 0, -2],
+[inf, inf, inf, inf, inf, 0]]
+
+FLOYD-WARSHALL completed execution in 0.0009984970092773438.
+Output:
+ [[0, inf, 3, 0, 10, 8],
+[inf, 0, -1, -4, -4, -6],
+[inf, inf, 0, -3, 7, 5],
+[inf, inf, inf, 0, inf, inf],
+[inf, inf, inf, inf, 0, -2],
+[inf, inf, inf, inf, inf, 0]]
+
+JOHNSON completed execution in 0.001955270767211914.
+Output:
+ [[0, inf, 3, 0, 10, 8],
+[inf, 0, -1, -4, -4, -6],
+[inf, inf, 0, -3, 7, 5],
+[inf, inf, inf, 0, inf, inf],
+[inf, inf, inf, inf, 0, -2],
+[inf, inf, inf, inf, inf, 0]]
+
+SNOWBALL completed execution in 0.003990888595581055.
+Output:
+ [[0, inf, 3, 0, 10, 8],
+[inf, 0, -1, -4, -4, -6],
+[inf, inf, 0, -3, 7, 5],
+[inf, inf, inf, 0, inf, inf],
+[inf, inf, inf, inf, 0, -2],
+[inf, inf, inf, inf, inf, 0]]
+Success, outputs are equal
+============================================
+============================================
+TEST 2:
+STN:
+Number of nodes in network: 8
+Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7}
+Edges:
+0----9--->2
+0----5--->4
+0----3--->1
+1---1--->6
+1---1--->7
+1---9--->3
+1----9--->5
+1---9--->2
+2---8--->4
+2---5--->6
+2---7--->5
+3----10--->5
+3----9--->4
+4---2--->5
+4----3--->7
+5---0--->7
+(STN generated using the merrick_consistent_stn function)
+
+
+CHLEQ completed execution in 0.012926816940307617.
+Output:
+ [[0, -3, -9, 6, -5, -12, -4, -12],
+[inf, 0, 9, 9, 0, -9, 1, -9],
+[inf, inf, 0, inf, 8, 7, 5, 5],
+[inf, inf, inf, 0, -9, -10, inf, -12],
+[inf, inf, inf, inf, 0, 2, inf, -3],
+[inf, inf, inf, inf, inf, 0, inf, 0],
+[inf, inf, inf, inf, inf, inf, 0, inf],
+[inf, inf, inf, inf, inf, inf, inf, 0]]
+
+FLOYD-WARSHALL completed execution in 0.0039882659912109375.
+Output:
+ [[0, -3, -9, 6, -5, -12, -4, -12],
+[inf, 0, 9, 9, 0, -9, 1, -9],
+[inf, inf, 0, inf, 8, 7, 5, 5],
+[inf, inf, inf, 0, -9, -10, inf, -12],
+[inf, inf, inf, inf, 0, 2, inf, -3],
+[inf, inf, inf, inf, inf, 0, inf, 0],
+[inf, inf, inf, inf, inf, inf, 0, inf],
+[inf, inf, inf, inf, inf, inf, inf, 0]]
+
+JOHNSON completed execution in 0.004985332489013672.
+Output:
+ [[0, -3, -9, 6, -5, -12, -4, -12],
+[inf, 0, 9, 9, 0, -9, 1, -9],
+[inf, inf, 0, inf, 8, 7, 5, 5],
+[inf, inf, inf, 0, -9, -10, inf, -12],
+[inf, inf, inf, inf, 0, 2, inf, -3],
+[inf, inf, inf, inf, inf, 0, inf, 0],
+[inf, inf, inf, inf, inf, inf, 0, inf],
+[inf, inf, inf, inf, inf, inf, inf, 0]]
+
+SNOWBALL completed execution in 0.010976076126098633.
+Output:
+ [[0, -3, -9, 6, -5, -12, -4, -12],
+[inf, 0, 9, 9, 0, -9, 1, -9],
+[inf, inf, 0, inf, 8, 7, 5, 5],
+[inf, inf, inf, 0, -9, -10, inf, -12],
+[inf, inf, inf, inf, 0, 2, inf, -3],
+[inf, inf, inf, inf, inf, 0, inf, 0],
+[inf, inf, inf, inf, inf, inf, 0, inf],
+[inf, inf, inf, inf, inf, inf, inf, 0]]
+Success, outputs are equal
+============================================
+============================================
+TEST 3:
+STN:
+Number of nodes in network: 8
+Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7}
+Edges:
+0---7--->1
+0----2--->4
+0---1--->7
+1---0--->5
+1----8--->4
+1---1--->6
+2----7--->5
+2----8--->7
+2---0--->6
+3---6--->4
+3----6--->6
+4---7--->6
+4----1--->5
+5----9--->7
+5---3--->6
+6---3--->7
+(STN generated using the merrick_consistent_stn function)
+
+
+CHLEQ completed execution in 0.017951488494873047.
+Output:
+ [[0, 7, inf, inf, -2, -3, 0, -12],
+[inf, 0, inf, inf, -8, -9, -6, -18],
+[inf, inf, 0, inf, inf, -7, -4, -16],
+[inf, inf, inf, 0, 6, 5, -6, -4],
+[inf, inf, inf, inf, 0, -1, 2, -10],
+[inf, inf, inf, inf, inf, 0, 3, -9],
+[inf, inf, inf, inf, inf, inf, 0, 3],
+[inf, inf, inf, inf, inf, inf, inf, 0]]
+
+FLOYD-WARSHALL completed execution in 0.0050203800201416016.
+Output:
+ [[0, 7, inf, inf, -2, -3, 0, -12],
+[inf, 0, inf, inf, -8, -9, -6, -18],
+[inf, inf, 0, inf, inf, -7, -4, -16],
+[inf, inf, inf, 0, 6, 5, -6, -4],
+[inf, inf, inf, inf, 0, -1, 2, -10],
+[inf, inf, inf, inf, inf, 0, 3, -9],
+[inf, inf, inf, inf, inf, inf, 0, 3],
+[inf, inf, inf, inf, inf, inf, inf, 0]]
+
+JOHNSON completed execution in 0.00500798225402832.
+Output:
+ [[0, 7, inf, inf, -2, -3, 0, -12],
+[inf, 0, inf, inf, -8, -9, -6, -18],
+[inf, inf, 0, inf, inf, -7, -4, -16],
+[inf, inf, inf, 0, 6, 5, -6, -4],
+[inf, inf, inf, inf, 0, -1, 2, -10],
+[inf, inf, inf, inf, inf, 0, 3, -9],
+[inf, inf, inf, inf, inf, inf, 0, 3],
+[inf, inf, inf, inf, inf, inf, inf, 0]]
+
+SNOWBALL completed execution in 0.011957883834838867.
+Output:
+ [[0, 7, inf, inf, -2, -3, 0, -12],
+[inf, 0, inf, inf, -8, -9, -6, -18],
+[inf, inf, 0, inf, inf, -7, -4, -16],
+[inf, inf, inf, 0, 6, 5, -6, -4],
+[inf, inf, inf, inf, 0, -1, 2, -10],
+[inf, inf, inf, inf, inf, 0, 3, -9],
+[inf, inf, inf, inf, inf, inf, 0, 3],
+[inf, inf, inf, inf, inf, inf, inf, 0]]
+Success, outputs are equal
+============================================
+============================================
+TEST 4:
+STN:
+Number of nodes in network: 7
+Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6}
+Edges:
+0---9--->6
+0---9--->3
+1---8--->4
+1----9--->5
+1----1--->6
+2----2--->6
+3----8--->4
+3----3--->6
+5---7--->6
+(STN generated using the merrick_consistent_stn function)
+
+
+CHLEQ completed execution in 0.008971214294433594.
+Output:
+ [[0, inf, inf, 9, 1, inf, 6],
+[inf, 0, inf, inf, 8, -9, -2],
+[inf, inf, 0, inf, inf, inf, -2],
+[inf, inf, inf, 0, -8, inf, -3],
+[inf, inf, inf, inf, 0, inf, inf],
+[inf, inf, inf, inf, inf, 0, 7],
+[inf, inf, inf, inf, inf, inf, 0]]
+
+FLOYD-WARSHALL completed execution in 0.003026247024536133.
+Output:
+ [[0, inf, inf, 9, 1, inf, 6],
+[inf, 0, inf, inf, 8, -9, -2],
+[inf, inf, 0, inf, inf, inf, -2],
+[inf, inf, inf, 0, -8, inf, -3],
+[inf, inf, inf, inf, 0, inf, inf],
+[inf, inf, inf, inf, inf, 0, 7],
+[inf, inf, inf, inf, inf, inf, 0]]
+
+JOHNSON completed execution in 0.0029952526092529297.
+Output:
+ [[0, inf, inf, 9, 1, inf, 6],
+[inf, 0, inf, inf, 8, -9, -2],
+[inf, inf, 0, inf, inf, inf, -2],
+[inf, inf, inf, 0, -8, inf, -3],
+[inf, inf, inf, inf, 0, inf, inf],
+[inf, inf, inf, inf, inf, 0, 7],
+[inf, inf, inf, inf, inf, inf, 0]]
+
+SNOWBALL completed execution in 0.007017612457275391.
+Output:
+ [[0, inf, inf, 9, 1, inf, 6],
+[inf, 0, inf, inf, 8, -9, -2],
+[inf, inf, 0, inf, inf, inf, -2],
+[inf, inf, inf, 0, -8, inf, -3],
+[inf, inf, inf, inf, 0, inf, inf],
+[inf, inf, inf, inf, inf, 0, 7],
+[inf, inf, inf, inf, inf, inf, 0]]
+Success, outputs are equal
+============================================
+============================================
+TEST 5:
+STN:
+Number of nodes in network: 8
+Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7}
+Edges:
+0----1--->1
+0---2--->5
+0---6--->6
+1---10--->3
+1---4--->4
+1---5--->2
+2---9--->4
+3---0--->6
+3----2--->5
+3---8--->4
+5----9--->7
+5----8--->6
+7---10--->5
+(STN generated using the merrick_consistent_stn function)
+
+
+CHLEQ completed execution in 0.013000726699829102.
+Output:
+ [[0, -1, 4, 9, 3, 2, -6, -7],
+[inf, 0, 5, 10, 4, 8, 0, -1],
+[inf, inf, 0, inf, 9, inf, inf, inf],
+[inf, inf, inf, 0, 8, -2, -10, -11],
+[inf, inf, inf, inf, 0, inf, inf, inf],
+[inf, inf, inf, inf, inf, 0, -8, -9],
+[inf, inf, inf, inf, inf, inf, 0, inf],
+[inf, inf, inf, inf, inf, 10, 2, 0]]
+
+FLOYD-WARSHALL completed execution in 0.002955913543701172.
+Output:
+ [[0, -1, 4, 9, 3, 2, -6, -7],
+[inf, 0, 5, 10, 4, 8, 0, -1],
+[inf, inf, 0, inf, 9, inf, inf, inf],
+[inf, inf, inf, 0, 8, -2, -10, -11],
+[inf, inf, inf, inf, 0, inf, inf, inf],
+[inf, inf, inf, inf, inf, 0, -8, -9],
+[inf, inf, inf, inf, inf, inf, 0, inf],
+[inf, inf, inf, inf, inf, 10, 2, 0]]
+
+JOHNSON completed execution in 0.003995656967163086.
+Output:
+ [[0, -1, 4, 9, 3, 2, -6, -7],
+[inf, 0, 5, 10, 4, 8, 0, -1],
+[inf, inf, 0, inf, 9, inf, inf, inf],
+[inf, inf, inf, 0, 8, -2, -10, -11],
+[inf, inf, inf, inf, 0, inf, inf, inf],
+[inf, inf, inf, inf, inf, 0, -8, -9],
+[inf, inf, inf, inf, inf, inf, 0, inf],
+[inf, inf, inf, inf, inf, 10, 2, 0]]
+
+SNOWBALL completed execution in 0.010921001434326172.
+Output:
+ [[0, -1, 4, 9, 3, 2, -6, -7],
+[inf, 0, 5, 10, 4, 8, 0, -1],
+[inf, inf, 0, inf, 9, inf, inf, inf],
+[inf, inf, inf, 0, 8, -2, -10, -11],
+[inf, inf, inf, inf, 0, inf, inf, inf],
+[inf, inf, inf, inf, inf, 0, -8, -9],
+[inf, inf, inf, inf, inf, inf, 0, inf],
+[inf, inf, inf, inf, inf, 10, 2, 0]]
+Success, outputs are equal
+============================================
+============================================
+TEST 6:
+STN:
+Number of nodes in network: 7
+Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6}
+Edges:
+0---9--->5
+0----2--->2
+0---6--->6
+1----4--->2
+2---5--->6
+2----3--->4
+2----5--->3
+2----8--->5
+3----10--->6
+3---8--->5
+5----9--->6
+(STN generated using the merrick_consistent_stn function)
+
+
+CHLEQ completed execution in 0.011930704116821289.
+Output:
+ [[0, inf, -2, -7, -5, -10, -19],
+[inf, 0, -4, -9, -7, -12, -21],
+[inf, inf, 0, -5, -3, -8, -17],
+[inf, inf, inf, 0, inf, 8, -10],
+[inf, inf, inf, inf, 0, inf, inf],
+[inf, inf, inf, inf, inf, 0, -9],
+[inf, inf, inf, inf, inf, inf, 0]]
+
+FLOYD-WARSHALL completed execution in 0.0019943714141845703.
+Output:
+ [[0, inf, -2, -7, -5, -10, -19],
+[inf, 0, -4, -9, -7, -12, -21],
+[inf, inf, 0, -5, -3, -8, -17],
+[inf, inf, inf, 0, inf, 8, -10],
+[inf, inf, inf, inf, 0, inf, inf],
+[inf, inf, inf, inf, inf, 0, -9],
+[inf, inf, inf, inf, inf, inf, 0]]
+
+JOHNSON completed execution in 0.004998207092285156.
+Output:
+ [[0, inf, -2, -7, -5, -10, -19],
+[inf, 0, -4, -9, -7, -12, -21],
+[inf, inf, 0, -5, -3, -8, -17],
+[inf, inf, inf, 0, inf, 8, -10],
+[inf, inf, inf, inf, 0, inf, inf],
+[inf, inf, inf, inf, inf, 0, -9],
+[inf, inf, inf, inf, inf, inf, 0]]
+
+SNOWBALL completed execution in 0.007969141006469727.
+Output:
+ [[0, inf, -2, -7, -5, -10, -19],
+[inf, 0, -4, -9, -7, -12, -21],
+[inf, inf, 0, -5, -3, -8, -17],
+[inf, inf, inf, 0, inf, 8, -10],
+[inf, inf, inf, inf, 0, inf, inf],
+[inf, inf, inf, inf, inf, 0, -9],
+[inf, inf, inf, inf, inf, inf, 0]]
+Success, outputs are equal
+============================================
+============================================
+TEST 7:
+STN:
+Number of nodes in network: 7
+Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6}
+Edges:
+0----1--->4
+0---9--->2
+0---9--->6
+1----9--->6
+1---7--->3
+1---10--->4
+2----4--->5
+3----10--->5
+4---8--->6
+(STN generated using the merrick_consistent_stn function)
+
+
+CHLEQ completed execution in 0.007977962493896484.
+Output:
+ [[0, inf, 9, inf, -1, 5, 7],
+[inf, 0, inf, 7, 10, -3, -9],
+[inf, inf, 0, inf, inf, -4, inf],
+[inf, inf, inf, 0, inf, -10, inf],
+[inf, inf, inf, inf, 0, inf, 8],
+[inf, inf, inf, inf, inf, 0, inf],
+[inf, inf, inf, inf, inf, inf, 0]]
+
+FLOYD-WARSHALL completed execution in 0.002991914749145508.
+Output:
+ [[0, inf, 9, inf, -1, 5, 7],
+[inf, 0, inf, 7, 10, -3, -9],
+[inf, inf, 0, inf, inf, -4, inf],
+[inf, inf, inf, 0, inf, -10, inf],
+[inf, inf, inf, inf, 0, inf, 8],
+[inf, inf, inf, inf, inf, 0, inf],
+[inf, inf, inf, inf, inf, inf, 0]]
+
+JOHNSON completed execution in 0.0029931068420410156.
+Output:
+ [[0, inf, 9, inf, -1, 5, 7],
+[inf, 0, inf, 7, 10, -3, -9],
+[inf, inf, 0, inf, inf, -4, inf],
+[inf, inf, inf, 0, inf, -10, inf],
+[inf, inf, inf, inf, 0, inf, 8],
+[inf, inf, inf, inf, inf, 0, inf],
+[inf, inf, inf, inf, inf, inf, 0]]
+
+SNOWBALL completed execution in 0.006980419158935547.
+Output:
+ [[0, inf, 9, inf, -1, 5, 7],
+[inf, 0, inf, 7, 10, -3, -9],
+[inf, inf, 0, inf, inf, -4, inf],
+[inf, inf, inf, 0, inf, -10, inf],
+[inf, inf, inf, inf, 0, inf, 8],
+[inf, inf, inf, inf, inf, 0, inf],
+[inf, inf, inf, inf, inf, inf, 0]]
+Success, outputs are equal
+============================================
+============================================
+TEST 8:
+STN:
+Number of nodes in network: 7
+Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6}
+Edges:
+0---0--->6
+0---2--->1
+0----10--->3
+1---1--->6
+3---0--->5
+3---2--->4
+4----7--->6
+5---2--->6
+(STN generated using the merrick_consistent_stn function)
+
+
+CHLEQ completed execution in 0.009977102279663086.
+Output:
+ [[0, 2, inf, -10, -8, -10, -15],
+[inf, 0, inf, inf, inf, inf, 1],
+[inf, inf, 0, inf, inf, inf, inf],
+[inf, inf, inf, 0, 2, 0, -5],
+[inf, inf, inf, inf, 0, inf, -7],
+[inf, inf, inf, inf, inf, 0, 2],
+[inf, inf, inf, inf, inf, inf, 0]]
+
+FLOYD-WARSHALL completed execution in 0.0029900074005126953.
+Output:
+ [[0, 2, inf, -10, -8, -10, -15],
+[inf, 0, inf, inf, inf, inf, 1],
+[inf, inf, 0, inf, inf, inf, inf],
+[inf, inf, inf, 0, 2, 0, -5],
+[inf, inf, inf, inf, 0, inf, -7],
+[inf, inf, inf, inf, inf, 0, 2],
+[inf, inf, inf, inf, inf, inf, 0]]
+
+JOHNSON completed execution in 0.0039899349212646484.
+Output:
+ [[0, 2, inf, -10, -8, -10, -15],
+[inf, 0, inf, inf, inf, inf, 1],
+[inf, inf, 0, inf, inf, inf, inf],
+[inf, inf, inf, 0, 2, 0, -5],
+[inf, inf, inf, inf, 0, inf, -7],
+[inf, inf, inf, inf, inf, 0, 2],
+[inf, inf, inf, inf, inf, inf, 0]]
+
+SNOWBALL completed execution in 0.0069806575775146484.
+Output:
+ [[0, 2, inf, -10, -8, -10, -15],
+[inf, 0, inf, inf, inf, inf, 1],
+[inf, inf, 0, inf, inf, inf, inf],
+[inf, inf, inf, 0, 2, 0, -5],
+[inf, inf, inf, inf, 0, inf, -7],
+[inf, inf, inf, inf, inf, 0, 2],
+[inf, inf, inf, inf, inf, inf, 0]]
+Success, outputs are equal
+============================================
+============================================
+TEST 9:
+STN:
+Number of nodes in network: 6
+Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5}
+Edges:
+0---6--->3
+0---5--->1
+1---2--->2
+1---8--->3
+2----2--->3
+3---1--->4
+3---7--->5
+4----5--->5
+(STN generated using the merrick_consistent_stn function)
+
+
+CHLEQ completed execution in 0.004985809326171875.
+Output:
+ [[0, 5, 7, 5, 6, 1],
+[inf, 0, 2, 0, 1, -4],
+[inf, inf, 0, -2, -1, -6],
+[inf, inf, inf, 0, 1, -4],
+[inf, inf, inf, inf, 0, -5],
+[inf, inf, inf, inf, inf, 0]]
+
+FLOYD-WARSHALL completed execution in 0.001995086669921875.
+Output:
+ [[0, 5, 7, 5, 6, 1],
+[inf, 0, 2, 0, 1, -4],
+[inf, inf, 0, -2, -1, -6],
+[inf, inf, inf, 0, 1, -4],
+[inf, inf, inf, inf, 0, -5],
+[inf, inf, inf, inf, inf, 0]]
+
+JOHNSON completed execution in 0.0029909610748291016.
+Output:
+ [[0, 5, 7, 5, 6, 1],
+[inf, 0, 2, 0, 1, -4],
+[inf, inf, 0, -2, -1, -6],
+[inf, inf, inf, 0, 1, -4],
+[inf, inf, inf, inf, 0, -5],
+[inf, inf, inf, inf, inf, 0]]
+
+SNOWBALL completed execution in 0.009014606475830078.
+Output:
+ [[0, 5, 7, 5, 6, 1],
+[inf, 0, 2, 0, 1, -4],
+[inf, inf, 0, -2, -1, -6],
+[inf, inf, inf, 0, 1, -4],
+[inf, inf, inf, inf, 0, -5],
+[inf, inf, inf, inf, inf, 0]]
+Success, outputs are equal
+============================================
+============================================
+TEST 10:
+STN:
+Number of nodes in network: 8
+Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7}
+Edges:
+0----9--->7
+0----5--->2
+0----5--->6
+1---0--->4
+2---8--->3
+2---8--->7
+3---1--->7
+3----6--->6
+4----6--->6
+5----4--->6
+5---4--->7
+6----5--->7
+(STN generated using the merrick_consistent_stn function)
+
+
+CHLEQ completed execution in 0.013958930969238281.
+Output:
+ [[0, inf, -5, 3, inf, inf, -5, -10],
+[inf, 0, inf, inf, 0, inf, -6, -11],
+[inf, inf, 0, 8, inf, inf, 2, -3],
+[inf, inf, inf, 0, inf, inf, -6, -11],
+[inf, inf, inf, inf, 0, inf, -6, -11],
+[inf, inf, inf, inf, inf, 0, -4, -9],
+[inf, inf, inf, inf, inf, inf, 0, -5],
+[inf, inf, inf, inf, inf, inf, inf, 0]]
+
+FLOYD-WARSHALL completed execution in 0.0069468021392822266.
+Output:
+ [[0, inf, -5, 3, inf, inf, -5, -10],
+[inf, 0, inf, inf, 0, inf, -6, -11],
+[inf, inf, 0, 8, inf, inf, 2, -3],
+[inf, inf, inf, 0, inf, inf, -6, -11],
+[inf, inf, inf, inf, 0, inf, -6, -11],
+[inf, inf, inf, inf, inf, 0, -4, -9],
+[inf, inf, inf, inf, inf, inf, 0, -5],
+[inf, inf, inf, inf, inf, inf, inf, 0]]
+
+JOHNSON completed execution in 0.006987571716308594.
+Output:
+ [[0, inf, -5, 3, inf, inf, -5, -10],
+[inf, 0, inf, inf, 0, inf, -6, -11],
+[inf, inf, 0, 8, inf, inf, 2, -3],
+[inf, inf, inf, 0, inf, inf, -6, -11],
+[inf, inf, inf, inf, 0, inf, -6, -11],
+[inf, inf, inf, inf, inf, 0, -4, -9],
+[inf, inf, inf, inf, inf, inf, 0, -5],
+[inf, inf, inf, inf, inf, inf, inf, 0]]
+
+SNOWBALL completed execution in 0.012959957122802734.
+Output:
+ [[0, inf, -5, 3, inf, inf, -5, -10],
+[inf, 0, inf, inf, 0, inf, -6, -11],
+[inf, inf, 0, 8, inf, inf, 2, -3],
+[inf, inf, inf, 0, inf, inf, -6, -11],
+[inf, inf, inf, inf, 0, inf, -6, -11],
+[inf, inf, inf, inf, inf, 0, -4, -9],
+[inf, inf, inf, inf, inf, inf, 0, -5],
+[inf, inf, inf, inf, inf, inf, inf, 0]]
+Success, outputs are equal
+============================================
