@@ -1,5 +1,5 @@
-from src.tests.asap_test import ASAPTest
+from src.tests.consistency_test import ConsistencyTest
 
-test = ASAPTest(verbose = True, logfile = "example.txt", read_to_console=True)
-test.addRandomConsistentSTNs(10,6,8,0.7,-10,10)
+test = ConsistencyTest(verbose = True, logfile = "bannister_epstien.txt", read_to_console=True)
+test.add_random_consistent_stns(10,6,8,0.7,-10,10)
 test.run()

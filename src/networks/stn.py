@@ -206,3 +206,22 @@ class STN:
             for v, delta in edge_list.items():
                 self.predecessor_edges[v][u] = delta
         self.pred_edges_up_to_date = True
+
+
+    def check_solution(self, execution_times):
+        """
+        Method to check whether a solution works on the target STN or not
+
+        Input:
+            stn, the target STN
+            execution_times, a list of integers representing the time at which each index is executed
+
+        Output:
+            works, a boolean that is true if the solution is valid and false otherwise.
+
+        """
+        for u, time in enumerate(execution_times):
+            for v, delta in self.successor_edges[u].items():
+                if execution_times[v]-time > delta:
+                    return False
+        return True

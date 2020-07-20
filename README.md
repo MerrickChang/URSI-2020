@@ -1,7 +1,7 @@
-# URSI 2020
- My Work on my 2020 URSI
+## URSI 2020
+My Work on my 2020 URSI
 
-Folders:
+#Project Layout
 
 * papers- contains reference materials for various algorithms
 
@@ -63,7 +63,15 @@ Folders:
 
         * random_stn.py (RandomSTN)- methods for random STN generation
 
-    * test- various diagnostic tests I've designed for my purposes
+    * test- various diagnostic tests I've designed
+
+        * asap_test (ASAPTEST)- tests distance matrix calcualting methods
+
+        * consistency_test (ConsistencyTest)- tests consistency checking methods
+
+        * dpc_dispatch_test (DPCDispatchTest)- tests DPC dispatch on various PPC and DPC converters
+
+        * progagating_test (PropagatingTest)- test incremental propagating algorithms
 
     * utils- code not directly related to STNs
 
@@ -71,3 +79,23 @@ Folders:
 
 
 Use the help() method for more detailed information on the contents of each class.
+
+#Using the Test Functions
+
+To use the test functions
+
+1. Create a new instance with specified parameters. More details on what each parameter does can be accessed for each test using the help() function.
+
+2. Add Simple Temporal Networks to the test queue for testing
+
+3. Use the test's run function to activate the tests
+
+For example,
+
+    from src.tests.propagating_test import PropagatingTest
+
+    test = PropagatingTest(verbose = True, logfile = "example4.txt", read_to_console=True)
+    test.add_random_consistent_stns(10,6,8,0.7,-10,10)
+    test.run()
+
+will generate tests of propagating methods on 10 consistent stns with 6 to 8 vertices each saved under "example4.txt". 
