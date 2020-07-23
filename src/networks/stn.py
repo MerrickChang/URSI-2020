@@ -6,6 +6,11 @@
 
 
 import heapq
+  
+import matplotlib.pyplot as plt
+import networkx as nx
+
+
 
 
 class STN:
@@ -88,7 +93,7 @@ class STN:
         stringy += "Edges:\n"
         for u, edge_list in enumerate(self.successor_edges):
             for v, delta in edge_list.items():
-                stringy += str(u) + "---" + str(delta) + "--->" + str(v) + "\n"
+                stringy += str(u) + "---(" + str(delta) + ")--->" + str(v) + "\n"
         # Display the distance_matrix if it is being used
         if self.distance_matrix:
             stringy += f"Distance matrix: {self.distance_matrix}\n"
@@ -225,3 +230,41 @@ class STN:
                 if execution_times[v]-time > delta:
                     return False
         return True
+
+    def populate_predecessor_edges(self):
+        if self.predecessor_edges is not None:
+            return
+        self.predecessor_edges = [{} for _ in range(self.n)]
+        for node_idx, edge_dict in enumerate(self.successor_edges):
+            for successor_idx, weight in edge_dict.items():
+                self.predecessor_edges[successor_idx][node_idx] = weight
+
+    def visualize(self):
+        G = nx.DiGraph()
+        
+        G.add_nodes_from(self.names_list)
+        blue_edges, red_edges = [], []
+        blue_labels, red_labels = {}, {}
+        for node_idx, edge_dict in enumerate(self.successor_edges):
+            for successor_idx, weight in edge_dict.items():
+                if (self.names_list[successor_idx], self.names_list[node_idx]) in blue_edges:
+                    red_edges.append((self.names_list[node_idx], self.names_list[successor_idx]))
+                    red_labels[(self.names_list[node_idx], self.names_list[successor_idx])] = weight
+                else:
+                    blue_edges.append((self.names_list[node_idx], self.names_list[successor_idx]))
+                    blue_labels[(self.names_list[node_idx],self.names_list[successor_idx])] = weight
+                G.add_edge(self.names_list[node_idx], self.names_list[successor_idx], weight=weight)
+    
+        pos = nx.shell_layout(G)
+        nx.draw_networkx_nodes(G, pos, node_size=700)
+        nx.draw_networkx_edges(
+            G, pos, edgelist=blue_edges, arrowstyle="->", connectionstyle='arc3, rad = 0.1', arrowsize=20, width=3, edge_color='b', alpha=1)
+        nx.draw_networkx_edges(
+            G, pos, edgelist=red_edges, arrowstyle="->", connectionstyle='arc3, rad = 0.1', arrowsize=20, width=3, edge_color='r', alpha=1)
+        labels = nx.get_edge_attributes(G, 'weight')
+        nx.draw_networkx_edge_labels(G, pos, edge_labels=blue_labels, label_pos=0.3, font_color="b")
+        nx.draw_networkx_edge_labels(G, pos, edge_labels=red_labels, label_pos=0.3, font_color="r")
+        nx.draw_networkx_labels(G, pos, font_size=20, font_family='sans-serif')
+
+        plt.axis('off')
+        plt.show()

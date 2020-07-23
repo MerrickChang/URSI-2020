@@ -179,47 +179,31 @@ class RandomSTN:
         stn.update_predecessors()
         stn.successor_edges = [{} for x in range(length)]
         stn.pred_edges_up_to_date = True
-        sources_w_pot = dict()
-        #heap = []
-        default_pot = [float("inf") for x in range(length)]
+        pot = [0 for x in range(length)]
         for u in range(length-1):
             num_neg_outedges = Probability.binom_dist(length - u - 1, 2*edge_prob/3)
-            ends = sample(list(range(u+1, length)), num_neg_outedges)
-            if not u in stn.predecessor_edges:
-                sources_w_pot[u] = default_pot.copy()
-                sources_w_pot[u][u] = 0
-                for v in ends:
-                    delta = randint(min_weight, max_weight)
-                    #heap.append((delta, u, v))
-                    stn.predecessor_edges[v][u] = delta
-                    stn.successor_edges[u][v] = delta
-                    sources_w_pot[u][v] = delta
-            else:
-                 for v in ends:
-                     delta = randint(min_weight, max_weight)
-                     #heap.append((delta, u, v))
-                     stn.predecessor_edges[v][u] = delta
-                     stn.successor_edges[u][v] = delta
-                     for pot in sources_w_pot.values():
-                         alt = pot[u] + delta
-                         if alt < pot[v]:
-                             pot[v] = alt
+            ends = sample(range(u+1, length), num_neg_outedges)
+            for v in ends:
+                 delta = randint(min_weight, max_weight)
+                 stn.predecessor_edges[v][u] = delta
+                 stn.successor_edges[u][v] = delta
+                 alt = pot[u] + delta
+                 if alt < pot[v]:
+                     pot[v] = alt
         min_weight = max(min_weight, 0)
-        #min_spanning_forrest = RandomSTN._diforest_prim(stn, sources, heap)
         for u in range(length-1, 0, -1):
             num_neg_outedges = Probability.binom_dist(u-1, edge_prob)
             ends = sample(range(u-1, -1, -1), num_neg_outedges)
             for v in ends:
                 if not v in stn.successor_edges[u]:
-                    min_weight_consistent = max([x[v] - x[u] for x in sources_w_pot.values()])
+                    min_weight_consistent = pot[v] - pot[u]
                     if min_weight_consistent <= max_weight:
                         delta = randint(max(min_weight, min_weight_consistent), max_weight)
                         stn.predecessor_edges[v][u] = delta
                         stn.successor_edges[u][v] = delta
-                        for x in sources_w_pot.values():
-                            alt = x[u] + delta
-                            if alt < x[v]:
-                                x[v] = alt
+                        alt = pot[u] + delta
+                        if alt < pot[v]:
+                            pot[v] = alt
         return stn
 
 

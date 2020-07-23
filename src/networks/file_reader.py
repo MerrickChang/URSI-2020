@@ -57,6 +57,7 @@ class FileReader:
                     return self._read_stnu(file)
                 else:
                     raise Exception("Invalid Network Type")
+        file.close()
 
     def _read_stn(self, file):
         network = STN()
