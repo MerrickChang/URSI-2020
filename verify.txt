@@ -1,61 +1,54 @@
 Test of Consistency Methods
 Merrick Chang
-26/07/2020 11:59:37
+26/07/2020 12:24:16
 ============================================
 TEST 1:
 STN:
-Number of nodes in network: 8
-Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7}
+Number of nodes in network: 7
+Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6}
 Edges:
-0---(5)--->2
-0---(-2)--->7
-0---(10)--->6
-1---(0)--->6
-1---(9)--->2
-1---(-9)--->4
-1---(6)--->7
-2---(2)--->4
-2---(-5)--->6
-2---(6)--->5
-3---(-9)--->4
-3---(-6)--->5
-3---(6)--->1
-3---(6)--->0
-4---(9)--->3
-4---(9)--->2
-4---(10)--->1
-5---(9)--->2
-5---(7)--->3
-6---(-9)--->7
-6---(7)--->0
-6---(9)--->3
-6---(9)--->2
-7---(5)--->4
-7---(8)--->5
+0---(3)--->6
+0---(-10)--->5
+0---(0)--->2
+1---(-2)--->6
+1---(-6)--->5
+2---(1)--->5
+2---(7)--->1
+3---(10)--->2
+4---(3)--->1
+4---(4)--->3
+4---(7)--->0
+5---(3)--->6
+5---(10)--->2
+5---(10)--->4
+6---(5)--->5
+6---(10)--->3
+6---(10)--->4
+6---(10)--->0
 (STN generated using the merrick_consistent_stn function)
 
 
-BANNISTER-EPPSTEIN completed execution in 0.002030611038208008s.
+BANNISTER-EPPSTEIN completed execution in 0.004987955093383789s.
 Resulting Output:
 False
 
 
-BELLMAN-FORD completed execution in 0.005979299545288086s.
+BELLMAN-FORD completed execution in 0.005983114242553711s.
 Resulting Output:
 True
 
 
-DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.009976863861083984s.
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.009972572326660156s.
 Resulting Output:
 True
 
 
-FLOYD-WARSHALL completed execution in 0.003954887390136719s.
+FLOYD-WARSHALL completed execution in 0.0039865970611572266s.
 Resulting Output:
 True
 
 
-P3C (PLANKEN) completed execution in 0.011008501052856445s.
+P3C (PLANKEN) completed execution in 0.009976387023925781s.
 Resulting Output:
 True
 
@@ -66,58 +59,48 @@ Failure, outputs are not all equal
 ============================================
 TEST 2:
 STN:
-Number of nodes in network: 8
-Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7}
+Number of nodes in network: 6
+Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5}
 Edges:
-0---(-3)--->3
-0---(-3)--->2
-1---(-7)--->6
-1---(10)--->4
-1---(-3)--->3
-2---(6)--->7
-2---(5)--->6
-2---(4)--->5
-2---(3)--->0
-3---(-5)--->6
-3---(10)--->7
-3---(1)--->4
-3---(7)--->2
-4---(3)--->7
-4---(8)--->1
-4---(4)--->0
-5---(1)--->6
-5---(0)--->7
-5---(10)--->4
-5---(3)--->1
-6---(8)--->0
-6---(8)--->1
-6---(10)--->4
-7---(5)--->5
-7---(10)--->6
+0---(0)--->4
+0---(-7)--->3
+0---(0)--->1
+0---(1)--->2
+1---(-6)--->5
+1---(-1)--->3
+2---(5)--->5
+2---(-5)--->3
+3---(-8)--->4
+3---(7)--->1
+3---(8)--->2
+4---(5)--->5
+5---(9)--->3
+5---(10)--->2
+5---(8)--->4
 (STN generated using the merrick_consistent_stn function)
 
 
-BANNISTER-EPPSTEIN completed execution in 0.0020020008087158203s.
+BANNISTER-EPPSTEIN completed execution in 0.0029938220977783203s.
 Resulting Output:
 False
 
 
-BELLMAN-FORD completed execution in 0.006937265396118164s.
+BELLMAN-FORD completed execution in 0.004985809326171875s.
 Resulting Output:
 True
 
 
-DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.013976573944091797s.
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.007016897201538086s.
 Resulting Output:
 True
 
 
-FLOYD-WARSHALL completed execution in 0.002986907958984375s.
+FLOYD-WARSHALL completed execution in 0.002994060516357422s.
 Resulting Output:
 True
 
 
-P3C (PLANKEN) completed execution in 0.013026714324951172s.
+P3C (PLANKEN) completed execution in 0.006943225860595703s.
 Resulting Output:
 True
 
@@ -128,47 +111,47 @@ Failure, outputs are not all equal
 ============================================
 TEST 3:
 STN:
-Number of nodes in network: 7
-Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6}
+Number of nodes in network: 6
+Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5}
 Edges:
-0---(-7)--->3
-0---(-5)--->6
-1---(-4)--->3
-1---(-3)--->2
-1---(-7)--->6
-2---(6)--->6
-2---(3)--->1
-3---(-9)--->5
-3---(-8)--->6
-4---(8)--->3
-4---(3)--->0
-4---(0)--->1
-5---(10)--->3
-6---(10)--->5
+0---(0)--->3
+0---(0)--->5
+1---(8)--->5
+1---(8)--->2
+1---(1)--->3
+2---(-5)--->3
+3---(-5)--->4
+3---(-4)--->5
+3---(5)--->0
+3---(7)--->1
+4---(9)--->5
+4---(10)--->0
+4---(10)--->3
+5---(10)--->0
 (STN generated using the merrick_consistent_stn function)
 
 
-BANNISTER-EPPSTEIN completed execution in 0.002950429916381836s.
+BANNISTER-EPPSTEIN completed execution in 0.002980947494506836s.
 Resulting Output:
 False
 
 
-BELLMAN-FORD completed execution in 0.00399017333984375s.
+BELLMAN-FORD completed execution in 0.0029916763305664062s.
 Resulting Output:
 True
 
 
-DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.007996797561645508s.
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.004986286163330078s.
 Resulting Output:
 True
 
 
-FLOYD-WARSHALL completed execution in 0.002973794937133789s.
+FLOYD-WARSHALL completed execution in 0.0019948482513427734s.
 Resulting Output:
 True
 
 
-P3C (PLANKEN) completed execution in 0.008976459503173828s.
+P3C (PLANKEN) completed execution in 0.007031917572021484s.
 Resulting Output:
 True
 
@@ -182,44 +165,45 @@ STN:
 Number of nodes in network: 6
 Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5}
 Edges:
-0---(-6)--->2
-0---(7)--->4
-1---(0)--->4
-2---(-4)--->5
-2---(-2)--->3
-2---(-7)--->4
-2---(9)--->1
+0---(-7)--->3
+1---(10)--->2
+1---(-10)--->4
+2---(-2)--->4
+2---(2)--->5
+3---(8)--->4
 3---(10)--->5
-3---(4)--->4
-3---(8)--->0
-5---(3)--->3
+3---(10)--->0
+3---(8)--->1
+4---(8)--->5
+4---(10)--->2
+4---(7)--->3
+5---(10)--->3
+5---(5)--->0
 5---(8)--->2
-5---(0)--->4
-5---(10)--->0
 (STN generated using the merrick_consistent_stn function)
 
 
-BANNISTER-EPPSTEIN completed execution in 0.001994609832763672s.
+BANNISTER-EPPSTEIN completed execution in 0.001956462860107422s.
 Resulting Output:
 False
 
 
-BELLMAN-FORD completed execution in 0.0029914379119873047s.
+BELLMAN-FORD completed execution in 0.002986907958984375s.
 Resulting Output:
 True
 
 
-DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.006020784378051758s.
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.008016109466552734s.
 Resulting Output:
 True
 
 
-FLOYD-WARSHALL completed execution in 0.0019614696502685547s.
+FLOYD-WARSHALL completed execution in 0.0019953250885009766s.
 Resulting Output:
 True
 
 
-P3C (PLANKEN) completed execution in 0.007028341293334961s.
+P3C (PLANKEN) completed execution in 0.006979703903198242s.
 Resulting Output:
 True
 
@@ -230,59 +214,59 @@ Failure, outputs are not all equal
 ============================================
 TEST 5:
 STN:
-Number of nodes in network: 8
-Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7}
+Number of nodes in network: 7
+Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6}
 Edges:
-0---(-9)--->7
-1---(-6)--->2
-1---(-4)--->4
-1---(-10)--->6
-1---(3)--->3
-2---(6)--->3
-2---(8)--->5
-2---(9)--->1
-3---(4)--->2
-3---(6)--->0
-4---(5)--->2
-4---(4)--->3
-4---(10)--->1
-5---(1)--->6
-5---(9)--->7
-5---(7)--->0
-5---(6)--->4
-5---(9)--->2
-5---(3)--->3
-6---(-9)--->7
-6---(6)--->2
-6---(9)--->4
-6---(10)--->5
-6---(10)--->0
+0---(2)--->2
+0---(-3)--->3
+0---(-10)--->5
+0---(6)--->1
+1---(7)--->6
+1---(0)--->3
+1---(-8)--->4
+1---(-1)--->5
+2---(7)--->4
+2---(-4)--->3
+3---(0)--->5
+3---(-3)--->6
+3---(10)--->4
+3---(9)--->2
+3---(8)--->1
+4---(4)--->6
+4---(2)--->5
+4---(8)--->2
+5---(0)--->6
+5---(10)--->0
+5---(10)--->2
+5---(10)--->4
+6---(10)--->3
 6---(10)--->1
-7---(9)--->6
+6---(8)--->4
+6---(3)--->5
 (STN generated using the merrick_consistent_stn function)
 
 
-BANNISTER-EPPSTEIN completed execution in 0.001994609832763672s.
+BANNISTER-EPPSTEIN completed execution in 0.0030279159545898438s.
 Resulting Output:
 False
 
 
-BELLMAN-FORD completed execution in 0.00601649284362793s.
+BELLMAN-FORD completed execution in 0.0059468746185302734s.
 Resulting Output:
 True
 
 
-DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.009978055953979492s.
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.008037328720092773s.
 Resulting Output:
 True
 
 
-FLOYD-WARSHALL completed execution in 0.003994941711425781s.
+FLOYD-WARSHALL completed execution in 0.002986907958984375s.
 Resulting Output:
 True
 
 
-P3C (PLANKEN) completed execution in 0.01096796989440918s.
+P3C (PLANKEN) completed execution in 0.011951684951782227s.
 Resulting Output:
 True
 
@@ -296,52 +280,55 @@ STN:
 Number of nodes in network: 8
 Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7}
 Edges:
-0---(-6)--->6
-0---(10)--->7
-0---(-10)--->5
-1---(-4)--->5
-1---(6)--->2
-2---(-2)--->7
-2---(6)--->3
-2---(4)--->0
-3---(-10)--->4
-3---(6)--->2
-4---(-1)--->7
-4---(10)--->0
-4---(10)--->2
-5---(10)--->2
-5---(10)--->3
-5---(10)--->0
-6---(5)--->4
-6---(5)--->5
-6---(8)--->0
-7---(7)--->6
-7---(8)--->4
-7---(1)--->5
+0---(-3)--->6
+0---(-8)--->1
+0---(9)--->7
+0---(6)--->3
+1---(0)--->3
+1---(9)--->4
+1---(-6)--->7
+1---(-8)--->6
+2---(-9)--->4
+2---(-1)--->3
+2---(1)--->1
+3---(3)--->5
+3---(10)--->2
+3---(8)--->0
+4---(-6)--->7
+4---(9)--->2
+4---(2)--->3
+4---(2)--->1
+5---(1)--->1
+5---(4)--->3
+6---(8)--->3
+6---(10)--->4
+7---(9)--->4
+7---(10)--->3
+7---(9)--->1
 (STN generated using the merrick_consistent_stn function)
 
 
-BANNISTER-EPPSTEIN completed execution in 0.001997232437133789s.
+BANNISTER-EPPSTEIN completed execution in 0.004994630813598633s.
 Resulting Output:
 False
 
 
-BELLMAN-FORD completed execution in 0.004984617233276367s.
+BELLMAN-FORD completed execution in 0.006015300750732422s.
 Resulting Output:
 True
 
 
-DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.009974956512451172s.
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.00999140739440918s.
 Resulting Output:
 True
 
 
-FLOYD-WARSHALL completed execution in 0.0029952526092529297s.
+FLOYD-WARSHALL completed execution in 0.0049626827239990234s.
 Resulting Output:
 True
 
 
-P3C (PLANKEN) completed execution in 0.010937690734863281s.
+P3C (PLANKEN) completed execution in 0.012931108474731445s.
 Resulting Output:
 True
 
@@ -355,46 +342,43 @@ STN:
 Number of nodes in network: 7
 Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6}
 Edges:
-0---(-5)--->4
-0---(2)--->2
-1---(-6)--->5
-1---(-1)--->3
-1---(3)--->6
-2---(3)--->5
-3---(-6)--->4
-3---(-3)--->6
-3---(4)--->1
-4---(7)--->5
-4---(7)--->0
-5---(8)--->1
+0---(-8)--->3
+1---(7)--->6
+2---(9)--->4
+2---(10)--->6
+2---(7)--->1
+3---(9)--->5
+3---(-8)--->6
+4---(8)--->3
+4---(2)--->1
+5---(4)--->6
+5---(5)--->3
 5---(3)--->4
-6---(5)--->0
-6---(5)--->1
-6---(5)--->2
+5---(9)--->1
 (STN generated using the merrick_consistent_stn function)
 
 
-BANNISTER-EPPSTEIN completed execution in 0.0019829273223876953s.
+BANNISTER-EPPSTEIN completed execution in 0.0019528865814208984s.
 Resulting Output:
 False
 
 
-BELLMAN-FORD completed execution in 0.0039904117584228516s.
+BELLMAN-FORD completed execution in 0.003990650177001953s.
 Resulting Output:
 True
 
 
-DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.006981849670410156s.
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.008979320526123047s.
 Resulting Output:
 True
 
 
-FLOYD-WARSHALL completed execution in 0.003988981246948242s.
+FLOYD-WARSHALL completed execution in 0.002988576889038086s.
 Resulting Output:
 True
 
 
-P3C (PLANKEN) completed execution in 0.009015321731567383s.
+P3C (PLANKEN) completed execution in 0.010970354080200195s.
 Resulting Output:
 True
 
@@ -408,56 +392,54 @@ STN:
 Number of nodes in network: 8
 Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7}
 Edges:
-0---(-7)--->5
-0---(3)--->1
-0---(-7)--->3
-0---(-2)--->4
-1---(-2)--->2
-2---(-7)--->3
-2---(-3)--->5
-2---(7)--->6
-2---(7)--->4
-2---(9)--->1
-3---(2)--->4
-3---(2)--->5
-3---(8)--->2
-3---(10)--->1
+0---(10)--->7
+0---(-10)--->2
+0---(1)--->4
+0---(-3)--->3
+1---(6)--->6
+1---(-3)--->2
+1---(6)--->3
+2---(6)--->7
+2---(1)--->3
+3---(9)--->0
+4---(5)--->3
 4---(10)--->0
-4---(9)--->2
-4---(8)--->3
-5---(9)--->2
-5---(2)--->3
-6---(1)--->7
-6---(9)--->5
-6---(10)--->3
-6---(7)--->2
-7---(2)--->6
-7---(9)--->2
-7---(7)--->0
+5---(0)--->2
+5---(9)--->3
+5---(1)--->4
+5---(7)--->1
+6---(-4)--->7
+6---(8)--->2
+6---(4)--->4
+6---(7)--->0
+6---(6)--->3
+6---(4)--->1
+7---(8)--->0
+7---(9)--->3
 (STN generated using the merrick_consistent_stn function)
 
 
-BANNISTER-EPPSTEIN completed execution in 0.0029532909393310547s.
+BANNISTER-EPPSTEIN completed execution in 0.005026578903198242s.
 Resulting Output:
 False
 
 
-BELLMAN-FORD completed execution in 0.006980419158935547s.
+BELLMAN-FORD completed execution in 0.005942583084106445s.
 Resulting Output:
 True
 
 
-DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.011006355285644531s.
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.01196742057800293s.
 Resulting Output:
 True
 
 
-FLOYD-WARSHALL completed execution in 0.004987239837646484s.
+FLOYD-WARSHALL completed execution in 0.003991365432739258s.
 Resulting Output:
 True
 
 
-P3C (PLANKEN) completed execution in 0.013967514038085938s.
+P3C (PLANKEN) completed execution in 0.013962268829345703s.
 Resulting Output:
 True
 
@@ -468,53 +450,44 @@ Failure, outputs are not all equal
 ============================================
 TEST 9:
 STN:
-Number of nodes in network: 7
-Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6}
+Number of nodes in network: 6
+Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5}
 Edges:
-0---(-8)--->2
-0---(-6)--->6
-0---(-5)--->4
-1---(1)--->2
-1---(6)--->5
-2---(2)--->4
-2---(8)--->1
-3---(7)--->5
-3---(6)--->0
-4---(-3)--->6
-4---(1)--->5
-4---(9)--->3
-4---(9)--->1
-5---(10)--->0
-5---(10)--->4
-5---(7)--->3
-6---(6)--->5
-6---(9)--->3
-6---(5)--->2
-6---(4)--->4
+0---(-6)--->5
+0---(4)--->2
+0---(1)--->4
+0---(9)--->3
+1---(-4)--->2
+1---(5)--->3
+2---(-10)--->3
+2---(-7)--->4
+5---(8)--->0
+5---(2)--->2
+5---(8)--->1
 (STN generated using the merrick_consistent_stn function)
 
 
-BANNISTER-EPPSTEIN completed execution in 0.001959085464477539s.
+BANNISTER-EPPSTEIN completed execution in 0.002991914749145508s.
 Resulting Output:
 False
 
 
-BELLMAN-FORD completed execution in 0.0060198307037353516s.
+BELLMAN-FORD completed execution in 0.003991365432739258s.
 Resulting Output:
 True
 
 
-DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.010933637619018555s.
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.00797581672668457s.
 Resulting Output:
 True
 
 
-FLOYD-WARSHALL completed execution in 0.0040283203125s.
+FLOYD-WARSHALL completed execution in 0.0029926300048828125s.
 Resulting Output:
 True
 
 
-P3C (PLANKEN) completed execution in 0.010969877243041992s.
+P3C (PLANKEN) completed execution in 0.007983922958374023s.
 Resulting Output:
 True
 
@@ -528,59 +501,55 @@ STN:
 Number of nodes in network: 8
 Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7}
 Edges:
-0---(-4)--->7
-0---(-4)--->5
-0---(-3)--->1
-1---(0)--->3
-1---(-2)--->4
-1---(-2)--->7
-1---(1)--->6
-1---(-3)--->2
-2---(-2)--->5
-2---(-2)--->7
-2---(-7)--->6
-3---(10)--->4
-3---(2)--->1
-4---(-6)--->5
-4---(3)--->7
-4---(8)--->0
-4---(2)--->1
-4---(6)--->2
-5---(9)--->4
-5---(9)--->1
-6---(5)--->5
-6---(10)--->3
-6---(10)--->1
-6---(9)--->4
-7---(1)--->5
-7---(6)--->4
-7---(9)--->0
-7---(6)--->2
-7---(7)--->1
+0---(1)--->4
+0---(-8)--->2
+1---(-4)--->2
+1---(-7)--->7
+2---(2)--->4
+2---(3)--->7
+2---(-5)--->6
+3---(3)--->7
+3---(10)--->6
+3---(7)--->4
+3---(9)--->2
+4---(0)--->6
+4---(-1)--->5
+4---(6)--->3
+4---(8)--->2
+4---(8)--->1
+5---(-4)--->7
+5---(8)--->3
+5---(8)--->0
+5---(8)--->2
+6---(7)--->4
+6---(7)--->5
+7---(4)--->2
+7---(9)--->6
+7---(7)--->5
 (STN generated using the merrick_consistent_stn function)
 
 
-BANNISTER-EPPSTEIN completed execution in 0.0030040740966796875s.
+BANNISTER-EPPSTEIN completed execution in 0.004988193511962891s.
 Resulting Output:
 False
 
 
-BELLMAN-FORD completed execution in 0.011953592300415039s.
+BELLMAN-FORD completed execution in 0.007978200912475586s.
 Resulting Output:
 True
 
 
-DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.01196908950805664s.
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.011014938354492188s.
 Resulting Output:
 True
 
 
-FLOYD-WARSHALL completed execution in 0.003985404968261719s.
+FLOYD-WARSHALL completed execution in 0.003945112228393555s.
 Resulting Output:
 True
 
 
-P3C (PLANKEN) completed execution in 0.016954660415649414s.
+P3C (PLANKEN) completed execution in 0.014960289001464844s.
 Resulting Output:
 True
 

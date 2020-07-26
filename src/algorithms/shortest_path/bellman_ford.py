@@ -142,10 +142,10 @@ class BellmanFord:
     @staticmethod
     def _generate_random_order(stn, source):
         #Create an ordering for the nodes. Put the source first, create a random ordering for the other nodes.
-        random_order = list(range(stn.length if source else stn.length+1))
-        random_order.pop(source if source else stn.length)
+        random_order = list(range(stn.length))
+        random_order.pop(source)
         random.shuffle(random_order)
-        random_order.insert(0, source if source else stn.length)
+        random_order.insert(0, source)
         print(random_order)
         return random_order
 
@@ -157,10 +157,12 @@ class BellmanFord:
         G_plus = [[] for edge_list in stn.successor_edges]
         for u, edge_list in enumerate(stn.successor_edges):
             for v in edge_list:
-                if random_order[u] < random_order[v]:
+                if random_order.index(u) < random_order.index(v):
                     G_plus[u].append(v)
-                elif random_order[u] > random_order[v]:
+                elif random_order.index(u) > random_order.index(v):
                     G_minus[u].append(v)
+
+        print(G_plus, G_minus)
         return G_plus, G_minus
 
 
@@ -216,6 +218,7 @@ class BellmanFord:
         if not source:
             stn.successor_edges.append(dict([(x,0) for x in range(stn.length)]))
             stn.length += 1
+            print(stn.successor_edges)
             BellmanFord._bannister_eppstein(stn, stn.length - 1)
             stn.length -= 1
             stn.successor_edges.pop()
