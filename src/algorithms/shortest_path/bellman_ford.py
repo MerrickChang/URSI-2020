@@ -127,15 +127,6 @@ class BellmanFord:
             for u, v, delta in BellmanFord._edges_w_virtual(stn, virtual_edges = virt):
                 BellmanFord._relax(u,v,delta,dist)
         print(dist)
-        return BellmanFord._detect_negative_cycle(stn, dist, virt)
-
-
-    @staticmethod
-    def _detect_negative_cycle(stn, potential, edges):
-        for u, v, delta in BellmanFord._edges_w_virtual(stn, virtual_edges = edges):
-            if potential[u] + delta < potential[v]:
-                return False
-        return potential
         for u, v, delta in BellmanFord._edges_w_virtual(stn, virtual_edges = virt):
             if dist[u] + delta < dist[v]:
                 return False
@@ -143,75 +134,6 @@ class BellmanFord:
 
 
 
-    @staticmethod
-    def bannister_eppstein(stn, source = False): #WIP based on https://arxiv.org/pdf/1111.5414.pdf
-        length = len(stn.names_dict)
-        source_successor_edges = []
-        source_index = length
-        if not source:
-            source_successor_edges = [(x, 0) for x in range(length)]
-            length += 1
-        else:
-            source_index = stn.names_dict[source]
-            source_successor_edges = stn.successor_edges[source_index]
-        dist = [float('inf') for x in range(length)]
-        dist[source_index] = 0
-        C = [source_index]
-        #Create an ordering for the nodes. Put the source first, create a random ordering for the other nodes.
-        random_order = list(range(stn.length if source else stn.length+1))
-        random_order.pop(source if source else stn.length)
-        random.shuffle(random_order)
-        random_order.insert(0, source if source else stn.length)
-        print(random_order)
-        return random_order
-
-
-    @staticmethod
-    def _partition_edges(stn, random_order):
-        #Partition the edges (i,j) into sets G+ and G- where i<j and i>j respectively, where i and j are the indexes of the vertexes of the edge in the ordering
-        G_minus = [[] for edge_list in stn.successor_edges]
-        G_plus = [[] for edge_list in stn.successor_edges]
-        for u, edge_list in enumerate(stn.successor_edges):
-            for v in edge_list:
-                if random_order[u] < random_order[v]:
-                    G_plus[u].append(v)
-                elif random_order[u] > random_order[v]:
-                    G_minus[u].append(v)
-        return G_plus, G_minus
-
-
-    @staticmethod
-    def _bannister_eppstein(stn, source):
-        length = stn.length
-        C = {source} #entries are nodes whose potential changed last cycle
-        random_order = BellmanFord._generate_random_order(stn, source)
-        G_plus, G_minus = BellmanFord._partition_edges(stn, random_order)
-        dist = [float('inf') for x in range(length)]
-        dist[source] = 0
-        flip = True
-        while len(C) != 0:
-            has_changed = [False for x in range(length)]
-            if flip:
-                #For each vertex in order, relax the edges G+
-                for u in random_order:
-                    if has_changed[u] or u in C:
-                        for v in G_plus[u]:
-                            delta = stn.successor_edges[u][v]
-                            has_changed[v] = BellmanFord._relax(u,v,delta,dist)
-            else:
-                #For each vertex in reverse order, relax the edge in G-
-                for u in random_order[::-1]:
-                    if has_changed[u] or u in C:
-                        for v in G_minus[u]:
-                            delta = stn.successor_edges[u][v]
-                            has_changed[v] = BellmanFord._relax(u,v,delta,dist)
-            flip = (not flip)
-            C = set()
-            for u,_ in enumerate(has_changed):
-                if _:
-                    C.add(u)
-        print(dist)
-        return BellmanFord._detect_negative_cycle(stn, dist, BellmanFord._virtual_edges_johnson(stn) if not source else [])
 
 
     @staticmethod
