@@ -236,7 +236,6 @@ class BellmanFord:
         source_index = length
         if not source:
             source_successor_edges = dict([(x, 0) for x in range(length)])
-            length += 1
         else:
             source_index = stn.names_dict[source]
             source_successor_edges = stn.successor_edges[source_index]
