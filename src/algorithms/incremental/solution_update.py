@@ -83,10 +83,8 @@ class SolutionUpdate:
 
 
 
-
-
     @staticmethod
-    def rsjm_bwk(stn, solution, constraint): #NEEDS ADDITION REFINEMENT
+    def rsjm_bwk(stn, solution, constraint): #UNTESTED!!!! Remember to check this!
         """
         Implements incremental update method for STN solutions from G. Ramalingam et al. (1999). Propogates backwards.
         -------------------------------------------------------------------------------------------
@@ -107,29 +105,25 @@ class SolutionUpdate:
         if not stn.pred_edges_up_to_date:
             stn.update_predecessors()
         stn.predecessor_edges[v][u] = delta
-        stn.successor_edges[u][v] = delta
         S_prime = copy.deepcopy(solution)
         min_heap = []
         heapq.heappush(min_heap, (0, u))
         while len(min_heap) != 0:
             delta_x, x = heapq.heappop(min_heap)
-            var =  solution[v] - delta_x - delta
+            var =  solution[v] - delta + solution[x] - delta_x - solution[u]
             if var > solution[x]:
                 if x == v:
                     stn.predecessor_edges[v].pop(u)
-                    stn.successor_edges[u].pop(v)
                     return False
                 else:
                     S_prime[x] = var
                     for y, delta_xy in stn.predecessor_edges[x].items():
-                        SolutionUpdate._adjust_heap(min_heap, y, delta_x + delta_xy)
+                        SolutionUpdate._adjust_heap(min_heap, y, delta_x - solution[x] - delta_xy + solution[y])
+        stn.successor_edges[u][v] = delta
         return S_prime
 
-
-
-
     @staticmethod
-    def update_potential(stn, A, h): #APPEARS NOT TO FUNCTION PERFECTLY
+    def update_potential(stn, A, h):
         """
         Based on upcoming Hunsberger and Posenato paper. Incremental method for updating potential function.
         Propogates backwards. New edges are supposed to already be in the target stn.
@@ -157,16 +151,12 @@ class SolutionUpdate:
                     newKey = h[U] - newH[U]
                     if U in Z:
                         return False
-                    U_in_Q = False
                     for index, values in enumerate(Q):
                         keyX, X = values
-                        if X == U:
-                            if keyX > newKey:
+                        if keyX > newKey:
+                            if X == U:
                                 Q.pop(index)
                                 heapq.heappush(Q, (newKey, U))
-                                U_in_Q = True
                         else:
-                            U_in_Q = True
-                    if not U_in_Q:
-                        heapq.heappush(Q, (newKey, U))
+                            break
         return newH

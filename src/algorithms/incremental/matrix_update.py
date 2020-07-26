@@ -149,6 +149,7 @@ class DistanceMatrixUpdate:
 
 
 
+
     @staticmethod
     def _prop3_2(D_prime, t_i, t_j, delta, succ, pred):
         print("Ugh")
@@ -180,14 +181,10 @@ class DistanceMatrixUpdate:
                 for r in range(stn.length)]
         if type(t_i) == str:
             t_i, t_j = stn.names_dict[start], stn.names_dict[stop]
-        if delta > D_prime[t_i][t_j]:
-            return D_prime
         if delta > -distance_matrix[t_j][t_i]:
             return DistanceMatrixUpdate._prop3_1(D_prime, t_i, t_j, delta, succ, pred)
-        elif delta == -distance_matrix[t_j][t_i]:
-            return DistanceMatrixUpdate._prop3_2(D_prime, t_i, t_j, delta, succ, pred)
         else:
-            return False
+            return DistanceMatrixUpdate._prop3_2(D_prime, t_i, t_j, delta, succ, pred)
 
 
 
