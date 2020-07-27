@@ -1,152 +1,134 @@
 Test of Consistency Methods
  Merrick Chang 
-26/07/2020 13:54:55
+27/07/2020 16:38:14
 ============================================
 TEST 1:
 STN:
-Number of nodes in network: 7
-Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6}
+Number of nodes in network: 8
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7}
 Edges:
-0---(-2)--->6
-0---(-10)--->2
-2---(0)--->4
-2---(10)--->1
-3---(-7)--->6
-3---(1)--->0
-3---(1)--->1
-4---(-3)--->5
-4---(10)--->1
-4---(10)--->3
-5---(8)--->4
-5---(4)--->2
-6---(7)--->0
-6---(7)--->1
-(STN generated using the merrick_consistent_stn function)
+0---(59)--->2
+0---(89)--->4
+0---(68)--->6
+1---(55)--->3
+1---(-59)--->4
+2---(-29)--->1
+2---(-2)--->3
+3---(55)--->5
+3---(-9)--->6
+4---(-82)--->0
+4---(-73)--->2
+4---(97)--->6
+4---(-61)--->7
+5---(-56)--->2
+5---(40)--->4
+5---(23)--->7
+6---(-58)--->0
+6---(99)--->1
+6---(27)--->2
+6---(87)--->4
+7---(99)--->4
+(STN generated using the random_stns function)
 
 
-BANNISTER-EPPSTEIN completed execution in 0.003988981246948242s.
+BELLMAN-FORD completed execution in 0.014959096908569336s.
 Resulting Output:
 False
 
 
-BELLMAN-FORD completed execution in 0.003991842269897461s.
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.013961315155029297s.
 Resulting Output:
-True
+False
 
 
-DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.008009910583496094s.
+FLOYD-WARSHALL completed execution in 0.006020307540893555s.
 Resulting Output:
-True
+False
 
 
-FLOYD-WARSHALL completed execution in 0.0029926300048828125s.
+MORRIS completed execution in 0.01093435287475586s.
 Resulting Output:
-True
+False
 
 
-P3C (PLANKEN) completed execution in 0.011971473693847656s.
+P3C (PLANKEN) completed execution in 0.00897669792175293s.
 Resulting Output:
-True
+False
 
-Failure, outputs are not all equal
+Success, outputs are equal
 ============================================
 ============================================
 TEST 2:
 STN:
-Number of nodes in network: 6
-Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5}
+Number of nodes in network: 3
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2}
 Edges:
-0---(6)--->2
-0---(3)--->5
-0---(1)--->3
-1---(1)--->5
-2---(0)--->4
-3---(-2)--->5
-3---(6)--->0
-4---(5)--->5
-4---(1)--->3
-4---(9)--->1
-5---(3)--->3
-5---(3)--->4
-(STN generated using the merrick_consistent_stn function)
+0---(-8)--->1
+0---(-9)--->2
+1---(-26)--->0
+1---(-90)--->2
+2---(39)--->0
+2---(83)--->1
+(STN generated using the random_stns function)
 
 
-BANNISTER-EPPSTEIN completed execution in 0.0019559860229492188s.
+BELLMAN-FORD completed execution in 0.002994060516357422s.
 Resulting Output:
-True
+False
 
 
-BELLMAN-FORD completed execution in 0.003022909164428711s.
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.003987789154052734s.
 Resulting Output:
-True
+False
 
 
-DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.004955768585205078s.
+FLOYD-WARSHALL completed execution in 0.0s.
 Resulting Output:
-True
+False
 
 
-FLOYD-WARSHALL completed execution in 0.0030014514923095703s.
+MORRIS completed execution in 0.005983829498291016s.
 Resulting Output:
-True
+False
 
 
-P3C (PLANKEN) completed execution in 0.00601649284362793s.
+P3C (PLANKEN) completed execution in 0.003989219665527344s.
 Resulting Output:
-True
+False
 
 Success, outputs are equal
 ============================================
 ============================================
 TEST 3:
 STN:
-Number of nodes in network: 7
-Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6}
+Number of nodes in network: 3
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2}
 Edges:
-0---(1)--->1
-0---(-9)--->6
-0---(-1)--->4
-0---(3)--->5
-0---(0)--->3
-1---(8)--->6
-1---(-4)--->2
-1---(-5)--->5
-2---(-9)--->5
-2---(4)--->4
-2---(8)--->3
-2---(4)--->6
-2---(5)--->0
-3---(7)--->0
-3---(1)--->2
-4---(1)--->0
-4---(10)--->1
-6---(10)--->3
-6---(10)--->1
-6---(10)--->5
-(STN generated using the merrick_consistent_stn function)
+1---(20)--->0
+(STN generated using the random_stns function)
 
 
-BANNISTER-EPPSTEIN completed execution in 0.0020356178283691406s.
+BELLMAN-FORD completed execution in 0.0009975433349609375s.
 Resulting Output:
 True
 
 
-BELLMAN-FORD completed execution in 0.004981040954589844s.
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.001993894577026367s.
 Resulting Output:
 True
 
 
-DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.008941173553466797s.
+FLOYD-WARSHALL completed execution in 0.0s.
 Resulting Output:
 True
 
 
-FLOYD-WARSHALL completed execution in 0.0020465850830078125s.
+MORRIS completed execution in 0.0s.
 Resulting Output:
 True
 
 
-P3C (PLANKEN) completed execution in 0.00892329216003418s.
+P3C (PLANKEN) completed execution in 0.0019941329956054688s.
 Resulting Output:
 True
 
@@ -156,143 +138,1205 @@ Success, outputs are equal
 TEST 4:
 STN:
 Number of nodes in network: 6
-Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5}
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5}
 Edges:
-0---(-5)--->5
-0---(-10)--->3
-1---(9)--->3
-1---(-10)--->5
-3---(8)--->5
-3---(6)--->4
-3---(10)--->1
-3---(10)--->2
-4---(9)--->2
-5---(10)--->1
-5---(9)--->4
-(STN generated using the merrick_consistent_stn function)
+0---(83)--->2
+0---(-50)--->3
+0---(-23)--->5
+1---(93)--->0
+1---(-43)--->3
+2---(33)--->0
+2---(33)--->3
+2---(-58)--->4
+2---(-22)--->5
+3---(-44)--->5
+4---(7)--->0
+4---(16)--->1
+4---(-55)--->2
+4---(-20)--->3
+5---(-85)--->0
+5---(-70)--->3
+(STN generated using the random_stns function)
 
 
-BANNISTER-EPPSTEIN completed execution in 0.0009965896606445312s.
+BELLMAN-FORD completed execution in 0.0029916763305664062s.
 Resulting Output:
 False
 
 
-BELLMAN-FORD completed execution in 0.0029921531677246094s.
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.004987239837646484s.
 Resulting Output:
-True
+False
 
 
-DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.005986690521240234s.
+FLOYD-WARSHALL completed execution in 0.0019936561584472656s.
 Resulting Output:
-True
+False
 
 
-FLOYD-WARSHALL completed execution in 0.0029904842376708984s.
+MORRIS completed execution in 0.006981611251831055s.
 Resulting Output:
-True
+False
 
 
-P3C (PLANKEN) completed execution in 0.00797724723815918s.
+P3C (PLANKEN) completed execution in 0.005983829498291016s.
 Resulting Output:
-True
+False
 
-Failure, outputs are not all equal
+Success, outputs are equal
 ============================================
 ============================================
 TEST 5:
 STN:
-Number of nodes in network: 7
-Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6}
+Number of nodes in network: 3
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2}
 Edges:
-0---(9)--->1
-0---(-2)--->2
-0---(-2)--->6
-0---(-1)--->4
-1---(6)--->6
-2---(7)--->4
-2---(2)--->3
-3---(-8)--->5
-3---(6)--->4
-3---(1)--->0
-4---(7)--->6
-4---(6)--->5
-4---(8)--->0
-5---(8)--->4
-5---(8)--->2
-5---(9)--->3
-6---(6)--->1
-6---(3)--->3
-6---(6)--->5
-6---(9)--->0
-6---(8)--->2
-(STN generated using the merrick_consistent_stn function)
+0---(-45)--->1
+0---(67)--->2
+1---(71)--->0
+1---(-59)--->2
+2---(-2)--->0
+2---(46)--->1
+(STN generated using the random_stns function)
 
 
-BANNISTER-EPPSTEIN completed execution in 0.0019915103912353516s.
+BELLMAN-FORD completed execution in 0.002997875213623047s.
 Resulting Output:
-True
+False
 
 
-BELLMAN-FORD completed execution in 0.005955696105957031s.
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.0030274391174316406s.
 Resulting Output:
-True
+False
 
 
-DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.007969856262207031s.
+FLOYD-WARSHALL completed execution in 0.0s.
 Resulting Output:
-True
+False
 
 
-FLOYD-WARSHALL completed execution in 0.0029921531677246094s.
+MORRIS completed execution in 0.003948211669921875s.
 Resulting Output:
-True
+False
 
 
-P3C (PLANKEN) completed execution in 0.007977724075317383s.
+P3C (PLANKEN) completed execution in 0.002991914749145508s.
 Resulting Output:
-True
+False
 
 Success, outputs are equal
 ============================================
 ============================================
 TEST 6:
 STN:
-Number of nodes in network: 7
-Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6}
+Number of nodes in network: 5
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4}
 Edges:
-0---(-4)--->2
-0---(6)--->1
-0---(-5)--->3
-1---(-10)--->6
-2---(10)--->4
-2---(-1)--->6
-2---(5)--->0
-3---(-2)--->5
-3---(6)--->0
-4---(7)--->6
-4---(-9)--->5
-4---(6)--->0
-4---(7)--->3
-5---(9)--->0
-5---(6)--->2
-5---(10)--->4
-6---(10)--->1
-6---(10)--->0
-6---(10)--->4
-(STN generated using the merrick_consistent_stn function)
+0---(-46)--->4
+1---(-22)--->4
+2---(-5)--->1
+2---(53)--->3
+2---(-8)--->4
+3---(13)--->0
+3---(-77)--->4
+4---(80)--->0
+4---(-22)--->1
+4---(-94)--->2
+(STN generated using the random_stns function)
 
 
-BANNISTER-EPPSTEIN completed execution in 0.001993894577026367s.
+BELLMAN-FORD completed execution in 0.0029921531677246094s.
 Resulting Output:
 False
 
 
-BELLMAN-FORD completed execution in 0.003988742828369141s.
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.00399017333984375s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.000997304916381836s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.006028890609741211s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.003984928131103516s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 7:
+STN:
+Number of nodes in network: 8
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7}
+Edges:
+0---(-63)--->1
+0---(91)--->4
+1---(63)--->0
+1---(1)--->2
+1---(12)--->3
+1---(68)--->4
+1---(-74)--->5
+1---(90)--->7
+2---(11)--->0
+2---(-27)--->1
+2---(12)--->3
+2---(5)--->6
+2---(-48)--->7
+3---(-74)--->0
+3---(-10)--->2
+3---(8)--->4
+3---(-89)--->5
+3---(-83)--->6
+3---(-20)--->7
+4---(59)--->0
+4---(-15)--->1
+4---(12)--->2
+4---(41)--->3
+4---(19)--->5
+4---(98)--->6
+5---(-10)--->0
+5---(17)--->2
+5---(8)--->3
+5---(22)--->6
+6---(12)--->1
+6---(85)--->2
+6---(77)--->3
+6---(63)--->4
+6---(53)--->5
+7---(63)--->1
+7---(61)--->2
+7---(-70)--->3
+7---(14)--->4
+7---(36)--->5
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.00797891616821289s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.007978439331054688s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.003989219665527344s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.010970592498779297s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.010970830917358398s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 8:
+STN:
+Number of nodes in network: 3
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2}
+Edges:
+1---(-56)--->2
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0009970664978027344s.
 Resulting Output:
 True
 
 
-DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.008976936340332031s.
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.0019943714141845703s.
+Resulting Output:
+True
+
+
+FLOYD-WARSHALL completed execution in 0.0s.
+Resulting Output:
+True
+
+
+MORRIS completed execution in 0.001994609832763672s.
+Resulting Output:
+True
+
+
+P3C (PLANKEN) completed execution in 0.0019948482513427734s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 9:
+STN:
+Number of nodes in network: 3
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2}
+Edges:
+1---(-96)--->0
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0009975433349609375s.
+Resulting Output:
+True
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.002006053924560547s.
+Resulting Output:
+True
+
+
+FLOYD-WARSHALL completed execution in 0.0s.
+Resulting Output:
+True
+
+
+MORRIS completed execution in 0.001983165740966797s.
+Resulting Output:
+True
+
+
+P3C (PLANKEN) completed execution in 0.002992868423461914s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 10:
+STN:
+Number of nodes in network: 3
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2}
+Edges:
+1---(92)--->0
+1---(10)--->2
+2---(72)--->1
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.000997781753540039s.
+Resulting Output:
+True
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.0029921531677246094s.
+Resulting Output:
+True
+
+
+FLOYD-WARSHALL completed execution in 0.000997304916381836s.
+Resulting Output:
+True
+
+
+MORRIS completed execution in 0.0s.
+Resulting Output:
+True
+
+
+P3C (PLANKEN) completed execution in 0.0020639896392822266s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 11:
+STN:
+Number of nodes in network: 3
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2}
+Edges:
+0---(-85)--->1
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0009965896606445312s.
+Resulting Output:
+True
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.0010013580322265625s.
+Resulting Output:
+True
+
+
+FLOYD-WARSHALL completed execution in 0.0010709762573242188s.
+Resulting Output:
+True
+
+
+MORRIS completed execution in 0.0029146671295166016s.
+Resulting Output:
+True
+
+
+P3C (PLANKEN) completed execution in 0.002031564712524414s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 12:
+STN:
+Number of nodes in network: 8
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7}
+Edges:
+0---(33)--->4
+1---(-57)--->7
+2---(9)--->1
+2---(43)--->3
+2---(-20)--->4
+2---(-70)--->5
+3---(-66)--->0
+3---(-9)--->6
+4---(37)--->6
+5---(19)--->1
+6---(83)--->2
+6---(-77)--->3
+6---(-74)--->4
+6---(46)--->7
+7---(42)--->0
+7---(43)--->2
+7---(47)--->4
+7---(69)--->5
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.004024982452392578s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.008939743041992188s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.0029900074005126953s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.007980585098266602s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.009974002838134766s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 13:
+STN:
+Number of nodes in network: 7
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6}
+Edges:
+0---(-60)--->1
+0---(-24)--->2
+0---(-29)--->3
+0---(77)--->4
+0---(2)--->5
+0---(-36)--->6
+1---(67)--->0
+1---(-6)--->2
+1---(-75)--->3
+1---(-13)--->4
+1---(-82)--->5
+1---(1)--->6
+2---(65)--->0
+2---(99)--->1
+2---(33)--->3
+2---(-41)--->4
+2---(57)--->5
+2---(14)--->6
+3---(80)--->0
+3---(34)--->1
+3---(99)--->2
+3---(74)--->4
+3---(-24)--->5
+3---(-58)--->6
+4---(76)--->0
+4---(3)--->1
+4---(30)--->2
+4---(26)--->3
+4---(-5)--->5
+4---(9)--->6
+5---(-82)--->0
+5---(-54)--->1
+5---(8)--->2
+5---(-10)--->3
+5---(-46)--->4
+5---(54)--->6
+6---(-67)--->0
+6---(-79)--->1
+6---(58)--->2
+6---(-64)--->3
+6---(57)--->4
+6---(71)--->5
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0069828033447265625s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.007978200912475586s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.0029935836791992188s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.012963294982910156s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.012964010238647461s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 14:
+STN:
+Number of nodes in network: 8
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7}
+Edges:
+0---(97)--->1
+0---(-30)--->2
+0---(-17)--->3
+0---(80)--->4
+0---(-31)--->5
+0---(28)--->6
+0---(77)--->7
+2---(1)--->0
+2---(-52)--->3
+2---(52)--->6
+2---(90)--->7
+3---(-54)--->0
+3---(13)--->1
+3---(93)--->4
+3---(-26)--->5
+3---(11)--->6
+4---(-56)--->0
+4---(-24)--->1
+4---(28)--->2
+4---(56)--->3
+4---(59)--->5
+5---(42)--->1
+5---(-80)--->2
+5---(-75)--->4
+6---(83)--->0
+6---(-89)--->2
+6---(67)--->4
+7---(-59)--->0
+7---(-17)--->1
+7---(-6)--->2
+7---(-75)--->3
+7---(-44)--->4
+7---(-45)--->6
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.012966394424438477s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.01096963882446289s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.00498652458190918s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.010971784591674805s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.013963460922241211s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 15:
+STN:
+Number of nodes in network: 4
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3}
+Edges:
+1---(3)--->0
+2---(-51)--->1
+3---(-10)--->2
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.000997304916381836s.
+Resulting Output:
+True
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.0019943714141845703s.
+Resulting Output:
+True
+
+
+FLOYD-WARSHALL completed execution in 0.0s.
+Resulting Output:
+True
+
+
+MORRIS completed execution in 0.004986763000488281s.
+Resulting Output:
+True
+
+
+P3C (PLANKEN) completed execution in 0.003986358642578125s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 16:
+STN:
+Number of nodes in network: 3
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2}
+Edges:
+0---(-2)--->2
+1---(-47)--->0
+1---(51)--->2
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0010035037994384766s.
+Resulting Output:
+True
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.001984834671020508s.
+Resulting Output:
+True
+
+
+FLOYD-WARSHALL completed execution in 0.0009992122650146484s.
+Resulting Output:
+True
+
+
+MORRIS completed execution in 0.006980180740356445s.
+Resulting Output:
+True
+
+
+P3C (PLANKEN) completed execution in 0.0029921531677246094s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 17:
+STN:
+Number of nodes in network: 3
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2}
+Edges:
+0---(-65)--->1
+0---(-59)--->2
+1---(93)--->0
+1---(9)--->2
+2---(-30)--->0
+2---(-61)--->1
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.001987457275390625s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.001997232437133789s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.000997304916381836s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.003988504409790039s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.004984378814697266s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 18:
+STN:
+Number of nodes in network: 8
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7}
+Edges:
+1---(-98)--->0
+1---(74)--->5
+2---(19)--->3
+2---(-63)--->6
+3---(30)--->0
+6---(-13)--->0
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.00698089599609375s.
+Resulting Output:
+True
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.013962984085083008s.
+Resulting Output:
+True
+
+
+FLOYD-WARSHALL completed execution in 0.003988981246948242s.
+Resulting Output:
+True
+
+
+MORRIS completed execution in 0.007978677749633789s.
+Resulting Output:
+True
+
+
+P3C (PLANKEN) completed execution in 0.010972738265991211s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 19:
+STN:
+Number of nodes in network: 8
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7}
+Edges:
+0---(-48)--->6
+1---(-70)--->5
+1---(-37)--->7
+2---(11)--->3
+2---(45)--->5
+5---(-69)--->6
+6---(3)--->0
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0029909610748291016s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.00598454475402832s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.002991199493408203s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.009973764419555664s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.00997471809387207s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 20:
+STN:
+Number of nodes in network: 6
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5}
+Edges:
+0---(89)--->1
+0---(44)--->2
+0---(97)--->3
+0---(18)--->4
+0---(99)--->5
+1---(-93)--->0
+1---(-62)--->2
+1---(-89)--->3
+1---(93)--->4
+1---(99)--->5
+2---(47)--->0
+2---(99)--->1
+2---(-29)--->3
+2---(-86)--->4
+2---(-29)--->5
+3---(32)--->0
+3---(-7)--->2
+3---(70)--->4
+3---(28)--->5
+4---(26)--->0
+4---(33)--->1
+4---(-35)--->2
+4---(-81)--->3
+4---(-50)--->5
+5---(-22)--->0
+5---(-38)--->1
+5---(26)--->2
+5---(64)--->3
+5---(-33)--->4
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.005982875823974609s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.005983114242553711s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.001995086669921875s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.008976221084594727s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.006980419158935547s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 21:
+STN:
+Number of nodes in network: 5
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4}
+Edges:
+1---(53)--->0
+1---(12)--->2
+2---(-6)--->1
+2---(-59)--->4
+3---(-96)--->0
+4---(-32)--->0
+4---(84)--->3
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0019941329956054688s.
+Resulting Output:
+True
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.002991914749145508s.
+Resulting Output:
+True
+
+
+FLOYD-WARSHALL completed execution in 0.0009970664978027344s.
+Resulting Output:
+True
+
+
+MORRIS completed execution in 0.0109710693359375s.
+Resulting Output:
+True
+
+
+P3C (PLANKEN) completed execution in 0.007035732269287109s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 22:
+STN:
+Number of nodes in network: 5
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4}
+Edges:
+3---(57)--->4
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0020041465759277344s.
+Resulting Output:
+True
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.0029921531677246094s.
+Resulting Output:
+True
+
+
+FLOYD-WARSHALL completed execution in 0.0009975433349609375s.
+Resulting Output:
+True
+
+
+MORRIS completed execution in 0.0s.
+Resulting Output:
+True
+
+
+P3C (PLANKEN) completed execution in 0.003989219665527344s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 23:
+STN:
+Number of nodes in network: 3
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2}
+Edges:
+1---(-72)--->2
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0s.
+Resulting Output:
+True
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.0019948482513427734s.
+Resulting Output:
+True
+
+
+FLOYD-WARSHALL completed execution in 0.0009975433349609375s.
+Resulting Output:
+True
+
+
+MORRIS completed execution in 0.00299835205078125s.
+Resulting Output:
+True
+
+
+P3C (PLANKEN) completed execution in 0.001987934112548828s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 24:
+STN:
+Number of nodes in network: 3
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2}
+Edges:
+1---(-87)--->0
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.000997304916381836s.
+Resulting Output:
+True
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.0020058155059814453s.
+Resulting Output:
+True
+
+
+FLOYD-WARSHALL completed execution in 0.0s.
+Resulting Output:
+True
+
+
+MORRIS completed execution in 0.0019834041595458984s.
+Resulting Output:
+True
+
+
+P3C (PLANKEN) completed execution in 0.0019943714141845703s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 25:
+STN:
+Number of nodes in network: 3
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2}
+Edges:
+0---(-10)--->1
+0---(-33)--->2
+1---(5)--->2
+2---(26)--->0
+2---(-47)--->1
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.001001119613647461s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.0019910335540771484s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.0010008811950683594s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.002988576889038086s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.001995563507080078s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 26:
+STN:
+Number of nodes in network: 5
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4}
+Edges:
+3---(32)--->0
+3---(65)--->1
+4---(-52)--->0
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0009975433349609375s.
+Resulting Output:
+True
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.004987239837646484s.
+Resulting Output:
+True
+
+
+FLOYD-WARSHALL completed execution in 0.0009970664978027344s.
+Resulting Output:
+True
+
+
+MORRIS completed execution in 0.002991199493408203s.
+Resulting Output:
+True
+
+
+P3C (PLANKEN) completed execution in 0.00498652458190918s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 27:
+STN:
+Number of nodes in network: 3
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2}
+Edges:
+1---(-19)--->0
+2---(99)--->1
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.000997304916381836s.
+Resulting Output:
+True
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.002992391586303711s.
+Resulting Output:
+True
+
+
+FLOYD-WARSHALL completed execution in 0.0s.
+Resulting Output:
+True
+
+
+MORRIS completed execution in 0.0029916763305664062s.
+Resulting Output:
+True
+
+
+P3C (PLANKEN) completed execution in 0.001995086669921875s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 28:
+STN:
+Number of nodes in network: 7
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6}
+Edges:
+0---(-97)--->1
+0---(62)--->3
+0---(69)--->4
+0---(88)--->5
+1---(-8)--->2
+1---(-51)--->4
+1---(-100)--->6
+2---(-91)--->1
+2---(94)--->4
+2---(49)--->5
+2---(-46)--->6
+3---(-8)--->0
+3---(30)--->1
+3---(-37)--->2
+3---(13)--->4
+3---(-16)--->5
+3---(-49)--->6
+4---(-80)--->0
+4---(16)--->1
+4---(-81)--->5
+5---(17)--->0
+5---(-73)--->2
+5---(37)--->3
+5---(64)--->4
+5---(71)--->6
+6---(-10)--->2
+6---(-97)--->3
+6---(22)--->5
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.006981372833251953s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.007977962493896484s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.003989219665527344s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.00997471809387207s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.009988069534301758s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 29:
+STN:
+Number of nodes in network: 3
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2}
+Edges:
+0---(-9)--->1
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0009918212890625s.
+Resulting Output:
+True
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.0029952526092529297s.
+Resulting Output:
+True
+
+
+FLOYD-WARSHALL completed execution in 0.0s.
+Resulting Output:
+True
+
+
+MORRIS completed execution in 0.002990245819091797s.
+Resulting Output:
+True
+
+
+P3C (PLANKEN) completed execution in 0.0029916763305664062s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 30:
+STN:
+Number of nodes in network: 7
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6}
+Edges:
+0---(-61)--->3
+0---(-40)--->6
+1---(-3)--->0
+1---(-29)--->3
+3---(-62)--->6
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0019941329956054688s.
+Resulting Output:
+True
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.0049860477447509766s.
 Resulting Output:
 True
 
@@ -302,235 +1346,3284 @@ Resulting Output:
 True
 
 
-P3C (PLANKEN) completed execution in 0.0079803466796875s.
-Resulting Output:
-True
-
-Failure, outputs are not all equal
-============================================
-============================================
-TEST 7:
-STN:
-Number of nodes in network: 6
-Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5}
-Edges:
-0---(9)--->4
-0---(6)--->2
-0---(-10)--->5
-0---(0)--->3
-1---(3)--->5
-3---(-6)--->4
-3---(4)--->2
-4---(7)--->5
-4---(6)--->3
-4---(9)--->2
-5---(5)--->4
-5---(10)--->3
-5---(10)--->1
-(STN generated using the merrick_consistent_stn function)
-
-
-BANNISTER-EPPSTEIN completed execution in 0.001992940902709961s.
-Resulting Output:
-False
-
-
-BELLMAN-FORD completed execution in 0.002991914749145508s.
+MORRIS completed execution in 0.013961553573608398s.
 Resulting Output:
 True
 
 
-DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.006017446517944336s.
-Resulting Output:
-True
-
-
-FLOYD-WARSHALL completed execution in 0.0009963512420654297s.
-Resulting Output:
-True
-
-
-P3C (PLANKEN) completed execution in 0.006969928741455078s.
-Resulting Output:
-True
-
-Failure, outputs are not all equal
-============================================
-============================================
-TEST 8:
-STN:
-Number of nodes in network: 7
-Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6}
-Edges:
-0---(8)--->6
-0---(4)--->2
-1---(-5)--->6
-1---(-7)--->3
-1---(3)--->4
-2---(3)--->6
-2---(10)--->1
-3---(-5)--->5
-3---(7)--->0
-4---(-3)--->5
-4---(8)--->6
-4---(4)--->1
-4---(1)--->0
-4---(5)--->2
-5---(8)--->3
-6---(8)--->2
-6---(5)--->4
-6---(6)--->1
-(STN generated using the merrick_consistent_stn function)
-
-
-BANNISTER-EPPSTEIN completed execution in 0.0020279884338378906s.
-Resulting Output:
-True
-
-
-BELLMAN-FORD completed execution in 0.00399017333984375s.
-Resulting Output:
-True
-
-
-DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.010935544967651367s.
-Resulting Output:
-True
-
-
-FLOYD-WARSHALL completed execution in 0.0049860477447509766s.
-Resulting Output:
-True
-
-
-P3C (PLANKEN) completed execution in 0.01795196533203125s.
+P3C (PLANKEN) completed execution in 0.04193711280822754s.
 Resulting Output:
 True
 
 Success, outputs are equal
 ============================================
 ============================================
-TEST 9:
+TEST 31:
 STN:
 Number of nodes in network: 8
-Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7}
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7}
 Edges:
-0---(8)--->7
-0---(3)--->5
-0---(-9)--->6
-0---(8)--->1
-0---(3)--->4
-1---(9)--->7
-1---(-3)--->5
-1---(-4)--->4
-2---(7)--->6
-2---(-3)--->4
-2---(-3)--->7
-2---(10)--->1
-3---(-10)--->7
-3---(-5)--->4
-3---(6)--->0
-4---(-8)--->5
-4---(-4)--->7
-4---(0)--->6
-4---(10)--->0
-4---(7)--->2
-5---(-1)--->7
-5---(8)--->4
-6---(9)--->1
-6---(10)--->0
+0---(30)--->2
+0---(-84)--->6
+0---(-74)--->7
+1---(-70)--->0
+1---(21)--->2
+1---(-24)--->3
+1---(78)--->4
+1---(82)--->5
+1---(63)--->6
+2---(26)--->1
+2---(-46)--->4
+2---(-6)--->6
+3---(-81)--->0
+3---(34)--->6
+3---(64)--->7
+4---(-22)--->0
+4---(36)--->2
+4---(34)--->3
+4---(-27)--->5
+5---(-45)--->0
+5---(-40)--->1
+5---(-50)--->3
+5---(-91)--->4
+5---(54)--->6
+5---(-56)--->7
+6---(6)--->2
+6---(77)--->3
+6---(99)--->7
+7---(91)--->1
+7---(77)--->2
+7---(60)--->3
 7---(9)--->4
-(STN generated using the merrick_consistent_stn function)
+7---(35)--->5
+7---(-16)--->6
+(STN generated using the random_stns function)
 
 
-BANNISTER-EPPSTEIN completed execution in 0.005984067916870117s.
+BELLMAN-FORD completed execution in 0.008975505828857422s.
 Resulting Output:
 False
 
 
-BELLMAN-FORD completed execution in 0.012005805969238281s.
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.007978439331054688s.
 Resulting Output:
-True
+False
 
 
-DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.010976076126098633s.
+FLOYD-WARSHALL completed execution in 0.004988193511962891s.
 Resulting Output:
-True
+False
 
 
-FLOYD-WARSHALL completed execution in 0.004950284957885742s.
+MORRIS completed execution in 0.013961315155029297s.
 Resulting Output:
-True
+False
 
 
-P3C (PLANKEN) completed execution in 0.018036603927612305s.
+P3C (PLANKEN) completed execution in 0.009976625442504883s.
 Resulting Output:
-True
+False
 
-Failure, outputs are not all equal
+Success, outputs are equal
 ============================================
 ============================================
-TEST 10:
+TEST 32:
+STN:
+Number of nodes in network: 3
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2}
+Edges:
+1---(18)--->0
+1---(-99)--->2
+2---(-46)--->1
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.000997781753540039s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.0009968280792236328s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.0s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.0029921531677246094s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.001994609832763672s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 33:
+STN:
+Number of nodes in network: 5
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4}
+Edges:
+0---(20)--->1
+1---(50)--->2
+1---(-73)--->3
+2---(30)--->0
+2---(12)--->1
+2---(22)--->3
+2---(-15)--->4
+3---(99)--->4
+4---(-42)--->1
+4---(-60)--->3
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0019948482513427734s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.003988981246948242s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.000997304916381836s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.0039899349212646484s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.003987312316894531s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 34:
+STN:
+Number of nodes in network: 4
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3}
+Edges:
+0---(83)--->2
+0---(95)--->3
+2---(40)--->3
+3---(-67)--->2
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0009965896606445312s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.0019953250885009766s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.0009975433349609375s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.002991199493408203s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.0029921531677246094s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 35:
+STN:
+Number of nodes in network: 4
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3}
+Edges:
+0---(-23)--->3
+1---(32)--->2
+2---(-21)--->1
+3---(17)--->0
+3---(-64)--->1
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0009970664978027344s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.002035856246948242s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.0009589195251464844s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.004021406173706055s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.003991842269897461s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 36:
+STN:
+Number of nodes in network: 7
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6}
+Edges:
+0---(72)--->4
+0---(-28)--->5
+0---(51)--->6
+1---(-13)--->3
+1---(-39)--->4
+1---(-32)--->6
+2---(-43)--->3
+3---(7)--->0
+4---(-55)--->1
+4---(28)--->5
+5---(83)--->2
+5---(-76)--->4
+5---(-35)--->6
+6---(39)--->0
+6---(41)--->2
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.003030538558959961s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.005991220474243164s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.002948760986328125s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.00797581672668457s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.0069811344146728516s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 37:
+STN:
+Number of nodes in network: 7
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6}
+Edges:
+0---(-63)--->2
+0---(-22)--->4
+0---(-31)--->6
+1---(42)--->0
+1---(-7)--->3
+2---(-90)--->6
+3---(-47)--->5
+4---(-87)--->1
+4---(-11)--->2
+5---(-62)--->0
+5---(39)--->6
+6---(83)--->0
+6---(35)--->1
+6---(76)--->4
+6---(-51)--->5
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0049893856048583984s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.005982875823974609s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.003011465072631836s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.0069620609283447266s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.006979703903198242s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 38:
 STN:
 Number of nodes in network: 8
-Dictionary of names -> index: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7}
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7}
 Edges:
-0---(1)--->7
-0---(-9)--->2
-0---(-2)--->3
-0---(4)--->4
-1---(3)--->5
-1---(-2)--->3
-1---(-8)--->4
-1---(-1)--->6
-2---(1)--->4
-2---(9)--->3
-2---(7)--->6
-2---(9)--->1
-3---(-6)--->5
-3---(-1)--->6
-4---(1)--->6
-4---(9)--->1
-4---(10)--->0
-5---(8)--->0
-5---(10)--->3
-5---(1)--->2
-6---(1)--->7
-6---(9)--->1
-6---(1)--->2
-6---(7)--->3
-6---(6)--->4
-6---(1)--->5
-7---(9)--->6
-7---(8)--->3
-7---(9)--->2
-7---(2)--->5
-(STN generated using the merrick_consistent_stn function)
+0---(13)--->2
+0---(-50)--->4
+0---(58)--->5
+0---(-13)--->6
+1---(26)--->0
+1---(28)--->4
+2---(76)--->0
+2---(68)--->5
+2---(32)--->6
+3---(52)--->1
+3---(59)--->5
+3---(-62)--->6
+3---(62)--->7
+4---(93)--->1
+4---(30)--->2
+5---(1)--->1
+5---(92)--->3
+5---(53)--->7
+6---(-89)--->0
+6---(-59)--->2
+6---(-33)--->5
+7---(-12)--->1
+7---(90)--->3
+7---(-47)--->4
+7---(49)--->5
+(STN generated using the random_stns function)
 
 
-BANNISTER-EPPSTEIN completed execution in 0.0029926300048828125s.
+BELLMAN-FORD completed execution in 0.005984306335449219s.
 Resulting Output:
 False
 
 
-BELLMAN-FORD completed execution in 0.007979631423950195s.
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.007977962493896484s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.002992391586303711s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.008977890014648438s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.010971784591674805s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 39:
+STN:
+Number of nodes in network: 8
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7}
+Edges:
+4---(-45)--->1
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0009970664978027344s.
 Resulting Output:
 True
 
 
-DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.012013435363769531s.
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.007019996643066406s.
 Resulting Output:
 True
 
 
-FLOYD-WARSHALL completed execution in 0.003996610641479492s.
+FLOYD-WARSHALL completed execution in 0.003984212875366211s.
 Resulting Output:
 True
 
 
-P3C (PLANKEN) completed execution in 0.011914968490600586s.
+MORRIS completed execution in 0.0029916763305664062s.
 Resulting Output:
 True
 
-Failure, outputs are not all equal
+
+P3C (PLANKEN) completed execution in 0.007977962493896484s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 40:
+STN:
+Number of nodes in network: 3
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2}
+Edges:
+0---(51)--->1
+1---(-11)--->0
+1---(-18)--->2
+2---(31)--->0
+2---(26)--->1
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.000997304916381836s.
+Resulting Output:
+True
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.002031564712524414s.
+Resulting Output:
+True
+
+
+FLOYD-WARSHALL completed execution in 0.0009627342224121094s.
+Resulting Output:
+True
+
+
+MORRIS completed execution in 0.006979227066040039s.
+Resulting Output:
+True
+
+
+P3C (PLANKEN) completed execution in 0.0029981136322021484s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 41:
+STN:
+Number of nodes in network: 5
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4}
+Edges:
+1---(50)--->0
+1---(29)--->2
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0009980201721191406s.
+Resulting Output:
+True
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.002976655960083008s.
+Resulting Output:
+True
+
+
+FLOYD-WARSHALL completed execution in 0.001005411148071289s.
+Resulting Output:
+True
+
+
+MORRIS completed execution in 0.000989675521850586s.
+Resulting Output:
+True
+
+
+P3C (PLANKEN) completed execution in 0.0040433406829833984s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 42:
+STN:
+Number of nodes in network: 5
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4}
+Edges:
+0---(82)--->1
+0---(99)--->2
+0---(-13)--->3
+0---(-6)--->4
+1---(48)--->0
+1---(-31)--->3
+1---(-64)--->4
+2---(16)--->0
+2---(46)--->4
+3---(45)--->0
+3---(-30)--->1
+3---(-7)--->2
+3---(-58)--->4
+4---(-100)--->0
+4---(-90)--->1
+4---(11)--->2
+4---(66)--->3
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.002028226852416992s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.003995656967163086s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.0009930133819580078s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.005948781967163086s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.005021095275878906s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 43:
+STN:
+Number of nodes in network: 7
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6}
+Edges:
+0---(-15)--->1
+0---(52)--->2
+0---(3)--->3
+0---(11)--->4
+0---(-85)--->5
+0---(70)--->6
+1---(49)--->0
+1---(12)--->2
+1---(71)--->3
+1---(-83)--->4
+1---(-12)--->5
+1---(-85)--->6
+2---(-78)--->0
+2---(-34)--->1
+2---(85)--->3
+2---(-52)--->4
+2---(-35)--->5
+3---(-36)--->0
+3---(-31)--->2
+3---(81)--->4
+3---(64)--->5
+3---(61)--->6
+4---(22)--->0
+4---(80)--->2
+4---(67)--->3
+4---(98)--->5
+4---(-74)--->6
+5---(46)--->0
+5---(-92)--->1
+5---(-15)--->2
+5---(-18)--->3
+5---(88)--->4
+5---(-58)--->6
+6---(-87)--->0
+6---(-60)--->1
+6---(-86)--->2
+6---(76)--->3
+6---(-13)--->4
+6---(86)--->5
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.008980035781860352s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.006977081298828125s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.002992391586303711s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.011005878448486328s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.011933088302612305s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 44:
+STN:
+Number of nodes in network: 3
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2}
+Edges:
+0---(-48)--->1
+1---(56)--->2
+2---(87)--->1
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0009987354278564453s.
+Resulting Output:
+True
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.0019922256469726562s.
+Resulting Output:
+True
+
+
+FLOYD-WARSHALL completed execution in 0.000997304916381836s.
+Resulting Output:
+True
+
+
+MORRIS completed execution in 0.0029954910278320312s.
+Resulting Output:
+True
+
+
+P3C (PLANKEN) completed execution in 0.0029883384704589844s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 45:
+STN:
+Number of nodes in network: 6
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5}
+Edges:
+0---(27)--->1
+0---(93)--->2
+0---(71)--->3
+0---(-51)--->4
+1---(67)--->0
+1---(10)--->2
+1---(-8)--->3
+1---(-16)--->4
+2---(57)--->0
+2---(-89)--->1
+2---(15)--->3
+2---(-99)--->4
+2---(5)--->5
+3---(93)--->0
+3---(-35)--->1
+3---(99)--->2
+3---(-26)--->4
+3---(73)--->5
+4---(-76)--->0
+4---(5)--->2
+4---(-88)--->3
+4---(-10)--->5
+5---(-25)--->0
+5---(37)--->3
+5---(-18)--->4
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.003989458084106445s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.005985736846923828s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.001993894577026367s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.006982088088989258s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.00698089599609375s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 46:
+STN:
+Number of nodes in network: 3
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2}
+Edges:
+0---(13)--->1
+0---(-91)--->2
+1---(-95)--->0
+1---(-81)--->2
+2---(61)--->0
+2---(31)--->1
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0009965896606445312s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.0019948482513427734s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.0s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.0029916763305664062s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.0029914379119873047s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 47:
+STN:
+Number of nodes in network: 3
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2}
+Edges:
+2---(-96)--->0
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.00099945068359375s.
+Resulting Output:
+True
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.00199127197265625s.
+Resulting Output:
+True
+
+
+FLOYD-WARSHALL completed execution in 0.0s.
+Resulting Output:
+True
+
+
+MORRIS completed execution in 0.0029976367950439453s.
+Resulting Output:
+True
+
+
+P3C (PLANKEN) completed execution in 0.001992464065551758s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 48:
+STN:
+Number of nodes in network: 6
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5}
+Edges:
+0---(39)--->3
+1---(-22)--->2
+1---(-76)--->3
+1---(78)--->4
+2---(13)--->4
+2---(-36)--->5
+3---(-67)--->0
+4---(-28)--->5
+5---(-33)--->0
+5---(5)--->2
+5---(-76)--->4
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.003987789154052734s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.003988742828369141s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.001994609832763672s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.008976459503173828s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.00698089599609375s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 49:
+STN:
+Number of nodes in network: 3
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2}
+Edges:
+0---(15)--->1
+1---(-17)--->0
+1---(51)--->2
+2---(82)--->0
+2---(-4)--->1
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.001994609832763672s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.0029916763305664062s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.0s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.004988908767700195s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.002991199493408203s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 50:
+STN:
+Number of nodes in network: 3
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2}
+Edges:
+1---(-14)--->0
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.001994609832763672s.
+Resulting Output:
+True
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.001993894577026367s.
+Resulting Output:
+True
+
+
+FLOYD-WARSHALL completed execution in 0.0s.
+Resulting Output:
+True
+
+
+MORRIS completed execution in 0.0029947757720947266s.
+Resulting Output:
+True
+
+
+P3C (PLANKEN) completed execution in 0.0019960403442382812s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 51:
+STN:
+Number of nodes in network: 4
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3}
+Edges:
+0---(43)--->1
+0---(-100)--->2
+1---(-94)--->0
+1---(80)--->2
+1---(50)--->3
+3---(-20)--->1
+3---(-12)--->2
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0009944438934326172s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.003988981246948242s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.0s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.003988742828369141s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.00399327278137207s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 52:
+STN:
+Number of nodes in network: 7
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6}
+Edges:
+0---(14)--->1
+0---(-71)--->3
+1---(-29)--->0
+1---(-58)--->3
+1---(76)--->4
+1---(34)--->6
+3---(-2)--->1
+3---(78)--->4
+3---(-33)--->5
+3---(41)--->6
+4---(65)--->0
+4---(-19)--->1
+4---(38)--->5
+4---(-55)--->6
+5---(-89)--->1
+5---(34)--->3
+5---(75)--->4
+5---(67)--->6
+6---(92)--->1
+6---(78)--->2
+6---(86)--->3
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.003988981246948242s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.006981372833251953s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.001994609832763672s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.00797891616821289s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.009988784790039062s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 53:
+STN:
+Number of nodes in network: 7
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6}
+Edges:
+0---(39)--->3
+0---(24)--->4
+0---(-92)--->6
+1---(50)--->0
+1---(-43)--->2
+1---(-56)--->3
+1---(49)--->4
+2---(-72)--->0
+2---(86)--->6
+3---(-47)--->4
+3---(-71)--->5
+4---(85)--->0
+4---(-24)--->1
+4---(-30)--->5
+4---(59)--->6
+5---(87)--->0
+5---(65)--->3
+6---(-19)--->0
+6---(-80)--->1
+6---(23)--->2
+6---(7)--->4
+6---(-19)--->5
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.00498509407043457s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.007979154586791992s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.002998828887939453s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.007972240447998047s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.008012771606445312s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 54:
+STN:
+Number of nodes in network: 8
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7}
+Edges:
+0---(72)--->3
+0---(64)--->5
+0---(50)--->6
+1---(28)--->0
+1---(31)--->3
+1---(-77)--->5
+1---(87)--->6
+1---(-75)--->7
+2---(64)--->0
+2---(-12)--->1
+2---(-83)--->4
+2---(66)--->5
+3---(-7)--->0
+3---(-62)--->1
+3---(81)--->2
+3---(-13)--->4
+3---(40)--->5
+3---(24)--->6
+4---(-68)--->2
+4---(25)--->3
+4---(64)--->5
+4---(-64)--->7
+5---(-68)--->0
+5---(6)--->2
+5---(89)--->3
+5---(66)--->4
+5---(7)--->6
+6---(1)--->3
+6---(-25)--->5
+7---(-49)--->0
+7---(-4)--->1
+7---(25)--->4
+7---(-28)--->5
+7---(5)--->6
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.006982326507568359s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.012964725494384766s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.00498652458190918s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.010972023010253906s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.010969161987304688s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 55:
+STN:
+Number of nodes in network: 5
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4}
+Edges:
+0---(67)--->1
+0---(39)--->3
+0---(-76)--->4
+1---(-95)--->0
+1---(77)--->3
+2---(83)--->0
+2---(-72)--->1
+2---(-90)--->3
+3---(-51)--->1
+3---(-11)--->2
+4---(-64)--->2
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0019960403442382812s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.003988504409790039s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.0009992122650146484s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.007978677749633789s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.0059833526611328125s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 56:
+STN:
+Number of nodes in network: 4
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3}
+Edges:
+0---(34)--->1
+0---(-60)--->2
+0---(-15)--->3
+1---(-18)--->2
+1---(-55)--->3
+2---(7)--->0
+2---(39)--->1
+3---(61)--->0
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0019829273223876953s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.003987789154052734s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.0009992122650146484s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.003988742828369141s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.004987478256225586s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 57:
+STN:
+Number of nodes in network: 4
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3}
+Edges:
+0---(30)--->1
+1---(-9)--->3
+3---(12)--->0
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0019943714141845703s.
+Resulting Output:
+True
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.002991199493408203s.
+Resulting Output:
+True
+
+
+FLOYD-WARSHALL completed execution in 0.0s.
+Resulting Output:
+True
+
+
+MORRIS completed execution in 0.0029916763305664062s.
+Resulting Output:
+True
+
+
+P3C (PLANKEN) completed execution in 0.003990650177001953s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 58:
+STN:
+Number of nodes in network: 5
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4}
+Edges:
+1---(-40)--->0
+3---(-40)--->1
+3---(24)--->4
+4---(82)--->3
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.001992464065551758s.
+Resulting Output:
+True
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.00399017333984375s.
+Resulting Output:
+True
+
+
+FLOYD-WARSHALL completed execution in 0.0009975433349609375s.
+Resulting Output:
+True
+
+
+MORRIS completed execution in 0.007982254028320312s.
+Resulting Output:
+True
+
+
+P3C (PLANKEN) completed execution in 0.005978584289550781s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 59:
+STN:
+Number of nodes in network: 5
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4}
+Edges:
+0---(-50)--->2
+3---(99)--->4
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0010006427764892578s.
+Resulting Output:
+True
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.0029883384704589844s.
+Resulting Output:
+True
+
+
+FLOYD-WARSHALL completed execution in 0.0009980201721191406s.
+Resulting Output:
+True
+
+
+MORRIS completed execution in 0.0029931068420410156s.
+Resulting Output:
+True
+
+
+P3C (PLANKEN) completed execution in 0.002991914749145508s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 60:
+STN:
+Number of nodes in network: 5
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4}
+Edges:
+0---(-2)--->1
+0---(50)--->2
+0---(-34)--->3
+0---(68)--->4
+1---(-22)--->0
+1---(60)--->2
+1---(-24)--->3
+1---(20)--->4
+2---(-100)--->0
+2---(-92)--->1
+2---(-47)--->3
+2---(-71)--->4
+3---(82)--->0
+3---(-46)--->1
+3---(-68)--->2
+3---(90)--->4
+4---(17)--->0
+4---(-6)--->1
+4---(77)--->2
+4---(-2)--->3
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.003989696502685547s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.003989458084106445s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.0009975433349609375s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.0069882869720458984s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.006974697113037109s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 61:
+STN:
+Number of nodes in network: 8
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7}
+Edges:
+1---(23)--->7
+2---(3)--->0
+5---(-9)--->1
+6---(-31)--->1
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0019931793212890625s.
+Resulting Output:
+True
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.007990121841430664s.
+Resulting Output:
+True
+
+
+FLOYD-WARSHALL completed execution in 0.003980159759521484s.
+Resulting Output:
+True
+
+
+MORRIS completed execution in 0.004988670349121094s.
+Resulting Output:
+True
+
+
+P3C (PLANKEN) completed execution in 0.010967731475830078s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 62:
+STN:
+Number of nodes in network: 5
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4}
+Edges:
+0---(28)--->2
+0---(39)--->3
+1---(-6)--->0
+1---(58)--->2
+1---(86)--->3
+1---(84)--->4
+2---(12)--->0
+2---(59)--->1
+2---(9)--->3
+2---(-64)--->4
+3---(-31)--->0
+3---(71)--->1
+3---(-15)--->4
+4---(-32)--->0
+4---(5)--->2
+4---(22)--->3
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.002991914749145508s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.005984783172607422s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.0010089874267578125s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.007964849472045898s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.006981372833251953s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 63:
+STN:
+Number of nodes in network: 4
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3}
+Edges:
+0---(54)--->1
+0---(11)--->2
+0---(-80)--->3
+1---(21)--->0
+1---(21)--->2
+1---(82)--->3
+2---(-67)--->0
+2---(44)--->1
+2---(6)--->3
+3---(-90)--->0
+3---(89)--->1
+3---(30)--->2
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.003996372222900391s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.004979372024536133s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.0s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.003950834274291992s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.004033565521240234s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 64:
+STN:
+Number of nodes in network: 5
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4}
+Edges:
+0---(50)--->1
+0---(69)--->2
+0---(9)--->4
+1---(69)--->0
+1---(29)--->2
+1---(15)--->3
+1---(4)--->4
+2---(-58)--->0
+2---(17)--->3
+2---(84)--->4
+3---(25)--->1
+3---(-31)--->2
+3---(-60)--->4
+4---(-65)--->0
+4---(93)--->1
+4---(-58)--->2
+4---(73)--->3
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0020334720611572266s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.003985404968261719s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.0009975433349609375s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.008942604064941406s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.008015155792236328s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 65:
+STN:
+Number of nodes in network: 3
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2}
+Edges:
+2---(-73)--->1
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0010356903076171875s.
+Resulting Output:
+True
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.0019562244415283203s.
+Resulting Output:
+True
+
+
+FLOYD-WARSHALL completed execution in 0.0s.
+Resulting Output:
+True
+
+
+MORRIS completed execution in 0.0019941329956054688s.
+Resulting Output:
+True
+
+
+P3C (PLANKEN) completed execution in 0.001994609832763672s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 66:
+STN:
+Number of nodes in network: 3
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2}
+Edges:
+0---(-51)--->1
+0---(-53)--->2
+1---(35)--->0
+1---(32)--->2
+2---(-92)--->0
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0030028820037841797s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.0019845962524414062s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.0010004043579101562s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.0039865970611572266s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.003988981246948242s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 67:
+STN:
+Number of nodes in network: 8
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7}
+Edges:
+0---(30)--->2
+0---(18)--->5
+1---(-27)--->0
+1---(-81)--->3
+1---(-78)--->4
+1---(-35)--->5
+1---(-85)--->6
+1---(-79)--->7
+2---(29)--->1
+2---(2)--->6
+2---(-85)--->7
+3---(-70)--->4
+3---(59)--->6
+3---(-79)--->7
+4---(-18)--->2
+4---(25)--->5
+4---(70)--->7
+5---(-39)--->0
+5---(96)--->2
+5---(-100)--->3
+5---(70)--->6
+5---(-46)--->7
+6---(-20)--->0
+6---(36)--->5
+6---(2)--->7
+7---(22)--->4
+7---(69)--->6
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.007978677749633789s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.010970830917358398s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.005983591079711914s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.010971784591674805s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.0139617919921875s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 68:
+STN:
+Number of nodes in network: 3
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2}
+Edges:
+0---(42)--->1
+0---(-9)--->2
+1---(-13)--->0
+2---(75)--->0
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0019958019256591797s.
+Resulting Output:
+True
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.001995086669921875s.
+Resulting Output:
+True
+
+
+FLOYD-WARSHALL completed execution in 0.0009958744049072266s.
+Resulting Output:
+True
+
+
+MORRIS completed execution in 0.0060176849365234375s.
+Resulting Output:
+True
+
+
+P3C (PLANKEN) completed execution in 0.0029621124267578125s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 69:
+STN:
+Number of nodes in network: 5
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4}
+Edges:
+3---(-84)--->0
+3---(-91)--->1
+4---(23)--->2
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.001996278762817383s.
+Resulting Output:
+True
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.002990245819091797s.
+Resulting Output:
+True
+
+
+FLOYD-WARSHALL completed execution in 0.00104522705078125s.
+Resulting Output:
+True
+
+
+MORRIS completed execution in 0.005938291549682617s.
+Resulting Output:
+True
+
+
+P3C (PLANKEN) completed execution in 0.003988981246948242s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 70:
+STN:
+Number of nodes in network: 8
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7}
+Edges:
+0---(68)--->1
+0---(67)--->3
+0---(-32)--->5
+0---(-39)--->6
+0---(62)--->7
+1---(-26)--->0
+2---(77)--->0
+2---(72)--->1
+2---(-70)--->3
+2---(-8)--->5
+3---(-86)--->0
+3---(5)--->4
+4---(18)--->0
+4---(-10)--->1
+4---(-94)--->5
+5---(-94)--->0
+5---(-43)--->7
+6---(63)--->2
+6---(-28)--->5
+6---(-40)--->7
+7---(7)--->1
+7---(-18)--->4
+7---(-80)--->5
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.006981611251831055s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.006020307540893555s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.005948781967163086s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.011005878448486328s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.00993800163269043s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 71:
+STN:
+Number of nodes in network: 4
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3}
+Edges:
+0---(42)--->1
+0---(-14)--->2
+1---(78)--->2
+1---(-11)--->3
+2---(-9)--->0
+2---(70)--->1
+3---(37)--->1
+3---(86)--->2
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0019931793212890625s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.0029914379119873047s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.0010328292846679688s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.005984067916870117s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.003954410552978516s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 72:
+STN:
+Number of nodes in network: 5
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4}
+Edges:
+1---(51)--->2
+2---(-46)--->0
+3---(48)--->2
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0009961128234863281s.
+Resulting Output:
+True
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.002991914749145508s.
+Resulting Output:
+True
+
+
+FLOYD-WARSHALL completed execution in 0.0009970664978027344s.
+Resulting Output:
+True
+
+
+MORRIS completed execution in 0.002993345260620117s.
+Resulting Output:
+True
+
+
+P3C (PLANKEN) completed execution in 0.0069806575775146484s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 73:
+STN:
+Number of nodes in network: 5
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4}
+Edges:
+0---(-52)--->1
+0---(6)--->2
+0---(54)--->3
+1---(-44)--->0
+1---(39)--->2
+1---(-18)--->3
+1---(5)--->4
+2---(-14)--->3
+2---(70)--->4
+3---(45)--->1
+3---(-74)--->4
+4---(96)--->1
+4---(-25)--->2
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.003989219665527344s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.004986763000488281s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.0019960403442382812s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.006981849670410156s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.005983591079711914s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 74:
+STN:
+Number of nodes in network: 4
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3}
+Edges:
+0---(20)--->2
+1---(-23)--->2
+1---(59)--->3
+2---(7)--->0
+2---(-45)--->3
+3---(8)--->1
+3---(5)--->2
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0019936561584472656s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.0029926300048828125s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.0009965896606445312s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.004986763000488281s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.0029916763305664062s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 75:
+STN:
+Number of nodes in network: 7
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6}
+Edges:
+0---(-29)--->1
+0---(44)--->2
+0---(76)--->3
+0---(-41)--->4
+0---(94)--->5
+0---(56)--->6
+1---(75)--->0
+1---(78)--->2
+1---(41)--->3
+1---(6)--->4
+1---(85)--->5
+1---(-53)--->6
+2---(59)--->0
+2---(-49)--->1
+2---(-70)--->3
+2---(-91)--->4
+2---(-94)--->5
+2---(-60)--->6
+3---(-95)--->0
+3---(-66)--->1
+3---(-86)--->2
+3---(-7)--->4
+3---(4)--->5
+3---(-94)--->6
+4---(-59)--->0
+4---(86)--->1
+4---(-3)--->2
+4---(-6)--->3
+4---(34)--->5
+4---(-59)--->6
+5---(-26)--->0
+5---(31)--->1
+5---(-68)--->2
+5---(-50)--->3
+5---(-22)--->4
+5---(28)--->6
+6---(8)--->0
+6---(9)--->1
+6---(-6)--->2
+6---(92)--->3
+6---(-85)--->4
+6---(87)--->5
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.010967731475830078s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.007978439331054688s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.0029926300048828125s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.010972738265991211s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.012964963912963867s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 76:
+STN:
+Number of nodes in network: 8
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7}
+Edges:
+4---(-5)--->2
+6---(70)--->2
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0039904117584228516s.
+Resulting Output:
+True
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.009017467498779297s.
+Resulting Output:
+True
+
+
+FLOYD-WARSHALL completed execution in 0.0059757232666015625s.
+Resulting Output:
+True
+
+
+MORRIS completed execution in 0.0049512386322021484s.
+Resulting Output:
+True
+
+
+P3C (PLANKEN) completed execution in 0.009972333908081055s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 77:
+STN:
+Number of nodes in network: 8
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7}
+Edges:
+0---(-77)--->5
+1---(36)--->4
+1---(-51)--->5
+1---(-25)--->6
+2---(-85)--->3
+2---(76)--->4
+2---(65)--->6
+2---(65)--->7
+3---(79)--->0
+3---(19)--->1
+3---(-32)--->5
+3---(-93)--->7
+4---(-40)--->0
+4---(-74)--->3
+4---(68)--->5
+4---(79)--->6
+4---(9)--->7
+5---(-88)--->0
+5---(-44)--->1
+5---(-81)--->4
+5---(-55)--->7
+6---(-76)--->1
+6---(9)--->2
+6---(-45)--->3
+6---(4)--->4
+6---(-55)--->5
+7---(16)--->0
+7---(-30)--->1
+7---(46)--->3
+7---(65)--->4
+7---(-56)--->5
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.005983114242553711s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.010970830917358398s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.004990339279174805s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.00900721549987793s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.00997614860534668s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 78:
+STN:
+Number of nodes in network: 5
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4}
+Edges:
+0---(73)--->1
+0---(43)--->2
+0---(34)--->3
+0---(17)--->4
+1---(98)--->2
+1---(87)--->3
+1---(14)--->4
+2---(-96)--->1
+2---(87)--->3
+3---(28)--->1
+3---(36)--->2
+3---(91)--->4
+4---(-59)--->0
+4---(-16)--->1
+4---(-90)--->3
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.003955364227294922s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.0039865970611572266s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.000997781753540039s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.00803995132446289s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.005975961685180664s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 79:
+STN:
+Number of nodes in network: 8
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7}
+Edges:
+5---(20)--->4
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0019474029541015625s.
+Resulting Output:
+True
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.005982875823974609s.
+Resulting Output:
+True
+
+
+FLOYD-WARSHALL completed execution in 0.004984855651855469s.
+Resulting Output:
+True
+
+
+MORRIS completed execution in 0.0s.
+Resulting Output:
+True
+
+
+P3C (PLANKEN) completed execution in 0.012001991271972656s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 80:
+STN:
+Number of nodes in network: 3
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2}
+Edges:
+0---(87)--->1
+0---(-59)--->2
+1---(-33)--->0
+1---(-54)--->2
+2---(93)--->0
+2---(-5)--->1
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.001032114028930664s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.0030188560485839844s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.0s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.0049228668212890625s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.0019943714141845703s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 81:
+STN:
+Number of nodes in network: 6
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5}
+Edges:
+0---(86)--->3
+0---(-87)--->4
+0---(24)--->5
+1---(-16)--->2
+1---(-74)--->3
+2---(59)--->3
+2---(-53)--->4
+3---(62)--->0
+3---(-10)--->2
+3---(71)--->4
+3---(87)--->5
+4---(94)--->2
+4---(56)--->5
+5---(-96)--->2
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.001994609832763672s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.0059833526611328125s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.0009984970092773438s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.004985809326171875s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.0069811344146728516s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 82:
+STN:
+Number of nodes in network: 3
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2}
+Edges:
+2---(-100)--->1
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0009987354278564453s.
+Resulting Output:
+True
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.002992868423461914s.
+Resulting Output:
+True
+
+
+FLOYD-WARSHALL completed execution in 0.0s.
+Resulting Output:
+True
+
+
+MORRIS completed execution in 0.003023862838745117s.
+Resulting Output:
+True
+
+
+P3C (PLANKEN) completed execution in 0.0029942989349365234s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 83:
+STN:
+Number of nodes in network: 7
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6}
+Edges:
+0---(-74)--->6
+1---(-63)--->0
+1---(67)--->6
+2---(29)--->1
+2---(-58)--->3
+2---(-64)--->6
+3---(55)--->6
+4---(-93)--->0
+4---(10)--->2
+4---(-27)--->6
+5---(-17)--->4
+5---(49)--->6
+6---(-54)--->0
+6---(91)--->4
+6---(90)--->5
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.003983974456787109s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.005954265594482422s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.002991199493408203s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.005986690521240234s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.007012605667114258s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 84:
+STN:
+Number of nodes in network: 4
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3}
+Edges:
+2---(9)--->0
+2---(-80)--->3
+3---(99)--->0
+3---(-70)--->1
+3---(64)--->2
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0009996891021728516s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.002990245819091797s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.0s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.0039899349212646484s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.002991914749145508s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 85:
+STN:
+Number of nodes in network: 5
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4}
+Edges:
+0---(-41)--->1
+0---(-56)--->2
+0---(-45)--->3
+1---(-7)--->0
+2---(34)--->3
+2---(-68)--->4
+3---(-71)--->0
+3---(73)--->1
+3---(-19)--->2
+3---(79)--->4
+4---(-59)--->0
+4---(-85)--->2
+4---(-50)--->3
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.004985809326171875s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.0029916763305664062s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.001996278762817383s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.005984306335449219s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.006017208099365234s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 86:
+STN:
+Number of nodes in network: 4
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3}
+Edges:
+0---(-27)--->1
+0---(-85)--->2
+1---(6)--->0
+1---(64)--->3
+2---(-67)--->0
+2---(12)--->1
+3---(38)--->1
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.001996278762817383s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.0019927024841308594s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.0009980201721191406s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.004953145980834961s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.003987312316894531s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 87:
+STN:
+Number of nodes in network: 3
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2}
+Edges:
+0---(-96)--->1
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0009980201721191406s.
+Resulting Output:
+True
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.001994609832763672s.
+Resulting Output:
+True
+
+
+FLOYD-WARSHALL completed execution in 0.0010154247283935547s.
+Resulting Output:
+True
+
+
+MORRIS completed execution in 0.0019762516021728516s.
+Resulting Output:
+True
+
+
+P3C (PLANKEN) completed execution in 0.002996683120727539s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 88:
+STN:
+Number of nodes in network: 4
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3}
+Edges:
+0---(-34)--->1
+0---(5)--->2
+0---(42)--->3
+1---(-46)--->0
+1---(-61)--->2
+1---(-37)--->3
+2---(54)--->0
+2---(80)--->1
+3---(-11)--->0
+3---(39)--->2
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.001995563507080078s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.002991199493408203s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.000997304916381836s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.0049860477447509766s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.0030252933502197266s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 89:
+STN:
+Number of nodes in network: 3
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2}
+Edges:
+0---(-94)--->1
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0s.
+Resulting Output:
+True
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.0019948482513427734s.
+Resulting Output:
+True
+
+
+FLOYD-WARSHALL completed execution in 0.000997304916381836s.
+Resulting Output:
+True
+
+
+MORRIS completed execution in 0.0019960403442382812s.
+Resulting Output:
+True
+
+
+P3C (PLANKEN) completed execution in 0.0019943714141845703s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 90:
+STN:
+Number of nodes in network: 5
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4}
+Edges:
+0---(-10)--->1
+0---(96)--->3
+1---(-53)--->0
+2---(98)--->0
+2---(48)--->4
+3---(-73)--->1
+3---(-35)--->4
+4---(-11)--->0
+4---(-39)--->1
+4---(41)--->2
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0019927024841308594s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.00399017333984375s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.0019941329956054688s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.005983829498291016s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.004995822906494141s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 91:
+STN:
+Number of nodes in network: 7
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6}
+Edges:
+0---(-85)--->1
+0---(80)--->5
+0---(77)--->6
+1---(-97)--->3
+2---(47)--->1
+2---(-85)--->3
+2---(-21)--->4
+2---(-87)--->5
+3---(5)--->0
+4---(46)--->0
+4---(62)--->1
+4---(-3)--->6
+5---(-50)--->0
+5---(24)--->3
+6---(-20)--->3
+6---(-68)--->4
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.002991914749145508s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.005984067916870117s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.0019948482513427734s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.01296377182006836s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.009973764419555664s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 92:
+STN:
+Number of nodes in network: 3
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2}
+Edges:
+0---(51)--->1
+1---(-71)--->0
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.000985860824584961s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.0009968280792236328s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.0009968280792236328s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.0019953250885009766s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.003003835678100586s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 93:
+STN:
+Number of nodes in network: 5
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4}
+Edges:
+2---(-92)--->0
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0019826889038085938s.
+Resulting Output:
+True
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.003988981246948242s.
+Resulting Output:
+True
+
+
+FLOYD-WARSHALL completed execution in 0.0009975433349609375s.
+Resulting Output:
+True
+
+
+MORRIS completed execution in 0.004995822906494141s.
+Resulting Output:
+True
+
+
+P3C (PLANKEN) completed execution in 0.004979610443115234s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 94:
+STN:
+Number of nodes in network: 3
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2}
+Edges:
+0---(-77)--->1
+0---(-43)--->2
+1---(64)--->2
+2---(-7)--->0
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.001996755599975586s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.0030663013458251953s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.0s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.003912210464477539s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.0019822120666503906s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 95:
+STN:
+Number of nodes in network: 3
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2}
+Edges:
+0---(61)--->1
+1---(92)--->0
+1---(-28)--->2
+2---(-3)--->0
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0019931793212890625s.
+Resulting Output:
+True
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.001993894577026367s.
+Resulting Output:
+True
+
+
+FLOYD-WARSHALL completed execution in 0.0s.
+Resulting Output:
+True
+
+
+MORRIS completed execution in 0.005987644195556641s.
+Resulting Output:
+True
+
+
+P3C (PLANKEN) completed execution in 0.0019919872283935547s.
+Resulting Output:
+True
+
+Success, outputs are equal
+============================================
+============================================
+TEST 96:
+STN:
+Number of nodes in network: 4
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3}
+Edges:
+0---(22)--->1
+0---(-83)--->2
+0---(-27)--->3
+1---(-73)--->0
+1---(-82)--->3
+2---(-97)--->1
+2---(-69)--->3
+3---(-84)--->0
+3---(-97)--->1
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0020248889923095703s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.003015279769897461s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.0009970664978027344s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.006932735443115234s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.003056764602661133s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 97:
+STN:
+Number of nodes in network: 7
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6}
+Edges:
+0---(-43)--->1
+0---(-16)--->2
+0---(70)--->3
+0---(1)--->4
+0---(-25)--->5
+0---(4)--->6
+1---(85)--->0
+1---(-23)--->2
+1---(-96)--->4
+1---(-28)--->5
+1---(-3)--->6
+2---(-75)--->0
+2---(-91)--->1
+2---(-16)--->3
+2---(18)--->4
+2---(-38)--->5
+2---(-90)--->6
+3---(-69)--->1
+3---(-66)--->2
+3---(52)--->4
+3---(-62)--->5
+3---(-48)--->6
+4---(90)--->0
+4---(-77)--->1
+4---(18)--->2
+4---(72)--->3
+4---(-90)--->5
+4---(25)--->6
+5---(3)--->0
+5---(64)--->1
+5---(62)--->2
+5---(-32)--->3
+5---(-67)--->4
+5---(-62)--->6
+6---(38)--->0
+6---(93)--->1
+6---(-90)--->2
+6---(-26)--->3
+6---(31)--->4
+6---(-10)--->5
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.006981611251831055s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.005983591079711914s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.0029926300048828125s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.012969493865966797s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.00997018814086914s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 98:
+STN:
+Number of nodes in network: 3
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2}
+Edges:
+0---(-58)--->2
+1---(-94)--->0
+1---(25)--->2
+2---(16)--->0
+2---(45)--->1
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.0009970664978027344s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.0019948482513427734s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.0s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.004984617233276367s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.002992391586303711s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 99:
+STN:
+Number of nodes in network: 8
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7}
+Edges:
+0---(-51)--->1
+0---(-97)--->2
+0---(31)--->4
+0---(-30)--->5
+0---(19)--->6
+0---(-14)--->7
+1---(-33)--->2
+1---(-42)--->3
+1---(-80)--->4
+1---(-16)--->6
+1---(-28)--->7
+2---(61)--->1
+2---(-72)--->3
+2---(-93)--->4
+2---(-12)--->5
+3---(-40)--->0
+3---(88)--->1
+3---(70)--->2
+3---(74)--->5
+3---(-3)--->6
+4---(80)--->0
+4---(-22)--->1
+4---(-42)--->2
+4---(27)--->3
+4---(28)--->7
+5---(91)--->3
+5---(38)--->4
+5---(65)--->6
+5---(41)--->7
+6---(47)--->0
+6---(-63)--->7
+7---(-4)--->0
+7---(-42)--->1
+7---(-94)--->2
+7---(76)--->3
+7---(17)--->4
+7---(25)--->5
+7---(-60)--->6
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.011967897415161133s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.010970830917358398s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.004986763000488281s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.015958070755004883s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.01595759391784668s.
+Resulting Output:
+False
+
+Success, outputs are equal
+============================================
+============================================
+TEST 100:
+STN:
+Number of nodes in network: 6
+Dictionary of names -> index: {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5}
+Edges:
+0---(-62)--->2
+0---(-67)--->3
+0---(87)--->4
+1---(-45)--->2
+1---(-70)--->3
+1---(79)--->4
+1---(70)--->5
+2---(16)--->0
+2---(20)--->1
+2---(-5)--->3
+2---(-39)--->4
+2---(-57)--->5
+3---(39)--->0
+3---(-6)--->1
+3---(-32)--->2
+3---(75)--->5
+4---(54)--->0
+4---(-10)--->2
+4---(88)--->3
+4---(-23)--->5
+5---(-66)--->0
+5---(-37)--->1
+5---(-44)--->2
+5---(53)--->3
+5---(11)--->4
+(STN generated using the random_stns function)
+
+
+BELLMAN-FORD completed execution in 0.005982875823974609s.
+Resulting Output:
+False
+
+
+DIRECTED PATH CONSISTENCY (PLANKEN) completed execution in 0.00598454475402832s.
+Resulting Output:
+False
+
+
+FLOYD-WARSHALL completed execution in 0.0020024776458740234s.
+Resulting Output:
+False
+
+
+MORRIS completed execution in 0.0069730281829833984s.
+Resulting Output:
+False
+
+
+P3C (PLANKEN) completed execution in 0.007976770401000977s.
+Resulting Output:
+False
+
+Success, outputs are equal
 ============================================

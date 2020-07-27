@@ -51,7 +51,6 @@ class Dijkstra:
                     if (alt < distances[v]):
                         distances[v] = alt
                         heapq.heappush(min_heap, (distances[v], v))
-
             return distances
 
     @staticmethod

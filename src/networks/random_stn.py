@@ -88,7 +88,7 @@ class RandomSTN:
         for i in range(network.length):
             for j in range(network.length):
                 rand = random()
-                if rand < 0.5 * density_probability:
+                if rand < 0.5 * density_probability and i !=j:
                     network.successor_edges[i][j] = int(
                         randrange(1, max_weight, 1))
                     counter += 1
