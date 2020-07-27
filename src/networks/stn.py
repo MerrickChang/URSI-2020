@@ -6,9 +6,9 @@
 
 
 import heapq
-  
+
 import matplotlib.pyplot as plt
-import networkx as nx
+#import networkx as nx
 
 
 
@@ -241,7 +241,7 @@ class STN:
 
     def visualize(self):
         G = nx.DiGraph()
-        
+
         G.add_nodes_from(self.names_list)
         blue_edges, red_edges = [], []
         blue_labels, red_labels = {}, {}
@@ -254,7 +254,7 @@ class STN:
                     blue_edges.append((self.names_list[node_idx], self.names_list[successor_idx]))
                     blue_labels[(self.names_list[node_idx],self.names_list[successor_idx])] = weight
                 G.add_edge(self.names_list[node_idx], self.names_list[successor_idx], weight=weight)
-    
+
         pos = nx.shell_layout(G)
         nx.draw_networkx_nodes(G, pos, node_size=700)
         nx.draw_networkx_edges(

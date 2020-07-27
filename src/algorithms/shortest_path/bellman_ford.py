@@ -156,9 +156,10 @@ class BellmanFord:
         source_index = length
         if not source:
             source_successor_edges = dict([(x, 0) for x in range(length)])
+            length += 1
         else:
-            source_index = stn.names_dict[source]
             source_successor_edges = stn.successor_edges[source_index]
+            source_index = stn.names_dict[source]
         dist = [float('inf') for x in range(length)]
         dist[source_index] = 0
         C = {source_index}
@@ -171,28 +172,29 @@ class BellmanFord:
         G_minus = [[] for edge_list in stn.successor_edges]
         G_plus = [[] for edge_list in stn.successor_edges]
         for u, edge_list in enumerate(stn.successor_edges):
-            for v in edge_list:
-                if random_order.index(u) < random_order.index(v):
-                    G_plus[u].append(v)
-                elif random_order.index(u) > random_order.index(v):
-                    G_minus[u].append(v)
+            if u != source_index:
+                for v in edge_list:
+                    if random_order.index(u) < random_order.index(v):
+                        G_plus[u].append(v)
+                    elif random_order.index(u) > random_order.index(v):
+                        G_minus[u].append(v)
         while len(C) != 0:
             has_changed = [False for x in range(length)]
             #For each vertex in order, relax the edges G+
-            if source_index in C:
+            if source_index in C or has_changed[source_index]:
                 for v, delta in source_successor_edges.items():
-                    has_changed[v] = BellmanFord._relax(source_index,v,delta,dist)
+                    has_changed[v] = has_changed[v] or BellmanFord._relax(source_index,v,delta,dist)
             for u in random_order[1:]:
                 if u in C or has_changed[u]:
                     for v in G_plus[u]:
                         delta = stn.successor_edges[u][v]
-                        has_changed[v] = BellmanFord._relax(u,v,delta,dist)
+                        has_changed[v] = has_changed[v] or BellmanFord._relax(u,v,delta,dist)
             #For each vertex in reverse order, relax the edge in G-
             for u in random_order[:0:-1]:
                 if u in C or has_changed[u]:
                     for v in G_minus[u]:
                         delta = stn.successor_edges[u][v]
-                        has_changed[v] = BellmanFord._relax(u,v,delta,dist)
+                        has_changed[v] = has_changed[v] or BellmanFord._relax(u,v,delta,dist)
             #Set C to include only the vertices that have had their distance values changed
             C = set()
             for u,_ in enumerate(has_changed):
