@@ -1,3 +1,9 @@
+##===================================
+##File: consistency_test.py
+##Author: Merrick Chang
+##Date: July 2019
+##===================================
+
 from .test import Test
 from ..algorithms.shortest_path.floyd_warshall import FloydWarshall
 from ..algorithms.shortest_path.bellman_ford import BellmanFord

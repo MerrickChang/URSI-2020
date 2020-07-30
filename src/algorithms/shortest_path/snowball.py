@@ -1,3 +1,9 @@
+##===================================
+##File: snowball.py
+##Author: Merrick Chang
+##Date: July 2019
+##===================================
+
 from ..path_consist.dpc import DirectedPathConsistency
 
 class Snowball:

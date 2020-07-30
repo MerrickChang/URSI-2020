@@ -1,3 +1,9 @@
+##===================================
+##File: test.py
+##Author: Merrick Chang
+##Date: July 2019
+##===================================
+
 from ..networks.file_reader import FileReader
 from ..networks.random_stn import RandomSTN
 import time

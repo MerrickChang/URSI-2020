@@ -1,3 +1,8 @@
+##===================================
+##File: probability.py
+##Author: Merrick Chang
+##Date: July 2019
+##===================================
 from random import random
 import math
 

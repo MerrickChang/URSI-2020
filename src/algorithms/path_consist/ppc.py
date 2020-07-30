@@ -1,3 +1,10 @@
+##===================================
+##File: ppc.py
+##Author: Merrick Chang
+##Date: July 2019
+##===================================
+
+
 from .dpc import DirectedPathConsistency
 
 class PartialPathConsistency:

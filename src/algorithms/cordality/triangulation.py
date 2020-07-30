@@ -1,3 +1,9 @@
+##===================================
+##File: triangulation.py
+##Author: Merrick Chang
+##Date: July 2019
+##===================================
+
 from ..shortest_path.johnson import Johnson
 
 class Triangulation:

@@ -136,72 +136,72 @@ class BellmanFord:
 
 
 
-    @staticmethod
-    def bannister_eppstein(stn, source = False):
-        """Implements the Bannister-Eppstein's improvement of Yen's optimization of the Bellman-Ford Algorithm
-        Parameters
-        ----------
-        stn: STN
-            The target stn
-        source: bool, str
-            Specifies the source node.
-            If no source node is specified, it is assumed that the algorithm is being used for Johnson's algorithm and virtual node is generated.
-        Returns
-        -------
-        dist: List[int]
-            A list of integers representing the distance from the source node"""
-
-        length = len(stn.names_dict)
-        source_successor_edges = []
-        source_index = length
-        if not source:
-            source_successor_edges = dict([(x, 0) for x in range(length)])
-            length += 1
-        else:
-            source_successor_edges = stn.successor_edges[source_index]
-            source_index = stn.names_dict[source]
-        dist = [float('inf') for x in range(length)]
-        dist[source_index] = 0
-        C = {source_index}
-        #Create an ordering for the nodes. Put the source first, create a random ordering for the other nodes.
-        random_order = list(range(length))
-        random_order.pop(source_index)
-        random.shuffle(random_order)
-        random_order.insert(0, source_index)
-        #Partition the edges (i,j) into sets G+ and G- where i<j and i>j respectively, where i and j are the indexes of the vertexes of the edge in the ordering
-        G_minus = [[] for edge_list in stn.successor_edges]
-        G_plus = [[] for edge_list in stn.successor_edges]
-        for u, edge_list in enumerate(stn.successor_edges):
-            if u != source_index:
-                for v in edge_list:
-                    if random_order.index(u) < random_order.index(v):
-                        G_plus[u].append(v)
-                    elif random_order.index(u) > random_order.index(v):
-                        G_minus[u].append(v)
-        while len(C) != 0:
-            has_changed = [False for x in range(length)]
-            #For each vertex in order, relax the edges G+
-            if source_index in C or has_changed[source_index]:
-                for v, delta in source_successor_edges.items():
-                    has_changed[v] = has_changed[v] or BellmanFord._relax(source_index,v,delta,dist)
-            for u in random_order[1:]:
-                if u in C or has_changed[u]:
-                    for v in G_plus[u]:
-                        delta = stn.successor_edges[u][v]
-                        has_changed[v] = has_changed[v] or BellmanFord._relax(u,v,delta,dist)
-            #For each vertex in reverse order, relax the edge in G-
-            for u in random_order[:0:-1]:
-                if u in C or has_changed[u]:
-                    for v in G_minus[u]:
-                        delta = stn.successor_edges[u][v]
-                        has_changed[v] = has_changed[v] or BellmanFord._relax(u,v,delta,dist)
-            #Set C to include only the vertices that have had their distance values changed
-            C = set()
-            for u,_ in enumerate(has_changed):
-                if _:
-                    C.add(u)
-        print(dist)
-        for u, v, delta in BellmanFord._edges_w_virtual(stn, virtual_edges = BellmanFord._virtual_edges_johnson(stn) if not source else []):
-            if dist[u] + delta < dist[v]:
-                return False
-        return dist
+    # @staticmethod
+    # def bannister_eppstein(stn, source = False):
+    #     """Implements the Bannister-Eppstein's improvement of Yen's optimization of the Bellman-Ford Algorithm
+    #     Parameters
+    #     ----------
+    #     stn: STN
+    #         The target stn
+    #     source: bool, str
+    #         Specifies the source node.
+    #         If no source node is specified, it is assumed that the algorithm is being used for Johnson's algorithm and virtual node is generated.
+    #     Returns
+    #     -------
+    #     dist: List[int]
+    #         A list of integers representing the distance from the source node"""
+    #
+    #     length = len(stn.names_dict)
+    #     source_successor_edges = []
+    #     source_index = length
+    #     if not source:
+    #         source_successor_edges = dict([(x, 0) for x in range(length)])
+    #         length += 1
+    #     else:
+    #         source_successor_edges = stn.successor_edges[source_index]
+    #         source_index = stn.names_dict[source]
+    #     dist = [float('inf') for x in range(length)]
+    #     dist[source_index] = 0
+    #     C = {source_index}
+    #     #Create an ordering for the nodes. Put the source first, create a random ordering for the other nodes.
+    #     random_order = list(range(length))
+    #     random_order.pop(source_index)
+    #     random.shuffle(random_order)
+    #     random_order.insert(0, source_index)
+    #     #Partition the edges (i,j) into sets G+ and G- where i<j and i>j respectively, where i and j are the indexes of the vertexes of the edge in the ordering
+    #     G_minus = [[] for edge_list in stn.successor_edges]
+    #     G_plus = [[] for edge_list in stn.successor_edges]
+    #     for u, edge_list in enumerate(stn.successor_edges):
+    #         if u != source_index:
+    #             for v in edge_list:
+    #                 if random_order.index(u) < random_order.index(v):
+    #                     G_plus[u].append(v)
+    #                 elif random_order.index(u) > random_order.index(v):
+    #                     G_minus[u].append(v)
+    #     while len(C) != 0:
+    #         has_changed = [False for x in range(length)]
+    #         #For each vertex in order, relax the edges G+
+    #         if source_index in C or has_changed[source_index]:
+    #             for v, delta in source_successor_edges.items():
+    #                 has_changed[v] = has_changed[v] or BellmanFord._relax(source_index,v,delta,dist)
+    #         for u in random_order[1:]:
+    #             if u in C or has_changed[u]:
+    #                 for v in G_plus[u]:
+    #                     delta = stn.successor_edges[u][v]
+    #                     has_changed[v] = has_changed[v] or BellmanFord._relax(u,v,delta,dist)
+    #         #For each vertex in reverse order, relax the edge in G-
+    #         for u in random_order[:0:-1]:
+    #             if u in C or has_changed[u]:
+    #                 for v in G_minus[u]:
+    #                     delta = stn.successor_edges[u][v]
+    #                     has_changed[v] = has_changed[v] or BellmanFord._relax(u,v,delta,dist)
+    #         #Set C to include only the vertices that have had their distance values changed
+    #         C = set()
+    #         for u,_ in enumerate(has_changed):
+    #             if _:
+    #                 C.add(u)
+    #     print(dist)
+    #     for u, v, delta in BellmanFord._edges_w_virtual(stn, virtual_edges = BellmanFord._virtual_edges_johnson(stn) if not source else []):
+    #         if dist[u] + delta < dist[v]:
+    #             return False
+    #     return dist

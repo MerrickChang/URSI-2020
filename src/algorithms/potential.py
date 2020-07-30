@@ -1,3 +1,9 @@
+##===================================
+##File: potetnial.py
+##Author: Merrick Chang
+##Date: July 2019
+##===================================
+
 from ..incremental.solution_update import SolutionUpdate
 from ...networks.stn import STN
 import copy

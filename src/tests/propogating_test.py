@@ -1,3 +1,9 @@
+##===================================
+##File: propogating_test.py
+##Author: Merrick Chang
+##Date: July 2019
+##===================================
+
 import copy
 
 class PropogatingTest(Test):

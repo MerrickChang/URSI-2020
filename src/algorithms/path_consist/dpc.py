@@ -1,3 +1,10 @@
+##===================================
+##File: dpc.py
+##Author: Merrick Chang
+##Date: July 2019
+##===================================
+
+
 class DirectedPathConsistency:
     @staticmethod
     def convert_to_DPC(stn, ordering): #TESTED!

@@ -1,3 +1,9 @@
+##===================================
+##File: morris.py
+##Author: Merrick Chang
+##Date: July 2019
+##===================================
+
 import heapq
 import copy
 
@@ -9,12 +15,22 @@ class MorrisConsistencyCheck:
     """
     @staticmethod
     def is_consistent(stn):
+        """
+        Uses Morris (2014) to calculate whether an STN is consistent or not.
+        ----------------------------------------------------------------------
+        Input:
+            stn, an STN
+
+        Output:
+            consistent, a boolean that is true if the stns is consistent and false otherwise
+
+        """
         if not stn.pred_edges_up_to_date:
             stn.update_predecessors()
+        dup = copy.deepcopy(stn)
         terminated = set()
         for node, edges in enumerate(stn.predecessor_edges):
             if MorrisConsistencyCheck._is_negative_node(stn, node):
-                dup = copy.deepcopy(stn)
                 if not MorrisConsistencyCheck._prop_bwk(dup, node, terminated):
                     return False
         return True

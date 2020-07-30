@@ -1,3 +1,9 @@
+##===================================
+##File: chleq.py
+##Author: Merrick Chang
+##Date: July 2019
+##===================================
+
 from ..path_consist.dpc import DirectedPathConsistency as DPC
 
 class Chleq:

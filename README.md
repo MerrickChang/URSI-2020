@@ -49,9 +49,11 @@ Folders:
 
         * dispatchability.py (Dispatchability)- contains greedy executer
 	
-	    * potential.py (Potential)- Hunsberger and Posenato algorithm for the potential function
+	* potential.py (Potential)- Hunsberger and Posenato algorithm for the potential function
 
         * tarjan.py (Tarjan)- (outdated, not functional) Sudais's implementation of Tarjan's algorithm
+
+        * morris.py (MorrisConsistencyCheck) - modified version of Morris 2014
 
     * networks- code for STNs and STNUs and random generation
 
